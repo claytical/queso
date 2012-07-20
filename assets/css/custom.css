@@ -1,0 +1,11 @@
+/**
+ * All your custom CSS should go into this file
+ */
+
+body {
+   padding-top: 60px;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
