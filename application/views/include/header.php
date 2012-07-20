@@ -80,7 +80,7 @@
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quests <b class="caret"></b></a>
 				  <ul class="dropdown-menu">
-					<li><a href="#">Available</a></li>
+					<li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
 					<li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
 					<li><a href="#">Responses</a></li>
 				  </ul>

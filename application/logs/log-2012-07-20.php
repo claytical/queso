@@ -112,3 +112,54 @@ ERROR - 2012-07-20 14:27:35 --> Severity: Notice  --> Undefined variable: id /Us
 ERROR - 2012-07-20 14:30:18 --> 404 Page Not Found --> assets
 ERROR - 2012-07-20 14:48:18 --> 404 Page Not Found --> common_auth/quests
 ERROR - 2012-07-20 14:48:25 --> 404 Page Not Found --> common_auth/quests
+ERROR - 2012-07-20 15:11:58 --> 404 Page Not Found --> quests
+ERROR - 2012-07-20 15:21:54 --> Severity: Notice  --> Undefined index: qid /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:21:54 --> Severity: Notice  --> Undefined index: qid /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:21:54 --> Severity: Notice  --> Undefined index: qid /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:21:54 --> Severity: Notice  --> Undefined index: qid /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:21:54 --> Severity: Notice  --> Undefined index: qid /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:22:02 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:22:02 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:22:02 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:22:02 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:22:02 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:23:09 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:23:09 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:23:09 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:23:09 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:23:09 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/views/quests/available.php 17
+ERROR - 2012-07-20 15:25:41 --> Severity: Notice  --> Undefined index: type /Users/clay/Sites/gclass/application/views/quests/completed.php 16
+ERROR - 2012-07-20 15:25:41 --> Severity: Notice  --> Undefined index: type /Users/clay/Sites/gclass/application/views/quests/completed.php 16
+ERROR - 2012-07-20 15:25:41 --> Severity: Notice  --> Undefined index: type /Users/clay/Sites/gclass/application/views/quests/completed.php 16
+ERROR - 2012-07-20 15:29:30 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE submissions.qid = quests.id WHERE quests.id NOT IN (SELECT qid FROM questC' at line 1
+ERROR - 2012-07-20 15:32:13 --> Severity: Notice  --> Undefined index: name /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 59
+ERROR - 2012-07-20 15:32:13 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 60
+ERROR - 2012-07-20 15:32:13 --> Severity: Notice  --> Undefined index: instructions /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 61
+ERROR - 2012-07-20 15:32:22 --> Severity: Notice  --> Undefined index: name /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 59
+ERROR - 2012-07-20 15:32:22 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 60
+ERROR - 2012-07-20 15:32:22 --> Severity: Notice  --> Undefined index: instructions /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 61
+ERROR - 2012-07-20 15:32:44 --> Severity: Notice  --> Undefined index: name /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 59
+ERROR - 2012-07-20 15:32:44 --> Severity: Notice  --> Undefined index: id /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 60
+ERROR - 2012-07-20 15:32:44 --> Severity: Notice  --> Undefined index: instructions /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 61
+ERROR - 2012-07-20 15:33:00 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 16
+ERROR - 2012-07-20 15:33:27 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:34:36 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:37:18 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:37:57 --> Query error: Column 'uid' in where clause is ambiguous
+ERROR - 2012-07-20 15:38:10 --> Query error: Unknown column 'quests.uid' in 'where clause'
+ERROR - 2012-07-20 15:38:22 --> Severity: Notice  --> Undefined variable: questProgress /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 43
+ERROR - 2012-07-20 15:38:22 --> Severity: Notice  --> Undefined variable: questProgress /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 43
+ERROR - 2012-07-20 15:38:22 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:38:22 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:38:22 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:38:22 --> Severity: Warning  --> Invalid argument supplied for foreach() /Users/clay/Sites/gclass/application/views/quests/completed.php 36
+ERROR - 2012-07-20 15:38:22 --> Severity: Warning  --> Invalid argument supplied for foreach() /Users/clay/Sites/gclass/application/views/quests/completed.php 36
+ERROR - 2012-07-20 15:38:42 --> Query error: Unknown column 'questCompletion.id' in 'on clause'
+ERROR - 2012-07-20 15:38:55 --> Severity: Notice  --> Undefined variable: questProgress /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 43
+ERROR - 2012-07-20 15:38:55 --> Severity: Notice  --> Undefined variable: questProgress /Users/clay/Sites/gclass/application/controllers/common_auth/quest.php 43
+ERROR - 2012-07-20 15:38:55 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:38:55 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:38:55 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 15:38:55 --> Severity: Warning  --> Invalid argument supplied for foreach() /Users/clay/Sites/gclass/application/views/quests/completed.php 36
+ERROR - 2012-07-20 15:38:55 --> Severity: Warning  --> Invalid argument supplied for foreach() /Users/clay/Sites/gclass/application/views/quests/completed.php 36
+ERROR - 2012-07-20 15:42:15 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17

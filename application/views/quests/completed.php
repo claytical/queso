@@ -11,8 +11,17 @@
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td colspan="2"><div><h4><?php echo $quest['quest']->name;?></h4></div>
-						<div><em><?php echo date("l, n/d/Y @ H:m", $quest['quest']->completed);?></em></div>
+						<td colspan="2"><div><h4>
+						<?php if($quest['quest']->type == 2):?>
+						<a href="<?//= base_url('submission/'.$quest['quest']->sid);?>"><?php echo $quest['quest']->name;?></a>
+
+						<?php else:?>
+						<?php echo $quest['quest']->name;?>
+
+						<?php endif;?>
+						</h4></div>
+						<div><em><?php echo date("l, n/d/Y @ h:m a", $quest['quest']->completed);?></em></div>
+						
 						</td>
 						<td>
 							<table class="table table-condensed">
