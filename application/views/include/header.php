@@ -80,8 +80,8 @@
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quests <b class="caret"></b></a>
 				  <ul class="dropdown-menu">
-					<li><a href="#">Unattempted</a></li>
-					<li><a href="#">Completed</a></li>
+					<li><a href="#">Available</a></li>
+					<li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
 					<li><a href="#">Responses</a></li>
 				  </ul>
 	            </li>
@@ -104,7 +104,7 @@
 					  <li class="nav-header">Grade</li>
 					  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
 					  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">New Submissions</a></li>
-					  <li><a href="#">Revisions <span class="badge badge-info">6</span></a></li>
+					  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
 					  <li class="nav-header">Quests</li>
 					  <li><a href="<?= base_url('admin/quest/create') ?>">Create</a></li>
 					  <li><a href="<?= base_url('admin/quests') ?>">List</a></li>

@@ -1,9 +1,11 @@
+
 <div class="span9">
-<h1><?php echo $quest ?></h1>
-	<div class="well">
-		<?php echo $submission;?>
+	<h1><?php echo $quest ?><span class="label label-important pull-right">Attempt: <?php echo $attempts;?></span>
+	</h1>
+		<div class="well">
+			<?php echo $submission;?>
+		</div>
 	</div>
-</div>
 
 <div class="span9">
 		<?php
@@ -37,6 +39,7 @@
 			<input type="hidden" name="quest-id" value="<?php echo $qid ;?>">
 			<input type="hidden" name="quest-note" value="<?php echo $quest;?>">
 			<input type="hidden" name="users[]" value="<?php echo $uid ;?>">
+			<input type="hidden" name="attempt" value="<?php echo $attempts ;?>">
 
 				<div class="form-actions">
 					<div class="pull-right">

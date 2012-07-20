@@ -20,6 +20,33 @@ class Quest extends Common_Auth_Controller {
 	public function completed() {
 		//student view
 		$data['title'] = "Completed Quests";
+		$this->load->model('submission_model');
+		$quests = $this->quest_model->get_completed_quests($this->the_user->user_id);		
+		foreach ($quests as $quest) {
+			$questBestPossible = $this->quest_model->get_quest_skills($quest->qid, TRUE);
+				foreach ($questBestPossible as $bestSkill) {
+					//compare to current progress
+					$current = $this->quest_model->current_progress($bestSkill[0]->skid, $quest->qid, $this->the_user->user_id);
+					if ($current) {
+						$progress = array(
+								'skill' => $current['name'],
+								'amount' => $current['amount'],
+								'id' => $current['skid'],
+								'total' => $bestSkill[0]->amount,
+								'percentage' => ($current['amount'] / $bestSkill[0]->amount) * 100,
+								);
+						$questProgress[] = $progress;
+					}							
+				}
+				$data['quests'][] = array(
+									'quest' => $quest,
+									'progress' => $questProgress);
+				unset($questProgress);
+			}
+
+		$this->load->view('include/header');
+		$this->load->view('quests/completed', $data);
+		$this->load->view('include/footer');
 		
 	}
 	
@@ -44,7 +71,7 @@ class Quest extends Common_Auth_Controller {
 		//TODO: check if id is valid
 			$this->load->model('submission_model');
 
-			$id = $this->submission_model->submit();
+			$id = $this->submission_model->submit($this->the_user->user_id);
 			redirect('/submission/'.$id, 'location');
 		
 		}

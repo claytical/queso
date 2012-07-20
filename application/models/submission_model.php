@@ -33,13 +33,23 @@ class Submission_model extends CI_Model {
 		$query = $this->db->query("SELECT name as quest, first_name, last_name, submission, submitted, visible, submissions.qid, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL ORDER BY submitted ASC");
 		return $query->result();
 	}
+	
+	public function get_revised_submissions() {
+		$query = $this->db->query("SELECT DISTINCT submissions.qid, name as quest, first_name, last_name, submission, submitted, visible, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submitted > completed ORDER BY submitted ASC");
+		return $query->result();
+	}
 
-	public function submit() {
+	public function revision_count($qid, $uid) {
+		$query = $this->db->query("SELECT COUNT(id) as num FROM submissions WHERE qid = '".$qid."' AND uid = '".$uid."'");
+		return $query->row_array();
+	
+	}
+	public function submit($uid) {
 		$qid = $this->input->post('quest');
 		$submission = $this->input->post('submission');
 		$visible = $this->input->post('visible');
 	// change this ASAP
-		$uid = 1;
+//		$uid = 1;
 		$data = array(
 			'qid' => $qid,
 			'uid' => $uid,

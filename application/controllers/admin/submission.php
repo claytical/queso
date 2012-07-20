@@ -54,7 +54,10 @@ class Submission extends Admin_Controller {
 		$data['submission'] = $info['submission'];
 		$data['submitted'] = $info['submitted'];
 		$data['uid'] = $info['uid'];
+		$attempts = $this->submission_model->revision_count($info['qid'], $info['uid']);
 
+		$data['attempts'] = $attempts['num'];
+		
 		//$data['responses'] = $responses;
 		
 		

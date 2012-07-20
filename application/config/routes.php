@@ -40,11 +40,14 @@
 
 $route['default_controller'] = "frontpage";
 $route['quests/(:num)'] = 'common_auth/quest/view/$1';
+$route['quests/completed'] = 'common_auth/quest/completed';
 $route['quests/available/(:any)'] = 'common_auth/quest/available/$1';
 /*$route['admin/quests/available/(:any)'] = 'admin/quest/available/$1';*/
 $route['admin/quests/grade/(:any)'] = 'admin/quest/grade/$1';
 $route['admin/quests/skills/get'] = 'admin/quest/skill_rewards';
 $route['submission/(:num)'] = 'common_auth/submission/view/$1';
+$route['submission/revise/(:num)'] = 'common_auth/submission/revise/$1';
+
 $route['admin/submission/(:num)'] = 'admin/submission/grade/$1';
 $route['admin/submissions/(:any)'] = 'admin/submission/$1';
 $route['quests'] = 'common_auth/quest';
@@ -59,6 +62,8 @@ $route['admin/skills/(:any)'] = 'admin/skill/$1';
 $route['users'] = 'user';
 $route['users/(:any)'] = 'user/$1';
 $route['pages/(:any)'] = 'pages/view/$1';
+$route['quest/(:any)'] = 'common_auth/quest/$1';
+
 //$route['(:any)'] = 'pages/view/$1';
 //$route['default_controller'] = "pages/view";
 $route['404_override'] = '';

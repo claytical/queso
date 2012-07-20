@@ -53,8 +53,10 @@ class Quest_model extends CI_Model {
 		return $this->quest_model->get_quest_skills($id);
 	}
 	
-	public function complete_quest() {
+	public function complete_quest($update = FALSE) {
 		$id = $this->input->post('quest-id');
+		
+		//check if quest is submission
 		$skills = $this->input->post('skill');
 		$points = $this->input->post('award');
 		$note = $this->input->post('quest-note');
@@ -67,9 +69,12 @@ class Quest_model extends CI_Model {
 				'completed' => time(),
 				'note' => $note
 				);
-				
-			$this->db->insert('questCompletion', $data);
 			
+			if ($update) {
+			}
+			else {
+				$this->db->insert('questCompletion', $data);
+			}
 			foreach ($skills as $k => $skill) {
 				$data = array(
 					'qid' => $id,
@@ -77,14 +82,31 @@ class Quest_model extends CI_Model {
 					'skid' => $skill,
 					'amount' => $points[$k]
 					);		
-				$this->db->insert('questCompletionSkills', $data);
 				
+				if ($update) {
+				
+				}
+				else {
+					$this->db->insert('questCompletionSkills', $data);
+					}
 				}
 			}
 	}
 	
+	public function get_completed_quests($uid) {
+		$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY completed DESC");
+		return $query->result();
+	}
+	
+	
+	public function current_progress($skid, $qid, $uid) {
+		$query = $this->db->query("SELECT * FROM questCompletionSkills LEFT JOIN skills ON skills.id = questCompletionSkills.skid WHERE questCompletionSkills.uid = '".$uid."' AND questCompletionSkills.qid = '".$qid."' AND questCompletionSkills.skid = ".$skid." ORDER BY amount DESC LIMIT 1");
+
+		return $query->row_array();
+	}
+	
 	public function get_quest_skills($id, $highestOnly = FALSE) {
-		$query = $this->db->query("SELECT DISTINCT skid FROM questSkills WHERE qid = '".$id."'");	
+		$query = $this->db->query("SELECT DISTINCT skid, type FROM questSkills LEFT JOIN quests ON questSkills.qid = quests.id WHERE qid = '".$id."' ");	
 		$result = $query->result();
 		$options = array();
 		foreach ($result as $skill) {
