@@ -71,6 +71,7 @@
               <li class="divider"></li>
               <li><a href="<?= base_url('user/password') ?>">Change Password</a></li>
               <li><a href="<?= base_url('logout') ?>">Sign Out</a></li>
+
             </ul>
           </div>
           <?php endif;?>
@@ -86,6 +87,23 @@
 				  </ul>
 	            </li>
               <li><a href="#">Discussion</a></li>
+			<?php if($the_user->group_id == 1):?>
+			  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+				  <ul class="dropdown-menu">
+				  <li class="nav-header">Grading</li>
+				  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
+				  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">New Submissions</a></li>
+				  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
+			  	  <li class="nav-header">Quests</li>
+			  	  <li><a href="<?= base_url('admin/quest/create') ?>">Create</a></li>
+			  	  <li><a href="<?= base_url('admin/quests') ?>">List</a></li>
+			  	  <li class="nav-header">Course</li>
+			  	  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
+				  <li><a href="<?= base_url('register') ?>">New User</a></li>
+			  	  <li><a href="#">Information</a></li>
+				  </ul>
+			  </li>
+			<?php endif;?>
 
             </ul>
           </div><!--/.nav-collapse -->
@@ -95,28 +113,3 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-     		<?php if(!empty($the_user)):?>
-
-        <div class="span3">
-					<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-     			<?php if($the_user->group_id == 1):?>
-					  <li class="nav-header">Grade</li>
-					  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
-					  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">New Submissions</a></li>
-					  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
-					  <li class="nav-header">Quests</li>
-					  <li><a href="<?= base_url('admin/quest/create') ?>">Create</a></li>
-					  <li><a href="<?= base_url('admin/quests') ?>">List</a></li>
-					  <li class="nav-header">Course</li>
-					  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
-					  <li><a href="#">Information</a></li>
-					  <li><a href="<?= base_url('register') ?>">New User</a></li>
-
-				<?php endif;?>
-
-				
-					</ul>					
-				  </div><!--/.well -->
-        </div><!--/span-->
-				<?php endif;?>

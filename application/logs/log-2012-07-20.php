@@ -163,3 +163,20 @@ ERROR - 2012-07-20 15:38:55 --> Severity: Notice  --> Undefined property: stdCla
 ERROR - 2012-07-20 15:38:55 --> Severity: Warning  --> Invalid argument supplied for foreach() /Users/clay/Sites/gclass/application/views/quests/completed.php 36
 ERROR - 2012-07-20 15:38:55 --> Severity: Warning  --> Invalid argument supplied for foreach() /Users/clay/Sites/gclass/application/views/quests/completed.php 36
 ERROR - 2012-07-20 15:42:15 --> Severity: Notice  --> Undefined property: stdClass::$sid /Users/clay/Sites/gclass/application/views/quests/completed.php 17
+ERROR - 2012-07-20 17:21:25 --> Severity: Notice  --> Undefined property: stdClass::$first_name /Users/clay/Sites/gclass/application/views/auth/index.php 16
+ERROR - 2012-07-20 17:21:25 --> Severity: Notice  --> Undefined property: stdClass::$last_name /Users/clay/Sites/gclass/application/views/auth/index.php 17
+ERROR - 2012-07-20 17:21:25 --> Severity: Notice  --> Undefined property: stdClass::$first_name /Users/clay/Sites/gclass/application/views/auth/index.php 16
+ERROR - 2012-07-20 17:21:25 --> Severity: Notice  --> Undefined property: stdClass::$last_name /Users/clay/Sites/gclass/application/views/auth/index.php 17
+ERROR - 2012-07-20 18:47:10 --> Severity: Notice  --> Undefined property: stdClass::$first_name /Users/clay/Sites/gclass/application/views/auth/index.php 16
+ERROR - 2012-07-20 18:47:10 --> Severity: Notice  --> Undefined property: stdClass::$last_name /Users/clay/Sites/gclass/application/views/auth/index.php 17
+ERROR - 2012-07-20 18:47:10 --> Severity: Notice  --> Undefined property: stdClass::$first_name /Users/clay/Sites/gclass/application/views/auth/index.php 16
+ERROR - 2012-07-20 18:47:10 --> Severity: Notice  --> Undefined property: stdClass::$last_name /Users/clay/Sites/gclass/application/views/auth/index.php 17
+ERROR - 2012-07-20 19:05:14 --> Severity: Notice  --> Undefined property: stdClass::$first_name /Users/clay/Sites/gclass/application/views/auth/index.php 16
+ERROR - 2012-07-20 19:05:14 --> Severity: Notice  --> Undefined property: stdClass::$last_name /Users/clay/Sites/gclass/application/views/auth/index.php 17
+ERROR - 2012-07-20 19:05:14 --> Severity: Notice  --> Undefined property: stdClass::$first_name /Users/clay/Sites/gclass/application/views/auth/index.php 16
+ERROR - 2012-07-20 19:05:14 --> Severity: Notice  --> Undefined property: stdClass::$last_name /Users/clay/Sites/gclass/application/views/auth/index.php 17
+ERROR - 2012-07-20 19:05:14 --> Severity: Notice  --> Undefined property: stdClass::$first_name /Users/clay/Sites/gclass/application/views/auth/index.php 16
+ERROR - 2012-07-20 19:05:14 --> Severity: Notice  --> Undefined property: stdClass::$last_name /Users/clay/Sites/gclass/application/views/auth/index.php 17
+ERROR - 2012-07-20 21:40:00 --> 404 Page Not Found --> index.ph
+ERROR - 2012-07-20 22:39:54 --> 404 Page Not Found --> assets
+ERROR - 2012-07-20 22:59:25 --> Severity: Notice  --> Undefined variable: empty /Users/clay/Sites/gclass/application/views/quests/completed.php 2

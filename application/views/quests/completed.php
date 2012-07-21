@@ -1,10 +1,10 @@
-<div class="span9">
+<?php if(!empty($quests)):?>
 	<table class="table">
 			<thead>
 			  <tr>
-				<th>Quest</th>
-				<th></th>
-				<th></th>
+				<th style="width:25%">Quest</th>
+				<th style="width:60%"></th>
+				<th style="width:15%"></th>
 			  </tr>
 			</thead>
 			<tbody>
@@ -49,5 +49,6 @@
 					  <?php endforeach;?>
 			</tbody>
 	</table>
-
-</div>
+<?php else:?>
+<h2>You haven't completed any quests</h2>
+<?php endif;?>

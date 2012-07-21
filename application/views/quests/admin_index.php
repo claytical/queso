@@ -1,19 +1,19 @@
-<div class="span9">
+
 	<table class="table">
 			<thead>
 			  <tr>
-				<th>Quest</th>
-				<th></th>
-				<th></th>
+				<th style="width:25%">Quest</th>
+				<th style="width:60%"></th>
+				<th style="width:15%"></th>
 			  </tr>
 			</thead>
 			<tbody>
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td><div class="span3"><?php echo $quest->name;?></div></td>
+						<td><h4><?php echo $quest->name;?></h4></td>
 						<td><?php echo $quest->instructions;?></td>
-						<td><div class="span3"><a>view</a> / <a>modify</a> / <a>delete</a></div></td>
+						<td><a>view</a> / <a>modify</a></td>
 					  </tr>					
 					  <?php endforeach;?>
 			</tbody>
