@@ -13,7 +13,7 @@
 					  <tr>
 						<td colspan="2"><div><h4>
 						<?php if($quest['quest']->type == 2):?>
-						<a href="<?//= base_url('submission/'.$quest['quest']->sid);?>"><?php echo $quest['quest']->name;?></a>
+						<a href="<?= base_url('submission/revise/'.$quest['submission']['id']);?>"><?php echo $quest['quest']->name;?></a>
 
 						<?php else:?>
 						<?php echo $quest['quest']->name;?>

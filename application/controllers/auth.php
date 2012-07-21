@@ -42,8 +42,9 @@ class Auth extends Public_Controller {
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-
+			$this->load->view('include/header');
 			$this->load->view('auth/index', $this->data);
+			$this->load->view('include/footer');
 		}
 	}
 

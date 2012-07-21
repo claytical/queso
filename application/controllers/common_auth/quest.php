@@ -31,6 +31,13 @@ class Quest extends Common_Auth_Controller {
 		$this->load->model('skill_model');
 		$quests = $this->quest_model->get_completed_quests($this->the_user->user_id);		
 		foreach ($quests as $quest) {
+			if ($quest) {
+			//submission
+				$sid = $this->quest_model->get_latest_submission_id($quest->qid, $this->the_user->user_id);
+			}
+			else {
+				$sid = 0;
+			}
 			$questBestPossible = $this->quest_model->get_quest_skills($quest->qid, TRUE);
 				foreach ($questBestPossible as $bestSkill) {
 					//compare to current progress
@@ -48,6 +55,7 @@ class Quest extends Common_Auth_Controller {
 				}
 				$data['quests'][] = array(
 									'quest' => $quest,
+									'submission' => $sid,
 									'progress' => $questProgress);
 				unset($questProgress);
 			}

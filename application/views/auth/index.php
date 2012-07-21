@@ -1,9 +1,11 @@
-<h1>Users</h1>
-<p>Below is a list of the users.</p>
+	<?php if($message):?>
+	<div class="alert">
+		<button class="close" data-dismiss="alert">x</button>
+		<?php echo $message;?>
+	</div>
+	<?php endif;?>
 
-<div id="infoMessage"><?php echo $message;?></div>
-
-<table cellpadding=0 cellspacing=10>
+<table class="table">
 	<tr>
 		<th>Name</th>
 		<th>Email</th>
@@ -19,9 +21,9 @@
 					<?php echo $group->name;?><br />
                 <?php endforeach?>
 			</td>
-			<td><?php echo ($user->active) ? anchor("auth/deactivate/".$user->id, 'Active') : anchor("auth/activate/". $user->id, 'Inactive');?></td>
+			<td><?php echo ($user->active) ? anchor("auth/deactivate/".$user->id, 'Deactivate', 'class="btn btn-danger"') : anchor("auth/activate/". $user->id, 'Activate','class="btn btn-success"');?></td>
 		</tr>
 	<?php endforeach;?>
 </table>
 
-<p><a href="<?php echo site_url('auth/create_user');?>">Create a new user</a></p>
+<a href="<?php echo site_url('auth/create_user');?>" class="btn-primary btn">Create a new user</a>
