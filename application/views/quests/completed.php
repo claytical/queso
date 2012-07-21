@@ -46,7 +46,23 @@
 								  </table>
 						</td>
 					  </tr>					
+
 					  <?php endforeach;?>
+					  
+					<tr>
+						
+						<td></td>
+						<td></td>
+						<td>
+						<?php foreach($summary as $skillSummary) :?>
+						<div>
+							<strong>Total <?php echo $skillSummary->name;?></strong><span class="pull-right"><?php echo $skillSummary->amount;?></span>
+						</div>
+						<?php endforeach;?>
+						</td>
+					</tr>
+					  
+					  
 			</tbody>
 	</table>
 <?php else:?>

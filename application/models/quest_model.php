@@ -97,8 +97,7 @@ class Quest_model extends CI_Model {
 		$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY completed DESC");
 		return $query->result();
 	}
-	
-	
+		
 	public function current_progress($skid, $qid, $uid) {
 		$query = $this->db->query("SELECT * FROM questCompletionSkills LEFT JOIN skills ON skills.id = questCompletionSkills.skid WHERE questCompletionSkills.uid = '".$uid."' AND questCompletionSkills.qid = '".$qid."' AND questCompletionSkills.skid = ".$skid." ORDER BY amount DESC LIMIT 1");
 

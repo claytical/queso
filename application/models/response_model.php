@@ -13,6 +13,13 @@ class Response_model extends CI_Model {
 		return $query->result();		
 	}
 	
+	
+	public function get_responses_by_quest($qid, $uid = NULL) {
+		$query = $this->db->query("SELECT response, created, first_name, last_name FROM responses LEFT JOIN submissions ON submissions.id = responses.sid LEFT JOIN meta ON responses.uid = meta.user_id WHERE qid = $qid AND uid = $uid");
+		return $query->result();
+	}
+	
+	
 	public function respond() {
 		//respond to a submission
 		$sid = $this->input->post('submission');

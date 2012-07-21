@@ -59,7 +59,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Bloop!</a>
+          <a class="brand" href="<?= base_url('') ?>">Games and Interactive Media</a>
 			<?php if(!empty($the_user)):?>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -77,16 +77,14 @@
           <?php endif;?>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quests <b class="caret"></b></a>
 				  <ul class="dropdown-menu">
 					<li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
 					<li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
-					<li><a href="#">Responses</a></li>
 				  </ul>
 	            </li>
-              <li><a href="#">Discussion</a></li>
+            <?php if (!empty($the_user)):?>
 			<?php if($the_user->group_id == 1):?>
 			  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
 				  <ul class="dropdown-menu">
@@ -103,6 +101,7 @@
 			  	  <li><a href="#">Information</a></li>
 				  </ul>
 			  </li>
+			<?php endif;?>
 			<?php endif;?>
 
             </ul>

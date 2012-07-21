@@ -16,11 +16,19 @@ class Quest extends Common_Auth_Controller {
       	$this->load->view('include/footer');
 	}
 	
+	public function responses() {
+		$data['title'] = "Completed Quests";
+		$this->load->model('submission_model');
+		$quests = $this->quest_model->get_completed_quests($this->the_user->user_id);		
+	
+	
+	}
 	
 	public function completed() {
 		//student view
 		$data['title'] = "Completed Quests";
 		$this->load->model('submission_model');
+		$this->load->model('skill_model');
 		$quests = $this->quest_model->get_completed_quests($this->the_user->user_id);		
 		foreach ($quests as $quest) {
 			$questBestPossible = $this->quest_model->get_quest_skills($quest->qid, TRUE);
@@ -43,7 +51,7 @@ class Quest extends Common_Auth_Controller {
 									'progress' => $questProgress);
 				unset($questProgress);
 			}
-
+		$data['summary'] = $this->skill_model->get_total_by_user($this->the_user->user_id);
 		$this->load->view('include/header');
 		$this->load->view('quests/completed', $data);
 		$this->load->view('include/footer');
