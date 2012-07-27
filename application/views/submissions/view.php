@@ -1,4 +1,4 @@
-<div class="span9">
+<div>
 <h1><?php echo $quest ?></h1>
 
 
@@ -46,9 +46,8 @@
 		<?php echo $submission;?>
 	</div>
 </div>
-<div class="span9">
+<div>
 		<?php
-			echo validation_errors();
 			echo form_open('');
   		?>
 	<h3>Responses</h3>

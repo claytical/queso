@@ -26,6 +26,19 @@ class User extends CI_Controller {
         }
 	
 	}
+	
+	public function profile() {
+		$this->load->model('quest_model');
+		
+		$data['progress'] = $this->quest_model->get_charted_progress($this->the_user->user_id);
+		$data['title'] = $this->the_user->username;
+		$this->load->view('include/header');
+		$this->load->view('users/profile', $data);
+		$this->load->view('include/footer');
+	
+	}
+	
+	
 	public function logout()
     
     {

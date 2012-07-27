@@ -25,11 +25,11 @@ class Quest_model extends CI_Model {
 		else {
 			if ($qtype == 0) {
 
-				$query = $this->db->query("SELECT quests.id, name from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."')");			
+				$query = $this->db->query("SELECT quests.id, name from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND hidden = 0");			
 			}
 			
 			else {		
-				$query = $this->db->query("SELECT quests.id, name, instructions from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."'");
+				$query = $this->db->query("SELECT quests.id, name, instructions from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."' AND hidden = 0");
 			}
 		}
 		$result = $query->result();
@@ -97,9 +97,44 @@ class Quest_model extends CI_Model {
 		$query = $this->db->query("SELECT id FROM submissions WHERE qid = '".$qid."' AND uid = '".$uid."' ORDER BY id DESC LIMIT 1");
 		return $query->row_array();
 	}
+	
 	public function get_completed_quests($uid) {
 		$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY completed DESC");
 		return $query->result();
+	}
+	
+	public function hide($qid) {
+		$query = $this->db->query("UPDATE quests SET hidden = 1 WHERE id = '".$qid."'");
+		
+	}
+	
+	public function show($qid) {
+		$query = $this->db->query("UPDATE quests SET hidden = 0 WHERE id = '".$qid."'");	
+	}
+	public function get_charted_progress($uid) {
+		$queryDates = $this->db->query("SELECT DISTINCT completed FROM questCompletion WHERE uid = '".$uid."' ORDER BY completed ASC");
+		$dates = $queryDates->result();
+		$querySkills = $this->db->query("SELECT id, name FROM skills");
+		$skills = $querySkills->result();
+		$rows = array();
+		foreach ($skills as $skill) {
+			$row = array();
+			
+			foreach ($dates as $date) {
+				$querySkillProgress = $this->db->query("SELECT IFNULL(SUM(questCompletionSkills.amount),0) as amount FROM questCompletionSkills LEFT JOIN questCompletion ON questCompletion.qid = questCompletionSkills.qid AND questCompletion.uid = questCompletionSkills.uid WHERE questCompletion.uid = '".$uid."' AND completed <= '".$date->completed."' AND questCompletionSkills.skid = '".$skill->id."'");
+				$current = $querySkillProgress->row_array();
+				$amount = $current['amount'];
+				$row[] = $amount;
+			}
+			$rows[] = array('name' => $skill->name,
+							'values' => $row);
+			unset($row);
+		}
+
+		$chart = array('dates' => $dates,
+						'progress' => $rows);
+
+		return $chart;
 	}
 	
 	

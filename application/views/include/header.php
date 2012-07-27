@@ -15,6 +15,8 @@
    <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
    <link href="<?= base_url('assets/css/custom.css') ?>" rel="stylesheet">
    <link href="<?= base_url('assets/css/chosen.css') ?>" rel="stylesheet">
+   <link href="<?= base_url('assets/css/visualize.css') ?>" rel="stylesheet">
+   <link href="<?= base_url('assets/css/bulletgraph.css') ?>" rel="stylesheet">
 
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
@@ -34,7 +36,8 @@
     <script src="<?= base_url('assets/js/tiny_mce/tiny_mce.js')?>"></script>
 	<script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
 	<script src="<?= base_url('assets/js/custom.js') ?>"></script>
-
+	<script src="<?= base_url('assets/js/visualize.jQuery.js') ?>"></script>
+	<script src="<?= base_url('assets/js/jquery.bulletGraph.js') ?>"></script>
 	<script type="text/javascript">
 	tinyMCE.init({
 			mode : "textareas",
@@ -47,6 +50,7 @@
 			theme_advanced_toolbar_align : "left",
 			theme_advanced_statusbar_location : "bottom",
 			theme_advanced_resizing : true,
+			width: "100%"
 	});
 	</script>
 </head>
@@ -67,48 +71,51 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
+              <li><a href="<?= base_url('user/profile') ?>">Profile</a></li>
               <li class="divider"></li>
               <li><a href="<?= base_url('user/password') ?>">Change Password</a></li>
               <li><a href="<?= base_url('logout') ?>">Sign Out</a></li>
 
             </ul>
           </div>
-          <?php endif;?>
-          <div class="nav-collapse">
-            <ul class="nav">
-				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quests <b class="caret"></b></a>
-				  <ul class="dropdown-menu">
-					<li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
-					<li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
-				  </ul>
-	            </li>
-            <?php if (!empty($the_user)):?>
-			<?php if($the_user->group_id == 1):?>
-			  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
-				  <ul class="dropdown-menu">
-				  <li class="nav-header">Grading</li>
-				  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
-				  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">New Submissions</a></li>
-				  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
-			  	  <li class="nav-header">Quests</li>
-			  	  <li><a href="<?= base_url('admin/quest/create') ?>">Create</a></li>
-			  	  <li><a href="<?= base_url('admin/quests') ?>">List</a></li>
-			  	  <li class="nav-header">Course</li>
-			  	  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
-				  <li><a href="<?= base_url('register') ?>">New User</a></li>
-			  	  <li><a href="#">Information</a></li>
-				  </ul>
-			  </li>
-			<?php endif;?>
-			<?php endif;?>
+          <?php else:?>
+          <a class="btn btn-primary btn-large pull-right" href="auth/login">Login</a>
 
-            </ul>
-          </div><!--/.nav-collapse -->
+          <?php endif;?>
         </div>
       </div>
     </div>
+    <div class="span2">
+<ul class="nav nav-list">
+	<?php if (!empty($the_user)):?>
+	  <li class="nav-header">QUESTS</li>
+	  <li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
+	  <li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
 
-    <div class="container-fluid">
+		<?php if($the_user->group_id == 1):?>
+		<li class="divider"></li>
+		<li class="nav-header">Grading</li>
+		  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
+		  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">New Submissions</a></li>
+		  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
+		  <li class="nav-header">Quests</li>
+		  <li><a href="<?= base_url('admin/quest/create') ?>">Create</a></li>
+		  <li><a href="<?= base_url('admin/quests') ?>">List</a></li>
+		  
+		  <li class="nav-header">Posts</li>
+		  <li><a href="<?= base_url('admin/posts') ?>">Manage</a></li>
+		  <li><a href="<?= base_url('admin/post/create') ?>">Create</a></li>
+		  <li class="nav-header">Course</li>
+		  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
+		  <li><a href="<?= base_url('register') ?>">New User</a></li>
+		  <li><a href="#">Information</a></li>
+
+	<?php endif;?>
+<?php endif;?>
+
+</ul>
+
+</div>
+
+    <div class="container-fluid span9">
       <div class="row-fluid">

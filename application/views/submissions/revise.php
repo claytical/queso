@@ -1,4 +1,4 @@
-    <div class="span9">
+    <div>
 		<?php			
 			echo validation_errors();
         	$attributes = array('class' => 'well');

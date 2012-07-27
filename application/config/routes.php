@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "frontpage";
+$route['default_controller'] = "public/post/index";
 $route['quests/(:num)'] = 'common_auth/quest/view/$1';
 $route['quests/completed'] = 'common_auth/quest/completed';
 $route['quests/available/(:any)'] = 'common_auth/quest/available/$1';
@@ -47,10 +47,13 @@ $route['admin/quests/grade/(:any)'] = 'admin/quest/grade/$1';
 $route['admin/quests/skills/get'] = 'admin/quest/skill_rewards';
 $route['submission/(:num)'] = 'common_auth/submission/view/$1';
 $route['submission/revise/(:num)'] = 'common_auth/submission/revise/$1';
+$route['post/(:num)'] = 'public/post/view/$1';
 
 $route['admin/submission/(:num)'] = 'admin/submission/grade/$1';
 $route['admin/submissions/(:any)'] = 'admin/submission/$1';
 $route['quests'] = 'common_auth/quest';
+$route['admin/posts'] = 'admin/post/index';
+$route['posts'] = 'public/post/index';
 $route['admin/quests'] = 'admin/quest';
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';

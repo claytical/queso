@@ -1,4 +1,4 @@
-<div class="span9">
+<div>
 <?php if ($submissions):?>
 	<table class="table">
 			<thead>

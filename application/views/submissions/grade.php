@@ -1,5 +1,5 @@
 
-<div class="span9">
+<div>
 	<h1><?php echo $quest ?><span class="label label-important pull-right">Attempt: <?php echo $attempts;?></span>
 	</h1>
 		<div class="well">
@@ -7,7 +7,7 @@
 		</div>
 	</div>
 
-<div class="span9">
+<div>
 		<?php
 			echo validation_errors();
 			echo form_open('');

@@ -1,5 +1,5 @@
 
-        <div class="span9">
+        <div>
 			<h1><?php echo $title ?></h1>
 			<p class="lead"><?php echo $instructions ?></p>
 			<table class="table">

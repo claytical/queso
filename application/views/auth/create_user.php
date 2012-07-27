@@ -1,4 +1,4 @@
-<div class='span9'>
+<div>
 
 	<h1>Create User</h1>
 	<p class="lead">Please enter the users information below.</p>
