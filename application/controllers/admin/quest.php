@@ -59,11 +59,16 @@ class Quest extends Admin_Controller {
 	
 	}
 	
-	function grade($qtype = 'all') {
+	function grade($qtype = 'all', $qid = NULL, $uid = NULL) {
 		$this->load->helper('form');
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
-
+		if ($qid != NULL) {
+			$data['selected'] = $qid;
+		}
+		if ($uid != NULL) {
+			$data['uid'] = $uid;
+		}
 		if ($qtype == 'in-class') {
 			$data['title'] = "Grade In Class Quest";
 			$data['quests'] = $this->quest_model->get_available_quests(1);

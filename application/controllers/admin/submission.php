@@ -44,7 +44,7 @@ class Submission extends Admin_Controller {
 		
 		//admin view
 		$info = $this->submission_model->get_submissions($id);
-		//$responses = $this->response_model->get_responses($id);
+		$responses = $this->response_model->get_responses($id);
 		$data['quest'] = $info['name'];
 		$data['instructions'] = $info['instructions'];
 		$data['skills'] = $this->quest_model->get_quest_skills($info['qid']);
@@ -58,7 +58,7 @@ class Submission extends Admin_Controller {
 
 		$data['attempts'] = $attempts['num'];
 		
-		//$data['responses'] = $responses;
+		$data['responses'] = $responses;
 		
 		
 		$this->load->view('include/header');

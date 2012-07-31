@@ -29,9 +29,12 @@ class User extends CI_Controller {
 	
 	public function profile() {
 		$this->load->model('quest_model');
+		$this->load->model('grade_model');
 		
 		$data['progress'] = $this->quest_model->get_charted_progress($this->the_user->user_id);
+		$data['grades'] = $this->grade_model->get_grades("ASC");
 		$data['title'] = $this->the_user->username;
+		$data['current'] = $this->grade_model->get_current_grade($this->the_user->user_id);
 		$this->load->view('include/header');
 		$this->load->view('users/profile', $data);
 		$this->load->view('include/footer');

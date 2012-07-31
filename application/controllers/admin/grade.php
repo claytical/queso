@@ -1,16 +1,16 @@
 <?php
 
-class Skill extends Admin_Controller {
+class Grade extends Admin_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('skill_model');
+		$this->load->model('grade_model');
 	}
 	
 	public function index() {
-		$data['skills'] = $this->skill_model->get_skills();
-		$data['title'] = "Skills";
-		$data['instructions'] = "Grades are evaluated based on the lowest number of all skills";
+		$data['grades'] = $this->grade_model->get_grades();
+		$data['title'] = "Grades";
+		$data['instructions'] = "Thresholds are based on the lowest value of all skills";
 		$this->load->view('include/header');
 		$this->load->view('grades/index', $data);
       	$this->load->view('include/footer');

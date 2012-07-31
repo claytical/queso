@@ -107,6 +107,7 @@
 		  <li><a href="<?= base_url('admin/post/create') ?>">Create</a></li>
 		  <li class="nav-header">Course</li>
 		  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
+		  <li><a href="<?= base_url('admin/grades') ?>">Grades</a></li>
 		  <li><a href="<?= base_url('register') ?>">New User</a></li>
 		  <li><a href="#">Information</a></li>
 

@@ -46,13 +46,15 @@ $route['quests/available/(:any)'] = 'common_auth/quest/available/$1';
 $route['admin/quests/grade/(:any)'] = 'admin/quest/grade/$1';
 $route['admin/quests/skills/get'] = 'admin/quest/skill_rewards';
 $route['submission/(:num)'] = 'common_auth/submission/view/$1';
+$route['discuss/(:num)'] = 'common_auth/submission/discuss/$1';
 $route['submission/revise/(:num)'] = 'common_auth/submission/revise/$1';
 $route['post/(:num)'] = 'public/post/view/$1';
-
+$route['file/do_upload/(:num)'] = 'common_auth/file_submission/do_upload/$1';
 $route['admin/submission/(:num)'] = 'admin/submission/grade/$1';
 $route['admin/submissions/(:any)'] = 'admin/submission/$1';
 $route['quests'] = 'common_auth/quest';
 $route['admin/posts'] = 'admin/post/index';
+$route['admin/grades'] = 'admin/grade';
 $route['posts'] = 'public/post/index';
 $route['admin/quests'] = 'admin/quest';
 $route['login'] = 'auth/login';

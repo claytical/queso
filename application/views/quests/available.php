@@ -14,7 +14,18 @@
 					  <tr>
 						<td><h4><?php echo $quest['info']->name;?></h4></td>
 						<td><?php echo $quest['info']->instructions;?></td>
-						<td><a href="<?= base_url('quest/attempt/'.$quest['info']->id);?>" class='btn-primary btn'>Attempt</a></td>
+						<td>
+						<?php if($quest['info']->type == 2):?>
+							<a href="<?= base_url('quest/attempt/'.$quest['info']->id);?>" class='btn-primary btn'>Attempt</a>
+						<?php endif;?>
+						<?php if($quest['info']->type == 3):?>
+							<a href="<?= base_url('quest/upload/'.$quest['info']->id);?>" class='btn-primary btn'>Upload</a>
+						<?php endif;?>
+						<?php if($quest['info']->type == 4):?>
+							<a href="<?= base_url('discussions');?>" class='btn-primary btn'>Discussions</a>
+						<?php endif;?>
+
+						</td>
 					  </tr>					
 					  <?php endforeach;?>
 			</tbody>

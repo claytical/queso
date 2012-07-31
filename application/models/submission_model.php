@@ -30,7 +30,10 @@ class Submission_model extends CI_Model {
 	}
 
 	public function get_ungraded_submissions() {
-		$query = $this->db->query("SELECT name as quest, first_name, last_name, submission, submitted, visible, submissions.qid, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL ORDER BY submitted ASC");
+		$query = $this->db->query("SELECT name as quest, first_name, last_name, submission, submitted, visible, submissions.qid, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL 
+		UNION ALL 
+		SELECT name as quest, first_name, last_name, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE completed IS NULL ORDER BY submitted ASC
+		");
 		return $query->result();
 	}
 	
@@ -66,21 +69,7 @@ class Submission_model extends CI_Model {
 		return $this->db->insert_id();
 
 	}
-	/*
-	public function get_quest_skills($id) {
-		$query = $this->db->query("SELECT DISTINCT skid FROM questSkills WHERE qid = '".$id."'");	
-		$result = $query->result();
-		$options = array();
-		foreach ($result as $skill) {
-			
-			$query = $this->db->query("SELECT name, qid, skid, label, amount FROM questSkills, skills WHERE questSkills.qid = '".$id."' AND questSkills.skid = '".$skill->skid."' AND skills.id = questSkills.skid");	
-			$options[] = $query->result();		
-		}
-		
 
-		return $options;
-	}
-	*/
 	
 	public function current_progress($skid, $qid, $uid) {
 		$query = $this->db->query("SELECT * FROM submissions LEFT JOIN questCompletionSkills ON submissions.qid =  questCompletionSkills.qid LEFT JOIN skills ON skills.id = questCompletionSkills.skid WHERE submissions.uid = '".$uid."' AND submissions.qid = '".$qid."' AND questCompletionSkills.skid = ".$skid." ORDER BY amount DESC LIMIT 1");

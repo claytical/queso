@@ -4,11 +4,14 @@
         	$attributes = array('class' => 'well form-horizontal');
 			echo form_open('quests/grade/post', $attributes);
   		?>
-
+			<?php if(empty($selected)):?>
 			<h1><?php echo $title?></h1>
+			<?php else:?>
+			<h1>Grade for Response</h1>
+			<?php endif;?>
 			<p class="lead"></p>
   			<fieldset>
-				<div class="control-group">
+				<div class="control-group quest-field">
 
 					<label class="control-label" for="quest">Quest</label>
 					<div class="controls">
@@ -23,7 +26,7 @@
 				
 				<div class="control-group" id="points-awarded">
 				</div>
-				<div class="control-group">
+				<div class="control-group student-field">
 
 					<label class="control-label" for="users">Students</label>
 					<div class="controls">
@@ -46,14 +49,25 @@
 			<div class="form-actions">
 				<div class="pull-right">
 			  		<button type="submit" class="btn-primary">Continue</button>
-			  		<button type="submit" class="btn">Cancel</button>
 				</div>
 			</div>
 		</form>
 	</div>
+	<?php 	if (!empty($selected) && !empty($uid)):?>
+<script>
+		$.post("<?= base_url('admin/quests/skills/get') ?>", { qid: <?= $selected ?> },
+		   function(data) {
+		   		$('#points-awarded').html(data);
+
+		   });
+		   $('select#quest').val(<?= $selected?>);
+		   $('select#users').val(<?= $uid?>);
+		   $('.quest-field').hide();
+		   $('.student-field').hide();
+</script>
+	<?php else:?>
 	<script>
-		$('.chzn-select').chosen();
-		
+		$('.chzn-select').chosen();		
 		$('select#quest').change(function() {
 		$.post("<?= base_url('admin/quests/skills/get') ?>", { qid: $(this).val() },
 		   function(data) {
@@ -63,3 +77,5 @@
 		   });
 				});
 	</script>
+	
+	<?php endif;?>
