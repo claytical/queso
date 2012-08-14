@@ -33,7 +33,12 @@ class Quest extends Common_Auth_Controller {
 		foreach ($quests as $quest) {
 			if ($quest) {
 			//submission
-				$sid = $this->quest_model->get_latest_submission_id($quest->qid, $this->the_user->user_id);
+				if ($quest->type == 2) {
+					$sid = $this->quest_model->get_latest_submission_id($quest->qid, $this->the_user->user_id);
+				}
+				if ($quest->type == 3) {
+					$sid = $this->quest_model->get_latest_file_id($quest->qid, $this->the_user->user_id);
+				}
 			}
 			else {
 				$sid = 0;
@@ -52,6 +57,9 @@ class Quest extends Common_Auth_Controller {
 								);
 						$questProgress[] = $progress;
 					}							
+				}
+				if (empty($sid)) {
+				$sid = 0;
 				}
 				$data['quests'][] = array(
 									'quest' => $quest,

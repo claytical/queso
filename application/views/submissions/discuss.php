@@ -15,18 +15,23 @@
 			<?php foreach($responses as $response):?>
 				<div class="row-fluid">
 				<blockquote>
-					<div class="btn-group pull-right">
-					  <a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#">
-						Grade as Response Quest
-						<span class="caret"></span>
-					  </a>
-					  <ul class="dropdown-menu">
-						<?php foreach($response_quests as $option):?>
-						<li><a href="<?= base_url('admin/quest/grade/all/'.$option['info']->id.'/'.$response->user_id)?>"><?= $option['info']->name;?></a></li>
-						<?php endforeach;?>
-					  </ul>
-					</div>					
-
+				<?php if($the_user->group_id == 1): ?>
+					<?php if (!$response->qid):?>
+						<div class="btn-group pull-right">
+						  <a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="#">
+							Grade as Response Quest
+							<span class="caret"></span>
+						  </a>
+						  <ul class="dropdown-menu">
+							<?php foreach($response_quests as $option):?>
+							<li><a href="<?= base_url('admin/quest/grade/all/'.$option['info']->id.'/'.$response->user_id)?>"><?= $option['info']->name;?></a></li>
+							<?php endforeach;?>
+						  </ul>
+						</div>					
+					<?php else:?>
+						<div class="pull-right"><span class="label label-success"><?= $response->name;?></span></div>
+					<?php endif;?>
+				<?php endif;?>
 				  <p><?php echo $response->response;?></p>
 				  <small><?php echo $response->first_name . " " . $response->last_name ;?></small>
 				</blockquote>

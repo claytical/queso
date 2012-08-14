@@ -77,6 +77,15 @@ class Quest_model extends CI_Model {
 				'note' => $note
 				);
 			
+			$checkExisting = $this->db->query("SELECT COUNT(qid) as num FROM questCompletion WHERE qid = '".$id."' AND uid = '".$user."'");
+			$row = $checkExisting->row_array(); // get the row
+			if ($row['num'] > 0) {
+				$update = TRUE;
+			}
+			else {
+				$update = FALSE;
+			}
+			
 			if ($update) {
 				$this->db->query("UPDATE questCompletion SET completed = '".time()."' WHERE uid = '".$user."' AND qid = '".$id."'");
 			}
@@ -105,6 +114,12 @@ class Quest_model extends CI_Model {
 		$query = $this->db->query("SELECT id FROM submissions WHERE qid = '".$qid."' AND uid = '".$uid."' ORDER BY id DESC LIMIT 1");
 		return $query->row_array();
 	}
+	
+	public function get_latest_file_id($qid, $uid) {
+		$query = $this->db->query("SELECT id FROM files WHERE qid = '".$qid."' AND uid = '".$uid."' ORDER BY id DESC LIMIT 1");
+		return $query->row_array();
+	}
+		
 	
 	public function get_completed_quests($uid) {
 		$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY qid, completed DESC");
@@ -243,6 +258,11 @@ class Quest_model extends CI_Model {
 				'requirements' => $this->input->post('requirements')
 				);
 			return $info;
+	}
+	
+	public function get_quest_completion_counts() {
+		$query = $this->db->query("SELECT COUNT( uid ) AS attempts, id, name, type FROM quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid GROUP BY quests.id");
+		return $this->result();
 	}
 	
 	public function get_student_quests($id) {

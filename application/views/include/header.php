@@ -115,7 +115,7 @@
 		  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
 		  <li><a href="<?= base_url('admin/grades') ?>">Grades</a></li>
 		  <li><a href="<?= base_url('register') ?>">New User</a></li>
-		  <li><a href="#">Information</a></li>
+		  <li><a href="<?= base_url('admin/course') ?>">Information</a></li>
 
 	<?php endif;?>
 <?php endif;?>

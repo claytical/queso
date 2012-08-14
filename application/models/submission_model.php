@@ -61,7 +61,9 @@ class Submission_model extends CI_Model {
 	}
 	
 	public function get_revised_submissions() {
-		$query = $this->db->query("SELECT DISTINCT submissions.qid, name as quest, submissions.uid, first_name, last_name, submission, submitted, visible, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submitted > completed  ORDER BY submissions.uid, qid, submitted DESC");
+		$query = $this->db->query("SELECT DISTINCT submissions.qid, name as quest, submissions.uid, first_name, last_name, submission, submitted, visible, submissions.id, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submitted > completed 
+		UNION ALL
+		SELECT DISTINCT files.qid, name as quest, files.uid, first_name, last_name, filename as submission, uploaded as submitted, '0' as visible, files.id, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE uploaded > completed ORDER BY uid, qid, submitted DESC");
 		$revisions = $query->result();
 		$submissions = array();
 		$uid = 0;
@@ -72,8 +74,12 @@ class Submission_model extends CI_Model {
 				$uid = $revision->uid;
 				$qid = $revision->qid;
 			}
+			else {
+				$uid = 0;
+				$qid = 0;
+			}
 		}
-		return $submissions;
+		return $revisions;
 	}
 
 	public function revision_count($qid, $uid) {

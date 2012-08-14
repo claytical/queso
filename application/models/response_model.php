@@ -9,7 +9,7 @@ class Response_model extends CI_Model {
 
 	public function get_responses($id = 0) {
 		//get all responses to a given submission
-		$query = $this->db->query("SELECT * FROM responses LEFT JOIN meta ON responses.uid = meta.user_id WHERE responses.sid = '".$id."'");
+		$query = $this->db->query("SELECT * FROM responses LEFT JOIN meta ON responses.uid = meta.user_id LEFT JOIN quests ON responses.qid = quests.id WHERE responses.sid = '".$id."'");
 		return $query->result();		
 	}
 	

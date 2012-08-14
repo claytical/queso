@@ -17,6 +17,12 @@ class Course_model extends CI_Model {
 		return "zebra";
 	}
 	
-	
+	public function update() {
+		$code = $this->input->post('registration_code');
+		$site = $this->input->post('course');
+		$query = $this->db->query("UPDATE course SET variable = '".$site."' WHERE id = 'site'");
+		$query = $this->db->query("UPDATE course SET variable = '".$code."' WHERE id = 'registration'");
+
+	}
 
 }

@@ -16,7 +16,7 @@
 						<td><?php echo $submission->username;?></td>
 						<td><div class="span2">
 						<?php if($submission->file):?>
-						<a href="<?= base_url('admin/file/'.$submission->id) ?>">
+						<a href="<?= base_url('admin/file/grade/'.$submission->id) ?>">
 						<?php else:?>
 						<a href="<?= base_url('admin/submission/'.$submission->id) ?>">
 						<?php endif;?>

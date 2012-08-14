@@ -27,7 +27,7 @@
 			<?php endforeach;?>
 			<tr>
 			<td colspan="2">
-			<a href='<?= base_url('submission/revise/'.$id) ?>' class="btn btn-primary pull-right">Revise</a>
+			<a href='<?= base_url('quest/upload/'.$qid) ?>' class="btn btn-primary pull-right">Revise</a>
 			</td>
 			</tr>
 			</tbody>

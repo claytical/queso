@@ -17,7 +17,7 @@ class File_Submission extends Common_Auth_Controller {
 		if (! $this->upload->do_upload()) {
 			$error = array('error' => $this->upload->display_errors());
 //			$this->load->view('quests/upload/'.$id, $error);
-			redirect("quest/upload/".$id);
+//			redirect("quest/upload/".$id);
 
 		}
 		else {
