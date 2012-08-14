@@ -14,11 +14,15 @@
 						<td><h4><?php echo $quest->name;?></h4></td>
 						<td><?php echo $quest->instructions;?></td>
 						<td>
+						<a class="btn btn-danger" href="quest/remove/<?php echo $quest->id;?>" title="Remove this quest and everything related to it"><i class="icon-trash"></i></a>
+
 						<?php if ($quest->hidden):?>
-						<a class="btn btn-success" href='quest/activate/<?php echo $quest->id;?>'>show</a>
+							<a class="btn btn-success" href='quest/activate/<?php echo $quest->id;?>'>show</a>
 						<?php else:?>
-						<a class="btn btn-danger" href='quest/deactivate/<?php echo $quest->id;?>'>hide</a></td>
+							<a class="btn btn-warning" href='quest/deactivate/<?php echo $quest->id;?>'>hide</a>
 						<?php endif;?>
+
+						</td>
 					  </tr>					
 					  <?php endforeach;?>
 			</tbody>

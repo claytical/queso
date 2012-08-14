@@ -14,7 +14,7 @@
 				</div>
   				<div class="control-group">
 					<div class="controls">
-						<input type="checkbox" id="visible" name="visible"> Visible to Others</input>
+						<input type="checkbox" id="visible" name="visible" value="1"> Visible to Others</input>
 					</div>
 				</div>
 

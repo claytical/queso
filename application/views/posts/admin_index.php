@@ -21,6 +21,12 @@
 						<?php else:?>
 						<a href='post/promote/<?php echo $post->id;?>' class="btn btn-success" title="promote to front page"><i class="icon-star"></i></a></div></td>
 					  	<?php endif;?>
+						<?php if($post->menu):?>
+						<a href='post/removemenu/<?php echo $post->id;?>' class="btn btn-danger" title="remove from menu"><i class="icon-trash"></i></a>
+						<?php else:?>
+						<a href='post/addmenu/<?php echo $post->id;?>' class="btn btn-success" title="add to menu"><i class="icon-list"></i></a></div></td>
+					  	<?php endif;?>
+
 					  </tr>					
 					  <?php endforeach;?>
 			</tbody>

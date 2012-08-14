@@ -13,7 +13,10 @@
 					  <tr>
 						<td colspan="2"><div><h4>
 						<?php if($quest['quest']->type == 2):?>
-						<a href="<?= base_url('submission/revise/'.$quest['submission']['id']);?>"><?php echo $quest['quest']->name;?></a>
+							<a href="<?= base_url('submission/revise/'.$quest['submission']['id']);?>"><?php echo $quest['quest']->name;?></a>
+
+						<?php elseif ($quest['quest']->type == 3):?>
+							<a href="<?= base_url('file/view/'.$quest['submission']['id']);?>"><?php echo $quest['quest']->name;?></a>
 
 						<?php else:?>
 						<?php echo $quest['quest']->name;?>
@@ -49,20 +52,15 @@
 
 					  <?php endforeach;?>
 					  
-					<tr>
-						
-						<td></td>
-						<td></td>
-						<td>
-						<?php foreach($summary as $skillSummary) :?>
-						<div>
-							<strong>Total <?php echo $skillSummary->name;?></strong><span class="pull-right"><?php echo $skillSummary->amount;?></span>
-						</div>
+					  <?php foreach($summary as $skillSummary) :?>
+							<tr>
+								<td colspan="2">
+								<strong>Total <?php echo $skillSummary->name;?></strong>
+								</td>
+								<td><span class="pull-right"><?php echo $skillSummary->amount;?></span>
+								</td>
+							</tr>
 						<?php endforeach;?>
-						</td>
-					</tr>
-					  
-					  
 			</tbody>
 	</table>
 <?php else:?>

@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'admin';
+$db['default']['username'] = 'gadmin';
 $db['default']['password'] = 'gameful!';
 $db['default']['database'] = 'gameful';
 $db['default']['dbdriver'] = 'mysql';

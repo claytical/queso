@@ -45,7 +45,15 @@ class Submission extends Common_Auth_Controller {
 		}
 
 	}
-		
+	public function discussion() {
+		$this->load->model('submission_model');
+		$submissions = $this->submission_model->get_submissions_for_discussion();
+		$data['submissions'] = $submissions;
+		$this->load->view('include/header');
+		$this->load->view('submissions/discussion', $data);
+      	$this->load->view('include/footer');
+
+	}
 	public function discuss($id) {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('response', 'Response', 'required');

@@ -39,35 +39,36 @@
 */
 
 $route['default_controller'] = "public/post/index";
+$route['posts'] = 'public/post/index';
+$route['post/(:num)'] = 'public/post/view/$1';
+$route['pages/(:any)'] = 'pages/view/$1';
+$route['quest/(:any)'] = 'common_auth/quest/$1';
+$route['quests'] = 'common_auth/quest';
 $route['quests/(:num)'] = 'common_auth/quest/view/$1';
 $route['quests/completed'] = 'common_auth/quest/completed';
 $route['quests/available/(:any)'] = 'common_auth/quest/available/$1';
-/*$route['admin/quests/available/(:any)'] = 'admin/quest/available/$1';*/
+$route['submission/(:num)'] = 'common_auth/submission/view/$1';
+$route['submission/revise/(:num)'] = 'common_auth/submission/revise/$1';
+$route['discuss/(:num)'] = 'common_auth/submission/discuss/$1';
+$route['discussion'] = 'common_auth/submission/discussion';
+$route['file/do_upload/(:num)'] = 'common_auth/file_submission/do_upload/$1';
+$route['file/view/(:num)'] = 'common_auth/file_submission/view/$1';
+$route['file/grade/(:num)'] = 'admin/file_submission/grade/$1';
+$route['admin/quests'] = 'admin/quest';
 $route['admin/quests/grade/(:any)'] = 'admin/quest/grade/$1';
 $route['admin/quests/skills/get'] = 'admin/quest/skill_rewards';
-$route['submission/(:num)'] = 'common_auth/submission/view/$1';
-$route['discuss/(:num)'] = 'common_auth/submission/discuss/$1';
-$route['submission/revise/(:num)'] = 'common_auth/submission/revise/$1';
-$route['post/(:num)'] = 'public/post/view/$1';
-$route['file/do_upload/(:num)'] = 'common_auth/file_submission/do_upload/$1';
 $route['admin/submission/(:num)'] = 'admin/submission/grade/$1';
 $route['admin/submissions/(:any)'] = 'admin/submission/$1';
-$route['quests'] = 'common_auth/quest';
 $route['admin/posts'] = 'admin/post/index';
 $route['admin/grades'] = 'admin/grade';
-$route['posts'] = 'public/post/index';
-$route['admin/quests'] = 'admin/quest';
+$route['admin/skills'] = 'admin/skill';
+$route['admin/skills/(:any)'] = 'admin/skill/$1';
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';
 $route['register'] = 'auth/create_user';
 $route['user/password'] = 'auth/change_password';
-
-$route['admin/skills'] = 'admin/skill';
-$route['admin/skills/(:any)'] = 'admin/skill/$1';
 $route['users'] = 'user';
 $route['users/(:any)'] = 'user/$1';
-$route['pages/(:any)'] = 'pages/view/$1';
-$route['quest/(:any)'] = 'common_auth/quest/$1';
 
 //$route['(:any)'] = 'pages/view/$1';
 //$route['default_controller'] = "pages/view";

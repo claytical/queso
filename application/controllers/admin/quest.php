@@ -58,6 +58,12 @@ class Quest extends Admin_Controller {
 		redirect("admin/quests", 'refresh');
 	
 	}
+
+	public function remove($qid) {
+		$this->quest_model->remove_quest($qid);
+		redirect("admin/quests", 'refresh');
+
+	}
 	
 	function grade($qtype = 'all', $qid = NULL, $uid = NULL) {
 		$this->load->helper('form');
@@ -105,7 +111,7 @@ class Quest extends Admin_Controller {
 			$this->load->view('quests/postgrade', $data);
 			$this->load->view('include/footer');
 */
-			redirect('/quests/grade/'.$qtype, 'location');
+			redirect(base_url('admin/quest/grade/in-class'), 'location');
 		}
 	}
 	
@@ -139,9 +145,6 @@ class Quest extends Admin_Controller {
 		
 	}
 	
-	public function remove() {
-		//admin
-	}
 	
 	public function edit() {
 		//admin

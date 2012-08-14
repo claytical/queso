@@ -64,6 +64,18 @@ class Post extends Admin_Controller {
 		redirect("/admin/posts");
 
 	}
+	
+	public function removemenu($id) {
+		$id = $this->post_model->removeFromMenu($id);
+		redirect("/admin/posts");
+	
+	}
+	
+	public function addmenu($id) {
+		$id = $this->post_model->addToMenu($id);
+		redirect("/admin/posts");
+	
+	}
 		
 	public function promote($id) {
 		$id = $this->post_model->promote($id);

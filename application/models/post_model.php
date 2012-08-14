@@ -24,6 +24,12 @@ class Post_model extends CI_Model {
 		return $query->row_array();
 	}
 	
+	public function get_post_by_name($id) {
+		$query = $this->db->query("SELECT * FROM posts WHERE lcase(headline) LIKE '%".strtolower($id)."%'");
+		return $query->row_array();
+	}
+
+
 	public function submit() {
 		$headline = $this->input->post('headline');
 		$body = $this->input->post('body');
@@ -48,6 +54,16 @@ class Post_model extends CI_Model {
 	
 	}
 
+
+	public function removeFromMenu($id) {
+		$query = $this->db->query("UPDATE posts SET menu = 0 WHERE id = ".$id);
+	
+	}
+	
+	public function addToMenu($id) {
+		$query = $this->db->query("UPDATE posts SET menu = 1 WHERE id = ".$id);	
+	}
+	
 	public function promote($id) {
 		$query = $this->db->query("UPDATE posts SET frontpage = 1 WHERE id = ".$id);
 	}

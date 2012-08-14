@@ -18,8 +18,15 @@ class Post extends Public_Controller {
 
 	}
 	
+	
 	public function view($id) {
-		$info = $this->post_model->get_post($id);
+		if (is_numeric($id)) {
+			$info = $this->post_model->get_post($id);
+		}
+		else {
+			$converted = str_replace(" ", "-", $id);
+			$info = $this->post_model->get_post_by_name($id);
+		}
 		$data['headline'] = $info['headline'];
 		$data['body'] = $info['body'];
 		$this->load->view('include/header');

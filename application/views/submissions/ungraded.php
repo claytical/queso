@@ -13,8 +13,14 @@
 
 					  <tr>
 						<td><div class="span6"><?php echo $submission->quest;?></div></td>
-						<td><?php echo $submission->first_name . " " . $submission->last_name;?></td>
-						<td><div class="span2"><a href="<?= base_url('admin/submission/'.$submission->id) ?>"><span class="badge badge-inverse"><i class="icon-eye-open"></i></span></a></div></td>
+						<td><?php echo $submission->username;?></td>
+						<td><div class="span2">
+						<?php if($submission->file):?>
+						<a href="<?= base_url('admin/file/'.$submission->id) ?>">
+						<?php else:?>
+						<a href="<?= base_url('admin/submission/'.$submission->id) ?>">
+						<?php endif;?>
+						<span class="badge badge-inverse"><i class="icon-eye-open"></i></span></a></div></td>
 					  </tr>					
 					  <?php endforeach;?>
 			</tbody>

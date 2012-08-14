@@ -18,6 +18,11 @@ class Submission_model extends CI_Model {
 		return $query->row_array();
 	}
 	
+	
+	public function get_submissions_for_discussion() {
+		$query = $this->db->query('SELECT COUNT(responses.id) responses, submissions.id as id, submission as text, name, username FROM submissions  LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid LEFT JOIN responses ON responses.sid = submissions.id WHERE visible = 1 GROUP BY submissions.id');
+		return $query->result();
+	}
 	public function get_submissions_by_quest($qid = 0, $uid = 0) {
 		if ($uid == 0) {
 			$query = $this->db->get_where('submissions', array('qid' => $qid));
@@ -30,16 +35,45 @@ class Submission_model extends CI_Model {
 	}
 
 	public function get_ungraded_submissions() {
-		$query = $this->db->query("SELECT name as quest, first_name, last_name, submission, submitted, visible, submissions.qid, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL 
+		$query = $this->db->query("SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL 
 		UNION ALL 
-		SELECT name as quest, first_name, last_name, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE completed IS NULL ORDER BY submitted ASC
+		SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE completed IS NULL ORDER BY uid, qid, submitted DESC
 		");
-		return $query->result();
+		$ungraded = $query->result();
+		
+		$submissions = array();
+		$uid = 0;
+		$qid = 0;
+		
+		foreach($ungraded as $revision) {
+			if ($revision->qid != $qid && $revision->uid != $uid) {
+				$submissions[] = $revision;
+				$uid = $revision->uid;
+				$qid = $revision->qid;
+			}
+			else {
+				$uid = 0;
+				$qid = 0;
+			}		
+		}
+		return $submissions;
+		//return $query->result();
 	}
 	
 	public function get_revised_submissions() {
-		$query = $this->db->query("SELECT DISTINCT submissions.qid, name as quest, first_name, last_name, submission, submitted, visible, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submitted > completed ORDER BY submitted ASC");
-		return $query->result();
+		$query = $this->db->query("SELECT DISTINCT submissions.qid, name as quest, submissions.uid, first_name, last_name, submission, submitted, visible, submissions.id FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submitted > completed  ORDER BY submissions.uid, qid, submitted DESC");
+		$revisions = $query->result();
+		$submissions = array();
+		$uid = 0;
+		$qid = 0;
+		foreach($revisions as $revision) {
+			if ($revision->qid != $qid && $revision->uid != $uid) {
+				$submissions[] = $revision;
+				$uid = $revision->uid;
+				$qid = $revision->qid;
+			}
+		}
+		return $submissions;
 	}
 
 	public function revision_count($qid, $uid) {
@@ -51,8 +85,9 @@ class Submission_model extends CI_Model {
 		$qid = $this->input->post('quest');
 		$submission = $this->input->post('submission');
 		$visible = $this->input->post('visible');
-	// change this ASAP
-//		$uid = 1;
+		//remove visibility on all previous submissions for the quest from this user
+		$update_visibility = $this->db->query("UPDATE submissions SET visible = 0 WHERE qid = '".$qid."' AND uid = '".$uid."'");
+
 		$data = array(
 			'qid' => $qid,
 			'uid' => $uid,

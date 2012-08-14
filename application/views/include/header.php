@@ -63,7 +63,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<?= base_url('') ?>">Games and Interactive Media</a>
+          <a class="brand" href="<?= base_url('') ?>"><?= $site_name?></a>
 			<?php if(!empty($the_user)):?>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -87,10 +87,16 @@
     </div>
     <div class="span2">
 <ul class="nav nav-list">
+		<li class="nav-header">Class</li>
+		<?php foreach($menu as $item):?>
+		<li><a href="<?= base_url('post') . "/". $item->id?>"><?= $item->headline;?></a></li>
+		<?php endforeach;?>
+		
 	<?php if (!empty($the_user)):?>
 	  <li class="nav-header">QUESTS</li>
 	  <li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
 	  <li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
+	  <li><a href="<?= base_url('discussion') ?>">Discussions</a></li>
 
 		<?php if($the_user->group_id == 1):?>
 		<li class="divider"></li>

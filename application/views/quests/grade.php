@@ -2,7 +2,7 @@
 		<?php
 			echo validation_errors();
         	$attributes = array('class' => 'well form-horizontal');
-			echo form_open('quests/grade/post', $attributes);
+			echo form_open(base_url('admin/quest/grade/post'), $attributes);
   		?>
 			<?php if(empty($selected)):?>
 			<h1><?php echo $title?></h1>

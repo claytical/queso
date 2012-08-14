@@ -1,13 +1,14 @@
 <?php
 
-class User extends CI_Controller {
+class User extends User_Controller {
 
-	private $the_user;
+	//private $the_user;
 	
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('user_model');
 	    // if the person accessing this controller is logged in     // ^
+/*
         if($this->ion_auth->logged_in()) {                          // ^
                                                                     // ^
             // get the user object                                  // ^
@@ -24,7 +25,7 @@ class User extends CI_Controller {
             // send back to the root site
             redirect('/');
         }
-	
+	*/
 	}
 	
 	public function profile() {

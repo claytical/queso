@@ -78,6 +78,7 @@ class Quest_model extends CI_Model {
 				);
 			
 			if ($update) {
+				$this->db->query("UPDATE questCompletion SET completed = '".time()."' WHERE uid = '".$user."' AND qid = '".$id."'");
 			}
 			else {
 				$this->db->insert('questCompletion', $data);
@@ -91,7 +92,7 @@ class Quest_model extends CI_Model {
 					);		
 				
 				if ($update) {
-				
+					$this->db->query("UPDATE questCompletionSkills SET amount = '".$points[$k]."' WHERE skid = '".$skill."' AND qid = '".$id."' AND uid = '".$user."'");
 				}
 				else {
 					$this->db->insert('questCompletionSkills', $data);
@@ -106,8 +107,20 @@ class Quest_model extends CI_Model {
 	}
 	
 	public function get_completed_quests($uid) {
-		$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY completed DESC");
-		return $query->result();
+		$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY qid, completed DESC");
+		$result = $query->result();
+		$quests = array();
+		$qid = 0;
+		foreach ($result as $quest) {
+		if ($quest->qid != $qid) {
+				$quests[] = $quest;
+				$qid = $quest->qid;
+			}
+			else {
+				$qid = 0;
+			}				
+		}
+		return $quests;
 	}
 	
 	public function hide($qid) {
@@ -171,7 +184,16 @@ class Quest_model extends CI_Model {
 
 		return $options;
 	}
-	
+	public function remove_quest($qid) {
+		$this->db->query("DELETE FROM quests WHERE id = ".$qid);
+		$this->db->query("DELETE FROM questSkills WHERE qid = ".$qid);
+		$this->db->query("DELETE FROM questCompletion WHERE qid = ".$qid);
+		$this->db->query("DELETE FROM questCompletionSkills WHERE qid = ".$qid);
+		$this->db->query("DELETE FROM questLock WHERE qid = ".$qid);
+		$this->db->query("DELETE FROM submissions WHERE qid = ".$qid);
+		$this->db->query("DELETE FROM responses WHERE qid = ".$qid);
+		$this->db->query("DELETE FROM files WHERE qid = ".$qid);
+	}
 	public function new_quest() {
 			$title = $this->input->post('quest-title');
 			$instructions = $this->input->post('quest-instructions');

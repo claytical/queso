@@ -15,10 +15,11 @@ class File_model extends CI_Model {
 			return $query->result();
 		}
 
-		$query = $this->db->query("SELECT * FROM files LEFT JOIN quests ON files.qid = quests.id WHERE files.id = '".$id."'ORDER BY uploaded");
+		$query = $this->db->query("SELECT * FROM files LEFT JOIN quests ON files.qid = quests.id WHERE files.id = '".$id."' ORDER BY uploaded");
 		return $query->row_array();
 	}
 	
+
 	public function get_file_submissions_by_quest($qid = 0, $uid = 0) {
 		if ($uid == 0) {
 			$query = $this->db->get_where('files', array('qid' => $qid));
@@ -45,6 +46,13 @@ class File_model extends CI_Model {
 		return $query->row_array();
 	
 	}
+	
+	public function update_note() {
+		$id = $this->input->post('fileid');
+		$note = $this->input->post('note');
+		$query = $this->db->query("UPDATE files SET notes = '".$note."' WHERE id = ".$id);
+	}
+	
 	public function upload_submission($uid) {
 		$qid = $this->input->post('quest');
 		$notes = $this->input->post('notes');

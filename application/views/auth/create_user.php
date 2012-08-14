@@ -2,7 +2,7 @@
 
 	<h1>Create User</h1>
 	<p class="lead">Please enter the users information below.</p>
-	<?php if($message):?>
+	<?php if(!empty($message)):?>
 	<div class="alert">
 		<button class="close" data-dismiss="alert">x</button>
 		<?php echo $message;?>
@@ -47,6 +47,15 @@
 					
 					</div>
 				</div>
+				<?php if(empty($the_user)):?>
+  				<div class="control-group">
+			  		<label class="control-label" for="registration_code">Registration Code</label>
+					<div class="controls">
+					<?php echo form_input($registration_code);?>
+					
+					</div>
+				</div>
+				<?php endif;?>
 
 			</fieldset>
 
