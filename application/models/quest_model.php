@@ -260,9 +260,13 @@ class Quest_model extends CI_Model {
 			return $info;
 	}
 	
-	public function get_quest_completion_counts() {
-		$query = $this->db->query("SELECT COUNT( uid ) AS attempts, id, name, type FROM quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid GROUP BY quests.id");
-		return $this->result();
+	public function get_quest_details($qid) {
+		$details = $this->db->query("SELECT COUNT( DISTINCT uid ) AS attempts, id, name, type, instructions FROM quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid WHERE id = '".$qid."' GROUP BY quests.id");
+		$students = $this->db->query("SELECT * FROM questCompletion, users WHERE qid = '".$qid."' AND questCompletion.uid = users.id");
+		return array("details" => $details->row_array(),
+					"students" => $students->result()
+		
+		);
 	}
 	
 	public function get_student_quests($id) {

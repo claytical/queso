@@ -22,3 +22,4 @@ ERROR - 2012-08-15 00:33:10 --> Severity: Notice  --> Undefined property: Course
 ERROR - 2012-08-15 00:33:23 --> Severity: Notice  --> Undefined property: Course::$file_model /Users/clay/Sites/gamefulCMS/application/controllers/admin/course.php 25
 ERROR - 2012-08-15 00:33:41 --> Severity: Notice  --> Undefined variable: message /Users/clay/Sites/gamefulCMS/application/views/config/course.php 3
 ERROR - 2012-08-15 00:34:16 --> Severity: Notice  --> Undefined variable: message /Users/clay/Sites/gamefulCMS/application/views/config/course.php 3
+ERROR - 2012-08-15 06:15:52 --> 404 Page Not Found --> admin/quests

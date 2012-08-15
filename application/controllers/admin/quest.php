@@ -16,6 +16,15 @@ class Quest extends Admin_Controller {
       	$this->load->view('include/footer');
 	}
 	
+	public function details($qid) {
+		$info = $this->quest_model->get_quest_details($qid);
+		$data['details'] = $info['details'];
+		$data['students'] = $info['students'];
+		$this->load->view('include/header');
+		$this->load->view('quests/details', $data);
+		$this->load->view('include/footer');
+		
+	}
 	public function create() {
 		//admin
 		$this->load->helper('form');
