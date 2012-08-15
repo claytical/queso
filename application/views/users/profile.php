@@ -7,8 +7,9 @@
 			<div class="span1"></div>
 			<div class="span5">
 			<div class="row">
-
+			<?php if ($current):?>
 			<label class="badge"><?= $current[0]['current_level']?></label>
+			<?php endif;?>
 			</div>
 			<?php foreach($current as $current_skill):?>
 			<div class="row">
@@ -58,7 +59,9 @@
 <?php 
 $last = array_shift(array_values($grades));
 $first = end($grades);
-$threshold = $first->amount - $last->amount;
+if (!empty($first->amount) && !empty($last->amount)) {
+	$threshold = $first->amount - $last->amount;
+}
 $jsRange = "[";
 $jsLabels = "[";
 foreach($grades as $grade) {

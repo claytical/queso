@@ -32,6 +32,14 @@ class Course extends Admin_Controller {
 		
 
 	}
+	
+	public function setup() {
+		$data['checklist'] = "yes";
+		$this->load->view('include/header');
+		$this->load->view('config/setup', $data);
+      	$this->load->view('include/footer');
+	
+	}
 			
 		
 }

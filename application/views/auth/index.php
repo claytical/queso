@@ -16,7 +16,16 @@
 		<tr>
 		
 			<td><a href="<?=base_url('admin/user/'.$user->id)?>"><?php echo $user->username;?></a></td>
-			<td><span class="badge"><?=$user->grade[0]['current_level'];?></span></td>
+			<td>
+			
+				<span class="badge">
+				<?php if (!empty($user->grade[0]['current_level'])):?>
+				<?=$user->grade[0]['current_level'];?>
+				</span>
+				<?php else:?>
+				None
+				<?php endif;?>
+			</td>
 			<td><?php echo $user->email;?></td>
 			<td><?php echo ($user->active) ? anchor("auth/deactivate/".$user->id, 'Deactivate', 'class="btn btn-danger"') : anchor("auth/activate/". $user->id, 'Activate','class="btn btn-success"');?></td>
 		</tr>

@@ -1,5 +1,5 @@
 
-
+<?php if ($posts):?>
 	<table class="table">
 			<thead>
 			  <tr>
@@ -32,3 +32,6 @@
 			</tbody>
 	</table>
 
+<?php else:?>
+<p class="lead">No posts have been created.  Click <a href="<?=base_url('admin/post/create')?>">here</a> to create one.</p>
+<?php endif;?>

@@ -148,3 +148,4 @@ ERROR - 2012-08-15 21:12:18 --> Severity: Notice  --> Trying to get property of 
 ERROR - 2012-08-15 21:19:02 --> 404 Page Not Found --> user/index
 ERROR - 2012-08-15 21:19:09 --> 404 Page Not Found --> submission
 ERROR - 2012-08-15 21:20:19 --> 404 Page Not Found --> assets
+ERROR - 2012-08-15 23:06:33 --> Severity: Notice  --> Undefined variable: data /Users/clay/Sites/gamefulCMS/application/controllers/admin/course.php 38
