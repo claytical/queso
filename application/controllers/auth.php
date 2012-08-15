@@ -19,7 +19,6 @@ class Auth extends Public_Controller {
 	//redirect if needed, otherwise display the user list
 	function index()
 	{
-
 		if (!$this->ion_auth->logged_in())
 		{
 			//redirect them to the login page
@@ -32,6 +31,7 @@ class Auth extends Public_Controller {
 		}
 		else
 		{
+			$this->load->model('grade_model');
 			//set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
@@ -40,6 +40,8 @@ class Auth extends Public_Controller {
 			foreach ($this->data['users'] as $k => $user)
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+				$this->data['users'][$k]->grade = $this->grade_model->get_current_grade($user->id);
+
 			}
 
 			$this->load->view('include/header');

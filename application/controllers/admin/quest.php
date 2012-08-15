@@ -25,6 +25,11 @@ class Quest extends Admin_Controller {
 		$this->load->view('include/footer');
 		
 	}
+	public function remove_student($qid, $uid) {
+		$this->quest_model->remove_quest_for_student($qid, $uid);
+		redirect(base_url("admin/quest/details/".$qid), 'refresh');
+	}
+	
 	public function create() {
 		//admin
 		$this->load->helper('form');

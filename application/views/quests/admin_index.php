@@ -11,7 +11,7 @@
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td><h4><?php echo $quest->name;?></h4></td>
+						<td><h4><a href='<?=base_url("admin/quest/details/".$quest->id)?>'><?= $quest->name;?></a></h4></td>
 						<td><?php echo $quest->instructions;?></td>
 						<td>
 						<a class="btn btn-danger" href="quest/remove/<?php echo $quest->id;?>" title="Remove this quest and everything related to it"><i class="icon-trash"></i></a>

@@ -55,6 +55,7 @@ $route['file/do_upload/(:num)'] = 'common_auth/file_submission/do_upload/$1';
 $route['file/view/(:num)'] = 'common_auth/file_submission/view/$1';
 $route['admin/file/grade/(:num)'] = 'admin/file_submission/grade/$1';
 $route['admin/quests'] = 'admin/quest';
+$route['admin/quest/kill/(:any)'] = 'admin/quest/remove_student/$1';
 $route['admin/quests/grade/(:any)'] = 'admin/quest/grade/$1';
 $route['admin/quests/skills/get'] = 'admin/quest/skill_rewards';
 $route['admin/submission/(:num)'] = 'admin/submission/grade/$1';
@@ -63,6 +64,9 @@ $route['admin/posts'] = 'admin/post/index';
 $route['admin/grades'] = 'admin/grade';
 $route['admin/skills'] = 'admin/skill';
 $route['admin/skills/(:any)'] = 'admin/skill/$1';
+$route['admin/users'] = 'auth';
+$route['admin/user/(:num)'] = 'admin/user/view/$1';
+
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';
 $route['register'] = 'auth/create_user';

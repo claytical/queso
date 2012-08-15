@@ -8,19 +8,16 @@
 <table class="table">
 	<tr>
 		<th>Name</th>
+		<th>Level</th>
 		<th>Email</th>
-		<th>Groups</th>
 		<th>Status</th>
 	</tr>
 	<?php foreach ($users as $user):?>
 		<tr>
-			<td><?php echo $user->username;?></td>
+		
+			<td><a href="<?=base_url('admin/user/'.$user->id)?>"><?php echo $user->username;?></a></td>
+			<td><span class="badge"><?=$user->grade[0]['current_level'];?></span></td>
 			<td><?php echo $user->email;?></td>
-			<td>
-				<?php foreach ($user->groups as $group):?>
-					<?php echo $group->name;?><br />
-                <?php endforeach?>
-			</td>
 			<td><?php echo ($user->active) ? anchor("auth/deactivate/".$user->id, 'Deactivate', 'class="btn btn-danger"') : anchor("auth/activate/". $user->id, 'Activate','class="btn btn-success"');?></td>
 		</tr>
 	<?php endforeach;?>

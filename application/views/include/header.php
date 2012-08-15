@@ -100,22 +100,23 @@
 
 		<?php if($the_user->group_id == 1):?>
 		<li class="divider"></li>
+		  <li class="nav-header">Course</li>
+		  <li><a href="<?= base_url('admin/users') ?>">Students</a></li>
+		  <li><a href="<?= base_url('admin/quests') ?>">Quests</a></li>
+		  <li><a href="<?= base_url('admin/posts') ?>">Posts</a></li>
+		  <li><a href="<?= base_url('admin/course') ?>">Information</a></li>
+		  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
+		  <li><a href="<?= base_url('admin/grades') ?>">Grades</a></li>
+		  <li><a href="<?= base_url('register') ?>">New User</a></li>
+
 		<li class="nav-header">Grading</li>
 		  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
 		  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">New Submissions</a></li>
 		  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
-		  <li class="nav-header">Quests</li>
-		  <li><a href="<?= base_url('admin/quest/create') ?>">Create</a></li>
-		  <li><a href="<?= base_url('admin/quests') ?>">List</a></li>
-		  
-		  <li class="nav-header">Posts</li>
-		  <li><a href="<?= base_url('admin/posts') ?>">Manage</a></li>
-		  <li><a href="<?= base_url('admin/post/create') ?>">Create</a></li>
-		  <li class="nav-header">Course</li>
-		  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
-		  <li><a href="<?= base_url('admin/grades') ?>">Grades</a></li>
-		  <li><a href="<?= base_url('register') ?>">New User</a></li>
-		  <li><a href="<?= base_url('admin/course') ?>">Information</a></li>
+		  <li class="nav-header">Create</li>
+		  <li><a href="<?= base_url('admin/quest/create') ?>">Quest</a></li>
+		  <li><a href="<?= base_url('admin/post/create') ?>">Post</a></li>
+
 
 	<?php endif;?>
 <?php endif;?>

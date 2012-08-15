@@ -262,11 +262,23 @@ class Quest_model extends CI_Model {
 	
 	public function get_quest_details($qid) {
 		$details = $this->db->query("SELECT COUNT( DISTINCT uid ) AS attempts, id, name, type, instructions FROM quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid WHERE id = '".$qid."' GROUP BY quests.id");
-		$students = $this->db->query("SELECT * FROM questCompletion, users WHERE qid = '".$qid."' AND questCompletion.uid = users.id");
+		$students = $this->db->query("SELECT qid, uid, username, note, completed FROM questCompletion, users WHERE qid = '".$qid."' AND questCompletion.uid = users.id ORDER BY username ASC, completed DESC");
+		
+		
+		
 		return array("details" => $details->row_array(),
 					"students" => $students->result()
 		
 		);
+	}
+	
+	public function remove_quest_for_student($qid, $uid) {
+		$this->db->query("DELETE FROM questCompletionSkills WHERE qid = '".$qid."' AND uid = '".$uid."'");
+		$this->db->query("DELETE FROM questCompletion WHERE qid = '".$qid."' AND uid = '".$uid."'");
+		$this->db->query("DELETE FROM submissions WHERE qid = '".$qid."' AND uid = '".$uid."'");
+		$this->db->query("DELETE FROM files WHERE qid = '".$qid."' AND uid = '".$uid."'");
+		$this->db->query("UPDATE responses SET qid = NULL WHERE qid = '".$qid."' AND uid = '".$uid."'");
+
 	}
 	
 	public function get_student_quests($id) {
