@@ -1,1 +1,21 @@
-A CMS for Gameful Classrooms.
+Gameful CMS… Looking for a sexy name.
+
+Coded by Clay Ewing (c.ewing@miami.edu)
+
+This software is free, as in free beer.  However, if you modify the source code, give me, let me know about it.  Maybe even fork it.  It was built with Code Igniter and Twitter Bootstrap.
+
+INSTALLATION:
+
+1. Copy the all the files into whatever web directory you're going to run it from.
+2. Create a MySQL database and run gameful.sql on it.
+3. Open up application/config/database.php and change the database name/user/password to match what you've setup in step 2.
+4. Open up application/config/config.php and modify the base URL to the appropriate URL.
+5. Open up new.htaccess and change it to match whatever your base URL is as dell.
+6. Rename new.htaccess to .htaccess
+7. Login!
+
+
+Administative Login Default: admin@admin.com
+Administrative Password Default: THEpassword
+
+Be sure to change the password!

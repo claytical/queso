@@ -80,3 +80,4 @@ ERROR - 2012-08-16 04:31:00 --> Severity: Notice  --> Undefined variable: data /
 ERROR - 2012-08-16 04:31:00 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at /Users/clay/Sites/gamefulCMS/system/core/Exceptions.php:185) /Users/clay/Sites/gamefulCMS/system/helpers/url_helper.php 542
 ERROR - 2012-08-16 04:31:39 --> 404 Page Not Found --> assets
 ERROR - 2012-08-16 04:41:55 --> Severity: Notice  --> Undefined property: stdClass::$name /Users/clay/Sites/gamefulCMS/application/views/submissions/discuss.php 33
+ERROR - 2012-08-16 20:08:40 --> 404 Page Not Found --> assets
