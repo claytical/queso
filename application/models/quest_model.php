@@ -59,10 +59,15 @@ class Quest_model extends CI_Model {
 		$id = $this->input->post('qid');
 		return $this->quest_model->get_quest_skills($id);
 	}
-	
+	public function update_response($qid, $rid) {
+	}
+
 	public function complete_quest($update = FALSE) {
 		$id = $this->input->post('quest-id');
-		
+		if ($this->input->post('response-id')) {
+			$query = $this->db->query("UPDATE responses SET qid = '".$id."' WHERE id = '".$this->input->post('response-id')."'");
+
+		}
 		//check if quest is submission
 		$skills = $this->input->post('skill');
 		$points = $this->input->post('award');
@@ -87,11 +92,13 @@ class Quest_model extends CI_Model {
 			}
 			
 			if ($update) {
-				$this->db->query("UPDATE questCompletion SET completed = '".time()."' WHERE uid = '".$user."' AND qid = '".$id."'");
+				$this->db->query("UPDATE questCompletion SET completed = '".time()."' WHERE uid = '".$user."' AND qid = '".$id."' AND note = '".$note."'");
 			}
 			else {
 				$this->db->insert('questCompletion', $data);
 			}
+			
+
 			foreach ($skills as $k => $skill) {
 				$data = array(
 					'qid' => $id,

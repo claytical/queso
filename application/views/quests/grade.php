@@ -45,7 +45,9 @@
 						</div>
 				</div>
 			</fieldset>
-
+			<?php if(!empty($rid)):?>
+			<input type="hidden" name="response-id" value="<?=$rid?>">
+			<?php endif;?>
 			<div class="form-actions">
 				<div class="pull-right">
 			  		<button type="submit" class="btn-primary">Continue</button>

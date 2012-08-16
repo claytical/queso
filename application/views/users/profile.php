@@ -62,6 +62,9 @@ $first = end($grades);
 if (!empty($first->amount) && !empty($last->amount)) {
 	$threshold = $first->amount - $last->amount;
 }
+else {
+	$threshold = 1;
+}
 $jsRange = "[";
 $jsLabels = "[";
 foreach($grades as $grade) {

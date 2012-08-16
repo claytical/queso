@@ -22,9 +22,10 @@
 							Grade as Response Quest
 							<span class="caret"></span>
 						  </a>
+
 						  <ul class="dropdown-menu">
 							<?php foreach($response_quests as $option):?>
-							<li><a href="<?= base_url('admin/quest/grade/all/'.$option['info']->id.'/'.$response->user_id)?>"><?= $option['info']->name;?></a></li>
+							<li><a href="<?= base_url('admin/quest/grade/all/'.$option['info']->id.'/'.$response->user_id.'/'.$response->id)?>"><?= $option['info']->name;?></a></li>
 							<?php endforeach;?>
 						  </ul>
 						</div>					

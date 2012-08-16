@@ -70,28 +70,28 @@
 		//save new title
 		
 		//hide editable fields
-		$(this).parent().parent().children().children(".grade-title").show();
-		var gradename = $(this).parent().parent().children().children(".grade-editing").val();
-		var gradeamount = $(this).parent().parent().children('td').children('.grade-editing-amount').val();
-		var gradenum = $(this).parent().parent().children('td').children(".grade-number").val();
+		$(this).parent().parent().parent().children().children(".grade-title").show();
+		var gradename = $(this).parent().parent().parent().children().children(".grade-editing").val();
+		var gradeamount = $(this).parent().parent().parent().children('td').children('.grade-editing-amount').val();
+		var gradenum = $(this).parent().parent().parent().children('td').children(".grade-number").val();
 		$.post("grade/edit", { id: gradenum, label: gradename, amount:gradeamount } );
-		$(this).parent().parent().children().children(".grade-title").html(gradename);
-		$(this).parent().parent().children().children(".grade-amount").html(gradeamount);
-		$(this).parent().parent().children().children(".grade-amount").show();
+		$(this).parent().parent().parent().children().children(".grade-title").html(gradename);
+		$(this).parent().parent().parent().children().children(".grade-amount").html(gradeamount);
+		$(this).parent().parent().parent().children().children(".grade-amount").show();
 		$(this).parent().children(".grade-edit").show();
-		$(this).parent().parent().children().children(".grade-editing").addClass("hidden");
-		$(this).parent().parent().children().children(".grade-editing-amount").addClass("hidden");
+		$(this).parent().parent().parent().children().children(".grade-editing").addClass("hidden");
+		$(this).parent().parent().parent().children().children(".grade-editing-amount").addClass("hidden");
 		$(this).parent().children(".grade-save").addClass("hidden");
 	});
 	
 	$('button.grade-edit').click( function() {
 		//show editable fields
 		event.preventDefault();
-		$(this).parent().parent().children().children(".grade-title").hide();
-		$(this).parent().parent().children().children(".grade-amount").hide();
+		$(this).parent().parent().parent().children().children(".grade-title").hide();
+		$(this).parent().parent().parent().children().children(".grade-amount").hide();
 		$(this).parent().children(".grade-edit").hide();
-		$(this).parent().parent().children().children(".grade-editing-amount").removeClass("hidden");
-		$(this).parent().parent().children().children(".grade-editing").removeClass("hidden");
+		$(this).parent().parent().parent().children().children(".grade-editing-amount").removeClass("hidden");
+		$(this).parent().parent().parent().children().children(".grade-editing").removeClass("hidden");
 		$(this).parent().children(".grade-save").removeClass("hidden");
 
 	});

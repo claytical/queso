@@ -79,7 +79,7 @@ class Quest extends Admin_Controller {
 
 	}
 	
-	function grade($qtype = 'all', $qid = NULL, $uid = NULL) {
+	function grade($qtype = 'all', $qid = NULL, $uid = NULL, $rid = NULL) {
 		$this->load->helper('form');
 		$this->load->model('user_model');
 		$this->load->library('form_validation');
@@ -89,6 +89,11 @@ class Quest extends Admin_Controller {
 		if ($uid != NULL) {
 			$data['uid'] = $uid;
 		}
+		
+		if ($rid != NULL) {
+			$data['rid'] = $rid;
+		}
+		
 		if ($qtype == 'in-class') {
 			$data['title'] = "Grade In Class Quest";
 			$data['quests'] = $this->quest_model->get_available_quests(1);
@@ -106,9 +111,7 @@ class Quest extends Admin_Controller {
 			foreach($all_quests as $quest) {
 				$data['quests'][] = array(
 				'info' => $quest,				
-//				'options' => $options
 				);
-//			$data['quests'][] = $current_quest;
 			}
 
 		}
@@ -120,11 +123,7 @@ class Quest extends Admin_Controller {
 			$this->load->view('include/footer');
 		}
 		else {
-			$data['users'] = $this->quest_model->complete_quest();
-/*			$this->load->view('include/header');
-			$this->load->view('quests/postgrade', $data);
-			$this->load->view('include/footer');
-*/
+			$this->quest_model->complete_quest();
 			redirect(base_url('admin/quest/grade/in-class'), 'location');
 		}
 	}

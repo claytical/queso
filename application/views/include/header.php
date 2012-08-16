@@ -85,37 +85,89 @@
         </div>
       </div>
     </div>
-    <div class="span2">
-<ul class="nav nav-list">
-		<li class="nav-header">Class</li>
-		<?php foreach($menu as $item):?>
-		<li><a href="<?= base_url('post') . "/". $item->id?>"><?= $item->headline;?></a></li>
-		<?php endforeach;?>
-		
+    
+    <div class="subnav subnav-fixed">
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Quests <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+		  <li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
+		  <li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
+	  	  <li><a href="<?= base_url('discussion') ?>">Discussions</a></li>
+        </ul>
+      </li>
+      
 	<?php if (!empty($the_user)):?>
-	  <li class="nav-header">QUESTS</li>
-	  <li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
-	  <li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
-	  <li><a href="<?= base_url('discussion') ?>">Discussions</a></li>
-
 		<?php if($the_user->group_id == 1):?>
-		<li class="divider"></li>
-		  <li class="nav-header">Course</li>
+      
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lists<b class="caret"></b></a>
+        <ul class="dropdown-menu">
 		  <li><a href="<?= base_url('admin/users') ?>">Students</a></li>
 		  <li><a href="<?= base_url('admin/quests') ?>">Quests</a></li>
 		  <li><a href="<?= base_url('admin/posts') ?>">Posts</a></li>
+
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Grading<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+		  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
+		  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">Online Submissions</a></li>
+		  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
+
+        </ul>
+      </li>
+
+
+
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Create<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+
+		  <li><a href="<?= base_url('admin/quest/create') ?>">Quest</a></li>
+		  <li><a href="<?= base_url('admin/post/create') ?>">Post</a></li>
+		</ul>
+	   </li>      
+
+
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup<b class="caret"></b></a>
+        <ul class="dropdown-menu">
 		  <li><a href="<?= base_url('admin/course') ?>">Information</a></li>
 		  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
 		  <li><a href="<?= base_url('admin/grades') ?>">Grades</a></li>
+
+        </ul>
+      </li>
+
+		
+		<?php endif;?>
+	<?php endif;?>
+      
+    </ul>
+  </div>
+    
+    
+    <div class="row" id="top">
+    <div class="span3">
+	<ul class="nav nav-list">
+		<?php foreach($menu as $item):?>
+		<li><a href="<?= base_url('post') . "/". $item->id?>"><?= $item->headline;?></a></li>
+		<li class="divider"></li>
+		<?php endforeach;?>
+	</ul>
+	<ul class="nav nav-list">
+	<?php if (!empty($the_user)):?>
+		<?php if($the_user->group_id == 3):?>
+		<li class="divider"></li>
+		  <li class="nav-header">Course</li>
 		  <li><a href="<?= base_url('register') ?>">New User</a></li>
 
 		<li class="nav-header">Grading</li>
-		  <li><a href="<?= base_url('admin/quest/grade/in-class') ?>">In Class Work</a></li>
-		  <li><a href="<?= base_url('admin/submissions/ungraded') ?>">New Submissions</a></li>
-		  <li><a href="<?= base_url('admin/submissions/revised') ?>">Revisions</a></li>
 		  <li class="nav-header">Create</li>
-		  <li><a href="<?= base_url('admin/quest/create') ?>">Quest</a></li>
-		  <li><a href="<?= base_url('admin/post/create') ?>">Post</a></li>
 
 
 	<?php endif;?>
@@ -125,5 +177,5 @@
 
 </div>
 
-    <div class="container-fluid span9">
+    <div class="container-fluid span8">
       <div class="row-fluid">
