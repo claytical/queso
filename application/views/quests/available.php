@@ -15,6 +15,9 @@
 						<td><h4><?php echo $quest['info']->name;?></h4></td>
 						<td><?php echo $quest['info']->instructions;?></td>
 						<td>
+						<?php if($quest['info']->type == 1 && $quest['info']->file):?>
+							<a href="<?= base_url('uploads/'.$quest['info']->file);?>" class='btn-primary btn'>Download</a>
+						<?php endif;?>
 						<?php if($quest['info']->type == 2):?>
 							<a href="<?= base_url('quest/attempt/'.$quest['info']->id);?>" class='btn-primary btn'>Attempt</a>
 						<?php endif;?>

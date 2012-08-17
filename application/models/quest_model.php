@@ -26,15 +26,15 @@ class Quest_model extends CI_Model {
 		else {
 			if ($qtype == 0) {
 
-				$query = $this->db->query("SELECT quests.id, name from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND hidden = 0");			
+				$query = $this->db->query("SELECT quests.id, name, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND hidden = 0");			
 			}
 			
 			else {		
 				if ($qtype != 999) {
-					$query = $this->db->query("SELECT quests.id, name, instructions, type from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."' AND hidden = 0");
+					$query = $this->db->query("SELECT quests.id, name, instructions, type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."' AND hidden = 0");
 					}
 					else {
-					$query = $this->db->query("SELECT quests.id, name, instructions,type from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type > 1 AND hidden = 0");
+					$query = $this->db->query("SELECT quests.id, name, instructions,type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type > 1 AND hidden = 0");
 					
 					}
 			}

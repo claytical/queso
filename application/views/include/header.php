@@ -91,9 +91,10 @@
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Quests <b class="caret"></b></a>
         <ul class="dropdown-menu">
-		  <li><a href="<?= base_url('quests/available/online')?>">Available</a></li>
-		  <li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
+		  <li><a href="<?= base_url('quests/available/in-class')?>">In Class</a></li>
+		  <li><a href="<?= base_url('quests/available/online')?>">Online</a></li>
 	  	  <li><a href="<?= base_url('discussion') ?>">Discussions</a></li>
+		  <li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
         </ul>
       </li>
       
