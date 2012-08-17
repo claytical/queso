@@ -216,18 +216,36 @@ class Quest_model extends CI_Model {
 		$this->db->query("DELETE FROM responses WHERE qid = ".$qid);
 		$this->db->query("DELETE FROM files WHERE qid = ".$qid);
 	}
-	public function new_quest() {
+	public function new_quest($file = FALSE) {
 			$title = $this->input->post('quest-title');
 			$instructions = $this->input->post('quest-instructions');
 			$qtype = $this->input->post('quest-type');
-			$requirements = $this->input->post('locked');
-		
-		$data = array(
-			'name' => $title,
-			'instructions' => $instructions,
-			'type' => $qtype,
-			'requirements' => $requirements
-			);
+			$requirements = $this->input->post('locked');			
+			if ($file) {
+				$upload_data = $this->upload->data();
+				if ($upload_data) {
+					$upload_data = $this->upload->data();
+					$data = array(
+						'name' => $title,
+						'instructions' => $instructions,
+						'type' => $qtype,
+						'requirements' => $requirements,
+						'file' => $upload_data['file_name'],
+						
+						);
+	
+				}
+			}
+			
+			else {
+				$data = array(
+					'name' => $title,
+					'instructions' => $instructions,
+					'type' => $qtype,
+					'requirements' => $requirements,	
+					);
+				
+				}
 			
 		$this->db->insert('quests', $data);
 		$qid = $this->db->insert_id();

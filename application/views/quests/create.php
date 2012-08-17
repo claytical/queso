@@ -2,7 +2,7 @@
 		
 		<?php
         	$attributes = array('class' => 'well form-horizontal');
-			echo form_open('admin/quest/skills', $attributes);
+			echo form_open_multipart('admin/quest/skills', $attributes);
   		?>
   		<h1><?php echo $title ?></h1>
 			<p class="lead"><?php echo $instructions ;?></p>
@@ -19,6 +19,14 @@
 						<textarea type="text" id="quest-instructions" name="quest-instructions" class="span6 tinymce" placeholder="What's this quest about?"></textarea>
 					</div>
 				</div>
+
+  				<div class="control-group">
+			  		<label class="control-label" for="userfile">Supplemental File</label>
+					<div class="controls">
+					<input type="file" name="userfile" class="span8"/>
+					</div>
+				</div>
+
 
 				<div class="control-group">
 

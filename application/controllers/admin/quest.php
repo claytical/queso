@@ -46,7 +46,19 @@ class Quest extends Admin_Controller {
 
 	public function skills() {
 		$this->load->helper('form');
-		$info = $this->quest_model->new_quest();
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|pdf|zip|doc|docx|odf';
+
+		$this->load->library('upload', $config);
+		
+			if (! $this->upload->do_upload()) {
+				$error = array('error' => $this->upload->display_errors());
+			}
+			else {
+				$data = array('upload_data' => $this->upload->data());
+			}
+			$info = $this->quest_model->new_quest(TRUE);
+		
 		$data['title'] = $info['name'];
 		$data['requirements'] = $info['requirements'];
 		$data['id'] = $info['id'];
