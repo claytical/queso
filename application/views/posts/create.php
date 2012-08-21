@@ -2,7 +2,7 @@
 		
 			<?php
 				$attributes = array('class' => 'well form-horizontal');
-				echo form_open('', $attributes);
+				echo form_open_multipart('', $attributes);
   			?>
   			<?php if(validation_errors()):?>
 				<div class="alert">
@@ -24,6 +24,14 @@
 						<textarea type="text" id="body" name="body"></textarea>
 					</div>
 				</div>
+				
+  				<div class="control-group">
+			  		<label class="control-label" for="userfile">Supplemental File</label>
+					<div class="controls">
+					<input type="file" name="userfile" class="span8"/>
+					</div>
+				</div>
+				
   				<div class="control-group">
 					<div class="controls">
 						<label>

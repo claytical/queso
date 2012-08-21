@@ -2,10 +2,9 @@
 		
 		<?php
         	$attributes = array('class' => 'well form-horizontal');
-			echo form_open_multipart('admin/quest/skills', $attributes);
+			echo form_open_multipart('', $attributes);
   		?>
   		<h1><?php echo $title ?></h1>
-			<p class="lead"><?php echo $instructions ;?></p>
   			<fieldset>
   				<div class="control-group">
 			  		<label class="control-label" for="quest-title">Name</label>
@@ -16,7 +15,7 @@
   				<div class="control-group">
 			  		<label class="control-label" for="quest-instructions">Instructions</label>
 					<div class="controls">
-						<textarea type="text" id="quest-instructions" name="quest-instructions" class="span6 tinymce" placeholder="What's this quest about?"></textarea>
+						<textarea type="text" id="quest-instructions" name="quest-instructions" class="span6 tinymce" placeholder="What's this quest about?"><?= $instructions?></textarea>
 					</div>
 				</div>
 
@@ -39,19 +38,6 @@
 						</select>
 					</div>						
 				</div>
-				<div class="control-group">
-
-					<label class="control-label" for="skills">Skills</label>
-					<div class="controls">
-						<select id="quest-skills" name="skills[]" data-placeholder="Please select..." class="chzn-select" multiple>
-							<?php foreach ($skills as $skill) :?>
-								<option value="<?php echo $skill->id;?>"><?php echo $skill->name;?></option>
-							<?php endforeach ?>
-						</select>
-
-					</div>						
-				
-				</div>
 				<div class="control-group hidden">
 					<label class="checkbox" for="locked">
     				<div class="controls">
@@ -62,7 +48,7 @@
 
 			<div class="form-actions">
 				<div class="pull-right">
-			  		<button type="submit" class="btn-primary">Create Quest</button>
+			  		<button type="submit" class="btn-primary">Update Quest</button>
 				</div>
 			</div>
 		</form>

@@ -29,6 +29,7 @@ class Post extends Public_Controller {
 		}
 		$data['headline'] = $info['headline'];
 		$data['body'] = $info['body'];
+		$data['file'] = $info['file'];
 		$this->load->view('include/header');
 		$this->load->view('posts/view', $data);
       	$this->load->view('include/footer');

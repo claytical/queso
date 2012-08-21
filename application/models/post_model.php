@@ -34,13 +34,26 @@ class Post_model extends CI_Model {
 		$headline = $this->input->post('headline');
 		$body = $this->input->post('body');
 		$frontpage = $this->input->post('frontpage');
-		$data = array(
-			'headline' => $headline,
-			'body' => $body,
-			'created' => time(),
-			'frontpage' => $frontpage,			
-			);
+		$upload_data = $this->upload->data();
+		if ($upload_data) {
+			$data = array(
+				'headline' => $headline,
+				'body' => $body,
+				'created' => time(),
+				'frontpage' => $frontpage,			
+				'file' => $upload_data['file_name'],				
+				);
+
+		}
+		else {
 		
+			$data = array(
+				'headline' => $headline,
+				'body' => $body,
+				'created' => time(),
+				'frontpage' => $frontpage,			
+				);
+		}
 		$this->db->insert('posts', $data);
 		
 		//fire off any notices here
