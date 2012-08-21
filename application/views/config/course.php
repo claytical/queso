@@ -23,7 +23,22 @@
 			  <input type="text" name="registration_code" value='<?php echo $registration_code;?>'>
 			</div>
 		</div>
-  	
+  
+		<div class="control-group">
+			<label class="control-label" for="theme">Theme</label>
+			<div class="controls">
+			<select name="theme" class="chzn-select">'
+				<?php foreach ($themes as $option):?>
+					<?php if($option == $theme):?>
+					<option value="<?php echo $option;?>" selected><?php echo $option;?></option>
+					<?php else:?>
+					<option value="<?php echo $option;?>"><?php echo $option;?></option>
+					<?php endif;?>
+
+				<?php endforeach;?>
+			</select>
+			</div>
+  		</div>
 		</fieldset>
     		<div class="form-actions">
 			<div class="pull-right">

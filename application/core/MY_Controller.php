@@ -16,6 +16,8 @@ class Admin_Controller extends CI_Controller {
   			$data->the_user = $this->the_user;
   			$data->site_name = $this->course_model->get_variable("site");
 			$data->menu = $this->menu_model->get_items();
+  			$data->theme = $this->course_model->get_variable("theme");
+
             $this->load->vars($data);
         }
         else {
@@ -46,6 +48,8 @@ class Public_Controller extends CI_Controller {
      	
      	$data->menu = $this->menu_model->get_items(); 	
   		$data->site_name = $this->course_model->get_variable("site");
+  		$data->theme = $this->course_model->get_variable("theme");
+
         $this->load->vars($data);
 
     }
@@ -70,6 +74,7 @@ class User_Controller extends CI_Controller {
             $data->the_user = $this->the_user;
 	     	$data->menu = $this->menu_model->get_items(); 			    
   			$data->site_name = $this->course_model->get_variable("site");
+  			$data->theme = $this->course_model->get_variable("theme");
 	     	
             $this->load->vars($data);
         }
@@ -95,6 +100,8 @@ class Common_Auth_Controller extends CI_Controller {
             $data->the_user = $this->the_user;
 	     	$data->menu = $this->menu_model->get_items(); 			        
   			$data->site_name = $this->course_model->get_variable("site");
+  			$data->theme = $this->course_model->get_variable("theme");
+
             $this->load->vars($data);
         }
         else {

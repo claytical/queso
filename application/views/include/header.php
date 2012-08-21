@@ -9,7 +9,7 @@
 
    <title><?= $site_name?></title>
 
-   <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+   <link href="<?= base_url('assets/css/bootstrap.'.$theme.'.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('assets/css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
    <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
