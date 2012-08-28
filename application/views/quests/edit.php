@@ -1,16 +1,21 @@
         <div>
 		
-		<?php
-        	$attributes = array('class' => 'well form-horizontal');
-			echo form_open_multipart('', $attributes);
-  		?>
-  		<h1><?php echo $title ?></h1>
+	<?php if(!empty($message)):?>
+	<div class="alert">
+		<button class="close" data-dismiss="alert">x</button>
+		<?php echo $message;?>
+	</div>
+	<?php endif;?>
+
+  		<h1>Update Quest</h1>
+  		<form method="post" class="well form-horizontal">
   			<fieldset>
   				<div class="control-group">
-			  		<label class="control-label" for="quest-title">Name</label>
+					<label class="control-label" for="quest-title">Name</label>
 					<div class="controls">
-						<input type="text" id="quest-title" name="quest-title" class="span6" placeholder="What's the name of this quest?">
+						<input type="text" id="quest-title" name="quest-title" class="span6" placeholder="What's the name of this quest?" value='<?= $title ?>'>
 					</div>
+
 				</div>
   				<div class="control-group">
 			  		<label class="control-label" for="quest-instructions">Instructions</label>
@@ -18,26 +23,22 @@
 						<textarea type="text" id="quest-instructions" name="quest-instructions" class="span6 tinymce" placeholder="What's this quest about?"><?= $instructions?></textarea>
 					</div>
 				</div>
-
+				<? foreach ($skills as $skill):?>
   				<div class="control-group">
-			  		<label class="control-label" for="userfile">Supplemental File</label>
+					<label class="control-label"><?= $skill->name;?> Required</label>
 					<div class="controls">
-					<input type="file" name="userfile" class="span8"/>
-					</div>
-				</div>
-
-
-				<div class="control-group">
-
-					<label class="control-label" for="quest-type">Type</label>
-					<div class="controls">
-						<select name="quest-type" id="quest-type" data-placeholder="Please select..." class="chzn-select">
-							<?php foreach ($options as $option) :?>
-								<option value="<?php echo $option->id;?>"><?php echo $option->name;?></option>
+						<input type="hidden" value="<?=$skill->id?>" name="skill[]">
+						<select name="threshold<?=$skill->id?>" id="grade-level-<?=$skill->id?>" data-placeholder="Please select..." class="chzn-select">
+							<?php foreach ($grades as $grade) :?>
+								<option value="<?php echo $grade->amount;?>"><?php echo $grade->label;?> (<?=$grade->amount;?>)</option>
 							<?php endforeach ?>
 						</select>
-					</div>						
+					
+					</div>
 				</div>
+				<?php endforeach ?>
+
+
 				<div class="control-group hidden">
 					<label class="checkbox" for="locked">
     				<div class="controls">
@@ -45,35 +46,22 @@
 					</div>
 				</div>
 			</fieldset>
-
 			<div class="form-actions">
 				<div class="pull-right">
 			  		<button type="submit" class="btn-primary">Update Quest</button>
 				</div>
 			</div>
-		</form>
-        
+        </form>
         
       <hr>
-    <script>
-		 $('.chzn-select').chosen();
-		 
-	$('button.btn-primary').click( function() {
-		/*event.preventDefault();
-		var skills = new Array();
-	   	var	questName = $('input#quest-title').val();
-	   	var questType = 1;
-	   $('ul.chzn-choices li.search-choice a').each(function (index) {
-			skills.push($('select#quest-skills option:eq('+$(this).attr("rel")+')').val());
-	   		});
 
-		$.post("quest/skills", { name: questName, selectedSkills: skills, type: questType },
-		   function(data) {
-		   	//window.location = "skills";
-			 //$('tbody').append(data);
-		   });
-		*/		
-	});
-		 
-		 
+    <script>
+      <? foreach($locks as $lock):?>
+      
+      		$('select[name="threshold<?=$lock->skid?>"]').val(<?= $lock->requirement?>);
+      
+      <? endforeach ?>
+    	 
+		 $('.chzn-select').chosen();
+		 		 
 	</script>

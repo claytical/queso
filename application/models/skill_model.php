@@ -19,8 +19,14 @@ class Skill_model extends CI_Model {
 		}
 	}
 	
-	public function get_total_by_user($uid) {
-		$query = $this->db->query("SELECT skid, name, sum(amount) as amount FROM questCompletionSkills LEFT JOIN skills ON skills.id = questCompletionSkills.skid WHERE uid = '".$uid."' GROUP BY skid");
+	public function get_total_by_user($uid, $skid = 'all') {
+		if ($skid == 'all') {
+			$query = $this->db->query("SELECT skid, name, sum(amount) as amount FROM questCompletionSkills LEFT JOIN skills ON skills.id = questCompletionSkills.skid WHERE uid = '".$uid."' GROUP BY skid");
+		}
+		else {
+			$query = $this->db->query("SELECT skid, name, sum(amount) as amount FROM questCompletionSkills LEFT JOIN skills ON skills.id = questCompletionSkills.skid WHERE uid = '".$uid."' AND skid = '".$skid."' GROUP BY skid");
+		
+		}
 		return $query->result();
 	}
 

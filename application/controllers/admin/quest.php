@@ -25,6 +25,34 @@ class Quest extends Admin_Controller {
 		$this->load->view('include/footer');
 		
 	}
+	public function edit($qid) {
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('quest-title', 'Quest Name', 'required');
+		$this->form_validation->set_rules('quest-instructions', 'Instructions', 'required');
+		if ($this->form_validation->run() === FALSE) {
+		}
+
+		else {
+			$this->quest_model->update($qid);
+			redirect(base_url("admin/quests"));
+		}
+
+		$info = $this->quest_model->get_quests($qid);
+		$this->load->model('grade_model');
+		$data['grades'] = $this->grade_model->get_grades("ASC");
+		$data['title'] = $info['name'];
+		$data['file'] = $info['file'];
+		$data['instructions'] = $info['instructions'];
+		$data['skills'] = $this->skill_model->get_skills();
+		$data['locks'] = $this->quest_model->get_quest_locks($qid);
+		$this->load->view('include/header');
+		$this->load->view('quests/edit', $data);
+		$this->load->view('include/footer');
+		
+	}
+
+
 	public function remove_student($qid, $uid) {
 		$this->quest_model->remove_quest_for_student($qid, $uid);
 		redirect(base_url("admin/quest/details/".$qid), 'refresh');
@@ -62,6 +90,7 @@ class Quest extends Admin_Controller {
 		$data['title'] = $info['name'];
 		$data['requirements'] = $info['requirements'];
 		$data['id'] = $info['id'];
+		$data['instructions'] = "You will be able to give your students points in each skill you selected.  If you add more than one amount for a given skill, you can choose what level you would like to reward your student with when grading their work.";
 		
 		foreach ($info['skills'] as $sid) {
 			$data['skills'][] = $this->skill_model->get_skills($sid);	
@@ -170,11 +199,7 @@ class Quest extends Admin_Controller {
 		
 	}
 	
-	
-	public function edit() {
-		//admin
-	}
-	
+		
 		
 	public function available($qtype = 'all', $user = '0') {
 		//admin view

@@ -26,15 +26,15 @@ class Quest_model extends CI_Model {
 		else {
 			if ($qtype == 0) {
 
-				$query = $this->db->query("SELECT quests.id, name, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND hidden = 0");			
+				$query = $this->db->query("SELECT DISTINCT quests.id, name, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND hidden = 0");			
 			}
 			
 			else {		
 				if ($qtype != 999) {
-					$query = $this->db->query("SELECT quests.id, name, instructions, type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."' AND hidden = 0");
+					$query = $this->db->query("SELECT DISTINCT quests.id, name, instructions, type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."' AND hidden = 0");
 					}
 					else {
-					$query = $this->db->query("SELECT quests.id, name, instructions,type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type > 1 AND hidden = 0");
+					$query = $this->db->query("SELECT DISTINCT quests.id, name, instructions,type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type > 1 AND hidden = 0");
 					
 					}
 			}
@@ -59,9 +59,52 @@ class Quest_model extends CI_Model {
 		$id = $this->input->post('qid');
 		return $this->quest_model->get_quest_skills($id);
 	}
+	
 	public function update_response($qid, $rid) {
 	}
 
+	public function get_quest_locks($qid) {
+		$query = $this->db->query("SELECT skid, requirement FROM questLock WHERE qid = '".$qid."'");
+		return $query->result();
+	
+	}
+
+	public function update($qid) {
+		$name = $this->input->post('quest-title');
+		$instructions = $this->input->post('quest-instructions');
+		$query = $this->db->query("UPDATE quests SET name = '".mysql_real_escape_string($name)."', instructions = '".mysql_real_escape_string($instructions)."' WHERE id = ".$qid);
+		$skills = $this->input->post('skill');
+
+		foreach ($skills as $skill) {
+			
+			$checkExisting = $this->db->query("SELECT COUNT(qid) as num FROM questLock WHERE qid = '".$qid."' AND skid = '".$skill."'");
+			$row = $checkExisting->row_array(); // get the row
+			if ($row['num'] > 0) {
+				$update = TRUE;
+			}
+			else {
+				$update = FALSE;
+			}
+
+			$threshold = $this->input->post('threshold'.$skill);
+		
+			if ($update) {
+				$this->db->query("UPDATE questLock SET requirement = '".$threshold."' WHERE qid = '".$qid."' AND skid = '".$skill."'");			
+			}
+			
+			else {
+				$data = array(
+						'qid' => $qid,
+						'skid' => $skill,
+						'requirement' => $threshold,	
+						);			
+				$this->db->insert('questLock', $data);
+			
+			}
+		}
+	}
+	
+	
 	public function complete_quest($update = FALSE) {
 		$id = $this->input->post('quest-id');
 		if ($this->input->post('response-id')) {

@@ -12,7 +12,6 @@ class Quest extends Common_Auth_Controller {
 		$data['quests'] = $this->quest_model->get_quests();
 		$data['title'] = "Quests";
 		$this->load->view('include/header');
-		$this->load->view('quests/index', $data);
       	$this->load->view('include/footer');
 	}
 	
@@ -121,27 +120,46 @@ class Quest extends Common_Auth_Controller {
 		//student view
 		$data['title'] = "Available Quests";
 		if ($qtype == 'all') {
-			$data['quests'] = $this->quest_model->get_quests();
+			$quests = $this->quest_model->get_quests();
 		}
 		else if ($qtype == 'in-class') {
-			$data['quests'] = $this->quest_model->get_available_quests(1, $this->the_user->user_id);
+			$quests = $this->quest_model->get_available_quests(1, $this->the_user->user_id);
 		}
 		else if ($qtype == 'written') {
-			$data['quests'] = $this->quest_model->get_available_quests(2, $this->the_user->user_id);
+			$quests = $this->quest_model->get_available_quests(2, $this->the_user->user_id);
 		}
 
 		else if ($qtype == 'file') {
-			$data['quests'] = $this->quest_model->get_available_quests(3, $this->the_user->user_id);
+			$quests = $this->quest_model->get_available_quests(3, $this->the_user->user_id);
 		}
 
 		else if ($qtype == 'response') {
-			$data['quests'] = $this->quest_model->get_available_quests(4, $this->the_user->user_id);
+			$quests = $this->quest_model->get_available_quests(4, $this->the_user->user_id);
 		}
 
 		else if ($qtype == 'online') {
 		//999 gets all quests available online
-			$data['quests'] = $this->quest_model->get_available_quests(999, $this->the_user->user_id);
+			$quests = $this->quest_model->get_available_quests(999, $this->the_user->user_id);
 		}
+//		$data['quests'] = $quests;
+		$available_quests = array();
+
+		foreach($quests as $quest) {
+			//get quest locks
+			$locks = $this->quest_model->get_quest_locks($quest['info']->id);		
+			$locked = FALSE;
+			foreach ($locks as $lock) {
+				//compare against current level
+				$skill_level = $this->skill_model->get_total_by_user($this->the_user->user_id, $lock->skid);
+				if ($skill_level[0]->amount < $lock->requirement) {
+					$locked = TRUE;
+				}
+			}
+			if (!$locked) {
+				$available_quests[] = $quest;
+			}
+		}
+		$data['quests'] = $available_quests;
 		
 		$this->load->view('include/header');
 		$this->load->view('quests/available', $data);

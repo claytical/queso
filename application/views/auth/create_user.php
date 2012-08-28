@@ -1,7 +1,7 @@
 <div>
 
-	<h1>Create User</h1>
-	<p class="lead">Please enter the users information below.</p>
+	<h1>New User</h1>
+	<p class="lead">Please enter the information below.</p>
 	<?php if(!empty($message)):?>
 	<div class="alert">
 		<button class="close" data-dismiss="alert">x</button>

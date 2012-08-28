@@ -419,7 +419,7 @@ class Auth extends Public_Controller {
 		}
 		$groups = array('2');
 		
-		if ($this->input->post('registration_code') == $this->course_model->get_registration_code() || $this->ion_auth->is_admin()) {
+		if ($this->input->post('registration_code') == $this->course_model->get_variable('registration') || $this->ion_auth->is_admin()) {
 			if ($this->form_validation->run() == true && $this->ion_auth->register($username, $password, $email, $additional_data, $groups))
 			{ 
 				//check to see if we are creating the user

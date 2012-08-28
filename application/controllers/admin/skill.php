@@ -10,7 +10,7 @@ class Skill extends Admin_Controller {
 	public function index() {
 		$data['skills'] = $this->skill_model->get_skills();
 		$data['title'] = "Skills";
-		$data['instructions'] = "Skills can have their name modified.  Skills that are already assigned to quests cannot be removed.";
+		$data['instructions'] = "Skills are gained by completing quests.  These are the attributes that you want your students to gain by taking your class.  You can change their name down the line if need be.  Once you assign a skill to a quest, it cannot be removed.";
 		$this->load->view('include/header');
 		$this->load->view('skills/index', $data);
       	$this->load->view('include/footer');

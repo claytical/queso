@@ -10,7 +10,7 @@ class Grade extends Admin_Controller {
 	public function index() {
 		$data['grades'] = $this->grade_model->get_grades();
 		$data['title'] = "Grades";
-		$data['instructions'] = "Thresholds are based on the lowest value of all skills";
+		$data['instructions'] = "Grades act as a ranking system for your students.  It's a good idea to create grades that might not necessarily correspond to a letter grade.  You can use these later to lock advanced quests.  A player's grade is based on their lowest valued skill.";
 		$this->load->view('include/header');
 		$this->load->view('grades/index', $data);
       	$this->load->view('include/footer');

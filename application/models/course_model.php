@@ -12,10 +12,6 @@ class Course_model extends CI_Model {
 		return $row['variable'];
 
 	}
-
-	public function get_registration_code() {
-		return "zebra";
-	}
 	
 	public function update() {
 		$code = $this->input->post('registration_code');

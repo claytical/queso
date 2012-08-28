@@ -8,7 +8,7 @@
         <input type="hidden" name="qid" value="<?php echo $id ?>">
         <input type="hidden" name="requirements" value="<?php echo $requirements ?>">
 		
-			<p class="lead"></p>
+			<p class="lead"><?= $instructions?></p>
   			<fieldset>
   				<?php foreach ($skills as $skill) :?>
 
