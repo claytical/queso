@@ -27,10 +27,10 @@
 						<input type="hidden" name="skill-number" class='skill-number' value="<?php echo $skill->id?>">
 						<input class="hidden skill-editing" type="text" name="skill-title" value="<?php echo $skill->name;?>">
 						<button class="btn pull-right hidden skill-save">
-						<span class="add-on"><i class="icon-ok"></i></span>
+						<span class="add-on" title="Save this skill"><i class="icon-ok"></i></span>
 						</button>
 						<button class="btn pull-right skill-edit">
-						<span class="add-on">
+						<span class="add-on" title="Edit this skill">
 						<i class="icon-pencil"></i></span>
 						</button>
 						</td>

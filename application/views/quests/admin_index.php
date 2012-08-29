@@ -11,17 +11,16 @@
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td><h4><a href='<?=base_url("admin/quest/details/".$quest->id)?>'><?= $quest->name;?></a></h4></td>
+						<td><h4><a href='<?=base_url("admin/quest/edit/".$quest->id)?>' title="Edit this quest"><?= $quest->name;?></a></h4></td>
 						<td><?php echo $quest->instructions;?></td>
 						<td>
 						<div class="btn-group">
-
+						<a class="btn" href="quest/details/<?php echo $quest->id;?>" title="Students who have completed this quest"><i class="icon-user"></i></a>
 						<?php if ($quest->hidden):?>
 							<a class="btn" title="Make Visible" href='quest/activate/<?php echo $quest->id;?>'><i class="icon-eye-open"></i></a>
 						<?php else:?>
 							<a class="btn" title="Hide" href='quest/deactivate/<?php echo $quest->id;?>'><i class="icon-eye-close"></i></a>
 						<?php endif;?>
-						<a class="btn" href="quest/edit/<?php echo $quest->id;?>" title="Edit this quest"><i class="icon-pencil"></i></a>
 						<a class="btn btn-danger" href="quest/remove/<?php echo $quest->id;?>" title="Remove this quest and everything related to it"><i class="icon-trash"></i></a>
 
 						</div>

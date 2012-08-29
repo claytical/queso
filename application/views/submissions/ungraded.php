@@ -12,15 +12,18 @@
 <?php foreach ($submissions as $submission) :?>
 
 					  <tr>
-						<td><div class="span6"><?php echo $submission->quest;?></div></td>
-						<td><?php echo $submission->username;?></td>
-						<td><div class="span2">
+						<td><div class="span6">
 						<?php if($submission->file):?>
-						<a href="<?= base_url('admin/file/grade/'.$submission->id) ?>">
+						<a href="<?= base_url('admin/file/grade/'.$submission->id) ?>" title="View and grade this submission">
 						<?php else:?>
-						<a href="<?= base_url('admin/submission/'.$submission->id) ?>">
+						<a href="<?= base_url('admin/submission/'.$submission->id) ?>" title="View and grade this submission">
 						<?php endif;?>
-						<span class="badge badge-inverse"><i class="icon-eye-open"></i></span></a></div></td>
+						<?php echo $submission->quest;?>
+						</a>
+						
+						</div></td>
+						<td><?php echo $submission->username;?></td>
+						<td></td>
 					  </tr>					
 					  <?php endforeach;?>
 			</tbody>
