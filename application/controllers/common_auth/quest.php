@@ -151,8 +151,13 @@ class Quest extends Common_Auth_Controller {
 			foreach ($locks as $lock) {
 				//compare against current level
 				$skill_level = $this->skill_model->get_total_by_user($this->the_user->user_id, $lock->skid);
-				if ($skill_level[0]->amount < $lock->requirement) {
+				if (empty($skill_level)) {
 					$locked = TRUE;
+				}
+				else {
+					if ($skill_level[0]->amount < $lock->requirement) {
+						$locked = TRUE;
+					}
 				}
 			}
 			if (!$locked) {
