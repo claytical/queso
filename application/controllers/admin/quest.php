@@ -11,7 +11,7 @@ class Quest extends Admin_Controller {
 	public function index() {
 		$data['quests'] = $this->quest_model->get_quests();
 		$data['title'] = "Quests";
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('quests/admin_index', $data);
       	$this->load->view('include/footer');
 	}

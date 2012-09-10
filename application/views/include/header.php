@@ -150,33 +150,49 @@
       
     </ul>
   </div>
-    
-    
-    <div class="row" id="top">
-    <div class="span3">
-	<ul class="nav nav-list">
-		<?php foreach($menu as $item):?>
-		<li><a href="<?= base_url('post') . "/". $item->id?>"><?= $item->headline;?></a></li>
-		<li class="divider"></li>
-		<?php endforeach;?>
-	</ul>
-	<ul class="nav nav-list">
-	<?php if (!empty($the_user)):?>
-		<?php if($the_user->group_id == 3):?>
-		<li class="divider"></li>
-		  <li class="nav-header">Course</li>
-		  <li><a href="<?= base_url('register') ?>">New User</a></li>
-
-		<li class="nav-header">Grading</li>
-		  <li class="nav-header">Create</li>
-
-
-	<?php endif;?>
-<?php endif;?>
-
-</ul>
-
+<div id="top" class="container-fluid">
+<?php if($logged_in):?>
+<?php if($the_user->group_id != 8):?>
+<div class="span2">
+<div class="row">
 </div>
 
-    <div class="container-fluid span8">
-      <div class="row-fluid">
+<div class="row well">
+			<h6>Rank</h6>
+			<?php if ($current):?>
+			<h4><?=$current[0]['current_level']?></h4><p></p>
+			<?php endif;?>
+
+<?php foreach($current as $current_skill):?>
+	<h6><?=  $current_skill['skill']?></h6>
+	
+	<div class="progress progress-striped progress-info">
+		<div class="bar" style="text-align: left; padding-left: 10px;width: <?= $current_skill['amount'] / $current[0]['next_amount'] * 100?>%;">
+		<?=  $current_skill['amount']?> 
+		</div>
+	</div>
+<?php endforeach;?>
+<? endif;?>
+<h6>Quests</h6>
+<p></p>
+<? if(count($quests_pending) > 0):?>
+<span class="label label-warning"><b><?= count($quests_pending);?></b> Attempt<?php if (count($quests_pending) != 1):?>s<? endif;?></span> Pending<br>
+<? endif;?>
+<? if (count($quests_revisions)):?>
+<span class="label label-warning"><b><?= count($quests_revisions);?></b> Revision<?php if (count($quests_revisions) != 1):?>s<? endif;?> Pending</span><br>
+<? endif;?>
+
+<b><?= count($quests_available);?></b> <a href='<?=base_url("/quests/available/online");?>'>Available</a><br>
+<b><?= count($quests_completed);?></b> <a href='<?=base_url("/quests/completed");?>'>Completed</a><br>
+</div>
+<div class="row">
+	<ul class="nav nav-tabs nav-stacked">
+		<?php foreach($menu as $item):?>
+		<li><a href="<?= base_url('post') . "/". $item->id?>"><?= $item->headline;?></a></li>
+		<?php endforeach;?>
+	</ul>
+
+</div>
+</div>
+
+<? endif;?>	

@@ -9,35 +9,34 @@ class Frontpage extends Public_Controller {
       $this->load->view('include/footer');
 	}
 
-	public function login()
-	{
-	    // if this request is a form submission
-	    if ($_POST)
-	    {
-	        // get form values and xss filter the input
-            $identity = $this->input->post('identity', true);
-            $password = $this->input->post('password', true);
+	public function dashboard() {
+		$this->load->model('quest_model');
+		$this->load->model('grade_model');
+		$this->load->model('post_model');
+		$this->load->model('submission_model');
+		if ($this->the_user) {
+		$data['progress'] = $this->quest_model->get_charted_progress($this->the_user->user_id);
+		$data['current'] = $this->grade_model->get_current_grade($this->the_user->user_id);
+		$data['title'] = $this->the_user->username;
+		$data['quests_completed'] = $this->quest_model->get_completed_quests($this->the_user->user_id);
+		$data['quests_pending'] = $this->submission_model->get_ungraded_submissions($this->the_user->user_id);
+		$data['quests_revisions'] = $this->submission_model->get_revised_submissions($this->the_user->user_id);
+		$data['quests_available'] = $this->quest_model->get_available_quests(2, $this->the_user->user_id);
+		$data['logged_in'] = TRUE;
+		}
+		else {
+		$data['logged_in'] = FALSE;
+		}
+		$data['posts'] = $this->post_model->get_posts(TRUE);
 
-            // if user is logged in successfully
-            if($this->ion_auth->login($identity,$password)) 
-            {
-                // send on to protected area ('user' controller)
-                redirect('user');
-            }
-            else // incorrect creds
-            {
-                // load up error
-                $data['error'] = "Incorrect Credentials";
-                
-                // load form view again, with error
-                $this->load->view('login_form', $data);
-            }
-	    }
-	    else // show form view
-	    {
-            $this->load->view('login_form');
-	    }
+		$data['grades'] = $this->grade_model->get_grades("ASC");
+		$this->load->view('include/header', $data);
+		$this->load->view('frontpage', $data);
+		$this->load->view('include/footer');
+	
 	}
+	
+
 }
 
 /* End of file frontpage.php */

@@ -50,7 +50,11 @@ class File_model extends CI_Model {
 	public function update_note() {
 		$id = $this->input->post('fileid');
 		$note = $this->input->post('note');
-		$query = $this->db->query("UPDATE files SET notes = '".$note."' WHERE id = ".$id);
+		$data = array(
+			'notes' => $note);
+		$this->db->where('id', $id);
+		$this->db->update('files', $data);
+//		$query = $this->db->query("UPDATE files SET notes = '".$note."' WHERE id = ".$id);
 	}
 	
 	public function upload_submission($uid) {

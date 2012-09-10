@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "public/post/index";
+$route['default_controller'] = "frontpage/dashboard";
 $route['posts'] = 'public/post/index';
 $route['post/(:num)'] = 'public/post/view/$1';
 $route['pages/(:any)'] = 'pages/view/$1';

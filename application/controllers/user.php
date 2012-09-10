@@ -27,7 +27,8 @@ class User extends User_Controller {
         }
 	*/
 	}
-	
+
+
 	public function profile() {
 		$this->load->model('quest_model');
 		$this->load->model('grade_model');
