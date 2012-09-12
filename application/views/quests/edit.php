@@ -1,4 +1,4 @@
-        <div>
+<div class="span10">
 		
 	<?php if(!empty($message)):?>
 	<div class="alert">
@@ -10,6 +10,7 @@
   		<h1>Update Quest</h1>
   		<form method="post" class="well form-horizontal">
   			<fieldset>
+				<h4>Information</h4>
   				<div class="control-group">
 					<label class="control-label" for="quest-title">Name</label>
 					<div class="controls">
@@ -23,9 +24,30 @@
 						<textarea type="text" id="quest-instructions" name="quest-instructions" class="span6 tinymce" placeholder="What's this quest about?"><?= $instructions?></textarea>
 					</div>
 				</div>
+				<h4>Skills</h4>
+				<? foreach($quest_skills as $skill):?>
+					<div class="control-group">
+						<label class="control-label"><?= $skill[0]->name;?></label>
+							<?php foreach ($skill as $subskill):?>
+								<div class="controls">						
+									<input type="text" name="existingSkillLabel[]" value="<?= $subskill->label?>"> 
+									<input type="text" name="existingSkillAmount[]" value="<?= $subskill->amount?>">
+									<input type="hidden" class='skid' name="existingSkillID[]" value="<?= $subskill->skid?>">
+
+									<a href="#" class="remove-existing-skill btn btn-danger"><i class="icon-trash"></i></a>
+								</div>
+								<br/>
+							<? endforeach;?>
+							<div class="controls">
+								<a href="" class="add-skill btn"><i class="icon-plus"></i></a>
+							</div>
+
+					</div>
+						<? endforeach;?>
+				<h4>Threshold Requirements</h4>
 				<? foreach ($skills as $skill):?>
   				<div class="control-group">
-					<label class="control-label"><?= $skill->name;?> Required</label>
+					<label class="control-label"><?= $skill->name;?></label>
 					<div class="controls">
 						<input type="hidden" value="<?=$skill->id?>" name="skill[]">
 						<select name="threshold<?=$skill->id?>" id="grade-level-<?=$skill->id?>" data-placeholder="Please select..." class="chzn-select">
@@ -53,7 +75,6 @@
 			</div>
         </form>
         
-      <hr>
 
     <script>
       <? foreach($locks as $lock):?>
@@ -63,5 +84,27 @@
       <? endforeach ?>
     	 
 		 $('.chzn-select').chosen();
+		
+		$('.add-skill').click( function() {
+			event.preventDefault();
+			var skid = $(this).parent().parent().children(".controls").children("input.skid").val();
+			$(this).parent('div:last').before("<div class='controls'><input type='text' name='existingSkillLabel[]'> <input type='text' name='existingSkillAmount[]'><input type='hidden' class='skid' name='existingSkillID[]' value='"+skid+"'> <a href='' class='remove-existing-skill btn btn-danger'><i class='icon-trash'></i></a></div><br/>");
+			$('.remove-existing-skill').click( function() {
+				event.preventDefault();
+				$(this).parent().next().remove();
+				$(this).parent().children("input").remove();
+				$(this).remove();
+			
+			});
+		
+		});
+		
+		$('.remove-existing-skill').click( function() {
+			event.preventDefault();
+			$(this).parent().next().remove();
+			$(this).parent().children("input").remove();
+			$(this).remove();
+		
+		});
 		 		 
 	</script>

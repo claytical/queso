@@ -46,6 +46,7 @@ class Quest extends Admin_Controller {
 		$data['instructions'] = $info['instructions'];
 		$data['skills'] = $this->skill_model->get_skills();
 		$data['locks'] = $this->quest_model->get_quest_locks($qid);
+		$data['quest_skills'] = $this->quest_model->get_quest_skills($qid);
 		$this->load->view('include/header');
 		$this->load->view('quests/edit', $data);
 		$this->load->view('include/footer');

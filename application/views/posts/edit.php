@@ -1,4 +1,4 @@
-        <div>
+<div class="span10">
 		
 			<?php
 				$attributes = array('class' => 'well form-horizontal');
@@ -39,6 +39,3 @@
 				</div>
 			</div>
 		</form>
-        
-        
-      <hr>

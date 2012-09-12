@@ -73,6 +73,26 @@ class Quest_model extends CI_Model {
 		$name = $this->input->post('quest-title');
 		$instructions = $this->input->post('quest-instructions');
 		$query = $this->db->query("UPDATE quests SET name = '".mysql_real_escape_string($name)."', instructions = '".mysql_real_escape_string($instructions)."' WHERE id = ".$qid);
+		$existingSkillLabels = $this->input->post('existingSkillLabel');
+		$existingSkillAmounts = $this->input->post('existingSkillAmount');
+		$existingSkillIDs = $this->input->post('existingSkillID');
+		
+		//remove existing skill ids
+		
+		$this->db->query("DELETE FROM questSkills WHERE qid = ".$qid);
+		foreach ($existingSkillIDs as $k => $skid) {
+			if ($existingSkillLabels[$k] != NULL && $existingSkillAmounts[$k] != NULL && is_numeric($existingSkillAmounts[$k]) ) {
+				$data = array(
+					'qid' => $qid,
+					'skid' => $skid,
+					'label' => $existingSkillLabels[$k],
+					'amount' => $existingSkillAmounts[$k]
+					);
+								
+					$this->db->insert('questSkills', $data);
+			}		
+		
+		}
 		$skills = $this->input->post('skill');
 
 		foreach ($skills as $skill) {

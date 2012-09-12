@@ -1,4 +1,4 @@
-<div>
+<div class="span10">
 <h1><?php echo $quest ?></h1>
 
 
@@ -45,7 +45,7 @@
 	<div class="well">
 	<a href="<?= base_url('uploads/'.$filename) ?>"><?= $filename?></a></div>
 </div>
-<div>
+<div class="span10">
 	<h3>Notes</h3>
 	<?php if (!$note):?>
 		<p>There are no notes</p>

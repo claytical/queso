@@ -71,6 +71,7 @@ class Public_Controller extends CI_Controller {
         }
         else {
         	$data->logged_in = FALSE;
+  			$data->dropdown = $this->course_model->get_variable("dropdown");
 
         }
      	
@@ -108,6 +109,7 @@ class User_Controller extends CI_Controller {
   			$data->site_name = $this->course_model->get_variable("site");
   			$data->theme = $this->course_model->get_variable("theme");
   			$data->dropdown = $this->course_model->get_variable("dropdown");
+  			
 			$data->logged_in = TRUE;     	
 			$data->progress = $this->quest_model->get_charted_progress($this->the_user->user_id);
 			$data->current = $this->grade_model->get_current_grade($this->the_user->user_id);

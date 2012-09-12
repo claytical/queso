@@ -1,4 +1,4 @@
-<div>
+<div class="span10">
 <h1><?php echo $quest ?></h1>
 
 
@@ -16,6 +16,7 @@
 			</thead>
 			<tbody>
 			<?php foreach ($progress as $prog):?>
+			 <?php if(!empty($prog['skill'])):?>
 			  <tr>
 				<td><?php echo $prog['skill'];?></td>
 				<td>
@@ -24,6 +25,7 @@
 					</div>
 				</td>
 			  </tr>
+			  <? endif;?>
 			<?php endforeach;?>
 			<tr>
 			<td colspan="2">
@@ -50,6 +52,7 @@
 		<?php
 			echo form_open('');
   		?>
+<div class="span10">
 	<h3>Responses</h3>
 	<?php if (!$responses):?>
 	<p>There are no responses yet</p>
@@ -78,4 +81,5 @@
 		</div>
 	</form>
 	
+</div>
 </div>

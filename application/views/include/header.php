@@ -186,7 +186,7 @@
 <h6>Quests</h6>
 <p></p>
 <? if(count($quests_pending) > 0):?>
-<span class="label label-warning"><b><?= count($quests_pending);?></b> Attempt<?php if (count($quests_pending) != 1):?>s<? endif;?></span> Pending<br>
+<span class="label label-warning"><b><?= count($quests_pending);?></b> Attempt<?php if (count($quests_pending) != 1):?>s<? endif;?> Pending</span><br>
 <? endif;?>
 <? if (count($quests_revisions)):?>
 <span class="label label-warning"><b><?= count($quests_revisions);?></b> Revision<?php if (count($quests_revisions) != 1):?>s<? endif;?> Pending</span><br>
