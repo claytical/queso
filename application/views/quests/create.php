@@ -1,4 +1,4 @@
-        <div>
+    <div class="span10">
 		
 		<?php
         	$attributes = array('class' => 'well form-horizontal');
@@ -69,25 +69,3 @@
         
         
       <hr>
-    <script>
-		 $('.chzn-select').chosen();
-		 
-	$('button.btn-primary').click( function() {
-		/*event.preventDefault();
-		var skills = new Array();
-	   	var	questName = $('input#quest-title').val();
-	   	var questType = 1;
-	   $('ul.chzn-choices li.search-choice a').each(function (index) {
-			skills.push($('select#quest-skills option:eq('+$(this).attr("rel")+')').val());
-	   		});
-
-		$.post("quest/skills", { name: questName, selectedSkills: skills, type: questType },
-		   function(data) {
-		   	//window.location = "skills";
-			 //$('tbody').append(data);
-		   });
-		*/		
-	});
-		 
-		 
-	</script>

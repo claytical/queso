@@ -1,3 +1,4 @@
+<div class="span10">
 <?php if($quests):?>
 	<table class="table">
 			<thead>
@@ -33,3 +34,4 @@
 <?php else:?>
 <p class="lead">No quests have been created, click <a href="<?= base_url('admin/quest/create')?>">here</a> to create one.</p>
 <?php endif;?>
+</div>

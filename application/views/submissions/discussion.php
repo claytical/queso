@@ -1,3 +1,4 @@
+<div class="span10">
 <?php if(!empty($submissions)):?>
 
 	<table class="table">
@@ -23,3 +24,4 @@
 <?php else:?>
 <h2>There are no submissions available for discussion right now</h2>
 <?php endif;?>
+</div>

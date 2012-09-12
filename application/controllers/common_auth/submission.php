@@ -10,7 +10,7 @@ class Submission extends Common_Auth_Controller {
 	public function index() {
 		$data['quests'] = $this->submission_model->get_submissions();
 		$data['title'] = "Submissions";
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('submissions/index', $data);
       	$this->load->view('include/footer');
 	}
@@ -29,7 +29,7 @@ class Submission extends Common_Auth_Controller {
 		$data['qid'] = $info['qid'];
 		$data['id'] = $id;
 		$data['submission'] = $info['submission'];
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('submissions/revise', $data);
       	$this->load->view('include/footer');
 		
@@ -49,7 +49,7 @@ class Submission extends Common_Auth_Controller {
 		$this->load->model('submission_model');
 		$submissions = $this->submission_model->get_submissions_for_discussion();
 		$data['submissions'] = $submissions;
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('submissions/discussion', $data);
       	$this->load->view('include/footer');
 
@@ -82,7 +82,7 @@ class Submission extends Common_Auth_Controller {
 		}
 		
 				
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('submissions/discuss', $data);
       	$this->load->view('include/footer');
 		
@@ -137,7 +137,7 @@ class Submission extends Common_Auth_Controller {
 			show_404();
 		}
 		
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('submissions/view', $data);
       	$this->load->view('include/footer');
 		

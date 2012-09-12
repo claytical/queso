@@ -1,4 +1,4 @@
-<div>
+<div class="span10">
 <h1><?php echo $quest ?></h1>
 	<div class="row-fluid">
 		<p class="lead"><?php echo $instructions;?></p>

@@ -1,4 +1,4 @@
-        <div>
+        <div class="span10">
 		
 			<?php
 				$attributes = array('class' => 'well form-horizontal');
@@ -16,12 +16,12 @@
   				<div class="control-group">
 			  		<label class="control-label" for="headline">Headline</label>
 					<div class="controls">
-						<input type="text" id="headline" name="headline" class="span9" placeholder="Name of page or headline">
+						<input type="text" id="headline" name="headline" class="span6" placeholder="Name of page or headline">
 					</div>
 				</div>
   				<div class="control-group">
 					<div class="controls">
-						<textarea type="text" id="body" name="body"></textarea>
+						<textarea type="text" id="body" name="body" class="span6"></textarea>
 					</div>
 				</div>
 				

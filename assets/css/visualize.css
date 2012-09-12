@@ -33,7 +33,7 @@
 
 
 /*specific  styles*/
-table#progress {width: 500px; height: 200px; margin-left: 30px; }
+table#progress {width: 70%; height: 200px; margin-left: 30px; }
 table.accessHide { position: absolute; left: -999999px; }
 #progress td, #progress th {  font-size: 1.2em; padding: 2px; width: 13%; }
 #progress th { background-color:#f4f4f4; } 

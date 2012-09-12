@@ -1,4 +1,4 @@
-    <div>
+    <div class="span10">
 		<?php			
 			echo validation_errors();
         	$attributes = array('class' => 'well');
@@ -28,9 +28,3 @@
 			</div>
 		</form>
         
-        
-      <hr>
-    <script>
-
-		 
-	</script>

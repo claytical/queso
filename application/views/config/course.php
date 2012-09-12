@@ -1,4 +1,4 @@
-<div class='span9'>
+<div class='span10'>
 <h1>Course Information</h1>
 	<?php if(!empty($message)):?>
 	<div class="alert">
@@ -17,6 +17,13 @@
 			<input type="text" name="course" value="<?php echo $course ;?>">
 			</div>
 		</div>
+		<div class="control-group">
+			<label class="control-label" for="identity">Custom Dropdown Title</label>
+			<div class="controls">
+			<input type="text" name="dropdown" value="<?php echo $dropdown ;?>">
+			</div>
+		</div>
+
 		<div class="control-group">
 			<label class="control-label" for="password">Registration Code</label>
 			<div class="controls">

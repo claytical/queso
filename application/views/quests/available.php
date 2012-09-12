@@ -1,3 +1,4 @@
+<div class="span10">
 <?php if(!empty($quests)):?>
 
 	<table class="table">
@@ -36,3 +37,4 @@
 <?php else:?>
 <h2>There are no quests available right now</h2>
 <?php endif;?>
+</div>

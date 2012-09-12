@@ -1,3 +1,4 @@
+<div class="span10">
 	<?php if($message):?>
 	<div class="alert">
 		<button class="close" data-dismiss="alert">x</button>
@@ -31,5 +32,6 @@
 		</tr>
 	<?php endforeach;?>
 </table>
-
 <a href="<?php echo site_url('auth/create_user');?>" class="btn-primary btn">Create a new user</a>
+
+</div>

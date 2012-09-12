@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'gadmin';
-$db['default']['password'] = 'gameful!';
+$db['default']['username'] = 'queso';
+$db['default']['password'] = 'queso!';
 $db['default']['database'] = 'gameful';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

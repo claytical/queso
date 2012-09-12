@@ -71,7 +71,7 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="<?= base_url('user/profile') ?>">Profile</a></li>
+              <li><a href="<?= base_url('user/profile') ?>">Progress Chart</a></li>
               <li class="divider"></li>
               <li><a href="<?= base_url('user/password') ?>">Change Password</a></li>
               <li><a href="<?= base_url('logout') ?>">Sign Out</a></li>
@@ -88,6 +88,15 @@
     
     <div class="subnav subnav-fixed">
     <ul class="nav nav-pills">
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= $dropdown;?> <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<?php foreach($menu as $item):?>
+				<li><a href="<?= base_url('post') . "/". $item->id?>"><?= $item->headline;?></a></li>
+				<?php endforeach;?>
+			</ul>
+      	</li>
+	<?php if ($logged_in):?>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Quests <b class="caret"></b></a>
         <ul class="dropdown-menu">
@@ -96,8 +105,9 @@
 	  	  <li><a href="<?= base_url('discussion') ?>">Discussions</a></li>
 		  <li><a href="<?= base_url('quests/completed') ?>">Completed</a></li>
         </ul>
-      </li>
-      
+        </li>
+        
+    <?php endif;?>
 	<?php if (!empty($the_user)):?>
 		<?php if($the_user->group_id == 1):?>
       
@@ -185,14 +195,8 @@
 <b><?= count($quests_available);?></b> <a href='<?=base_url("/quests/available/online");?>'>Available</a><br>
 <b><?= count($quests_completed);?></b> <a href='<?=base_url("/quests/completed");?>'>Completed</a><br>
 </div>
-<div class="row">
-	<ul class="nav nav-tabs nav-stacked">
-		<?php foreach($menu as $item):?>
-		<li><a href="<?= base_url('post') . "/". $item->id?>"><?= $item->headline;?></a></li>
-		<?php endforeach;?>
-	</ul>
 
-</div>
+
 </div>
 
 <? endif;?>	

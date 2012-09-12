@@ -26,6 +26,7 @@ class Course extends Admin_Controller {
 		$data['course'] = $this->course_model->get_variable("site");
 		$data['registration_code'] = $this->course_model->get_variable("registration");
 		$data['themes'] = array('default', 'amelia', 'simplex', 'cerulean');
+		$data['dropdown'] = $this->course_model->get_variable("dropdown");
 		$this->load->view('include/header');
 		$this->load->view('config/course', $data);
       	$this->load->view('include/footer');

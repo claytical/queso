@@ -1,4 +1,7 @@
+
+<?php if ($logged_in):?>
 <div class="span7">
+<?php endif;?>
 	<?php foreach($posts as $post):?>
 	<div>
 		<h2>
@@ -11,4 +14,7 @@
 	<hr>
 	</div>
 	<?php endforeach;?>
+<?php if ($logged_in):?>
+
 </div>
+<?php endif;?>

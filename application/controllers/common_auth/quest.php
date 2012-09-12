@@ -11,7 +11,7 @@ class Quest extends Common_Auth_Controller {
 	public function index() {
 		$data['quests'] = $this->quest_model->get_quests();
 		$data['title'] = "Quests";
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
       	$this->load->view('include/footer');
 	}
 	
@@ -67,7 +67,7 @@ class Quest extends Common_Auth_Controller {
 				unset($questProgress);
 			}
 		$data['summary'] = $this->skill_model->get_total_by_user($this->the_user->user_id);
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('quests/completed', $data);
 		$this->load->view('include/footer');
 		
@@ -82,7 +82,7 @@ class Quest extends Common_Auth_Controller {
 		$data['grade'] = "First Try";
 		$data['attempt'] = "0";
 
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('quests/upload', $data);
 		$this->load->view('include/footer');
 	}
@@ -100,7 +100,7 @@ class Quest extends Common_Auth_Controller {
 			$data['grade'] = "First Try";
 			$data['attempt'] = "0";
 
-			$this->load->view('include/header');
+			$this->load->view('include/header', $data);
 			$this->load->view('quests/attempt', $data);
 			$this->load->view('include/footer');
 		}
@@ -166,7 +166,7 @@ class Quest extends Common_Auth_Controller {
 		}
 		$data['quests'] = $available_quests;
 		
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('quests/available', $data);
 		$this->load->view('include/footer');
 		
@@ -184,7 +184,7 @@ class Quest extends Common_Auth_Controller {
 		
 		$data['title'] = $data['quests']['name'];
 		
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('quests/view', $data);
       	$this->load->view('include/footer');
 	}

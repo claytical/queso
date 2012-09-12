@@ -16,7 +16,11 @@ class File_Submission extends Common_Auth_Controller {
 		
 		if (! $this->upload->do_upload()) {
 			$error = array('error' => $this->upload->display_errors());
-//			$this->load->view('quests/upload/'.$id, $error);
+			$data['id'] = $id;
+			$this->load->view('include/header', $data);
+			$this->load->view('file/error', $error);
+	      	$this->load->view('include/footer');
+
 //			redirect("quest/upload/".$id);
 
 		}
@@ -43,7 +47,7 @@ class File_Submission extends Common_Auth_Controller {
 		$data['qid'] = $info['qid'];
 		$data['id'] = $id;
 		$data['submission'] = $info['submission'];
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('submissions/revise', $data);
       	$this->load->view('include/footer');
 		
@@ -108,7 +112,7 @@ class File_Submission extends Common_Auth_Controller {
 //		$data['responses'] = $responses;
 		
 		
-		$this->load->view('include/header');
+		$this->load->view('include/header', $data);
 		$this->load->view('file/view', $data);
       	$this->load->view('include/footer');
 		

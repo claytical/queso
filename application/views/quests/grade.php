@@ -1,4 +1,4 @@
-<div>
+<div class="span10">
 		<?php
 			echo validation_errors();
         	$attributes = array('class' => 'well form-horizontal');

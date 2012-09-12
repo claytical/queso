@@ -4,6 +4,10 @@
 <script>
     $('table').tooltip({
       selector: "a"
-    })
+    });
+	
+	$('.chzn-select').chosen();
+
+    
 </script>
 </html>
