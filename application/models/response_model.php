@@ -9,7 +9,7 @@ class Response_model extends CI_Model {
 
 	public function get_responses($id = 0) {
 		//get all responses to a given submission
-		$query = $this->db->query("SELECT responses.id, qid, sid, uid, response, created, flag, user_id, first_name, last_name, name FROM responses LEFT JOIN meta ON responses.uid = meta.user_id LEFT JOIN quests ON responses.qid = quests.id WHERE responses.sid = '".$id."'");
+		$query = $this->db->query("SELECT responses.id, qid, sid, uid, response, created, flag, username, name FROM responses LEFT JOIN users ON responses.uid = users.id LEFT JOIN quests ON responses.qid = quests.id WHERE responses.sid = '".$id."'");
 		return $query->result();		
 	}
 	
@@ -20,11 +20,9 @@ class Response_model extends CI_Model {
 	}
 	
 	
-	public function respond() {
+	public function respond($uid) {
 		//respond to a submission
 		$sid = $this->input->post('submission');
-		//TODO: Change to current user
-		$uid = 1;
 		$response = $this->input->post('response');
 		//TODO: check if admin
 		$flag = FALSE;

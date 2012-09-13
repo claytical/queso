@@ -25,7 +25,7 @@
 
 						  <ul class="dropdown-menu">
 							<?php foreach($response_quests as $option):?>
-							<li><a href="<?= base_url('admin/quest/grade/all/'.$option['info']->id.'/'.$response->user_id.'/'.$response->id)?>"><?= $option['info']->name;?></a></li>
+							<li><a href="<?= base_url('admin/quest/grade/all/'.$option['info']->id.'/'.$response->uid.'/'.$response->id)?>"><?= $option['info']->name;?></a></li>
 							<?php endforeach;?>
 						  </ul>
 						</div>					
@@ -34,7 +34,7 @@
 					<?php endif;?>
 				<?php endif;?>
 				  <p><?php echo $response->response;?></p>
-				  <small><?php echo $response->first_name . " " . $response->last_name ;?></small>
+				  <small><?php echo $response->username ;?></small>
 				</blockquote>
 				</div>
 			<?php endforeach;?>

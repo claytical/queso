@@ -1,6 +1,6 @@
 
 <?php if ($logged_in):?>
-<div class="span7">
+<div class="span10">
 <?php endif;?>
 	<?php foreach($posts as $post):?>
 	<div>

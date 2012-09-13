@@ -191,8 +191,14 @@ class Quest_model extends CI_Model {
 	}
 		
 	
-	public function get_completed_quests($uid) {
-		$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY qid, completed DESC");
+	public function get_completed_quests($uid = NULL) {
+		if ($uid) {
+			$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid WHERE uid = ".$uid." ORDER BY qid, completed DESC");
+		}
+		else {
+			$query = $this->db->query("SELECT * FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid ORDER BY qid, completed DESC");
+		
+		}
 		$result = $query->result();
 		$quests = array();
 		$qid = 0;

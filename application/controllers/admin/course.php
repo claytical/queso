@@ -41,6 +41,24 @@ class Course extends Admin_Controller {
       	$this->load->view('include/footer');
 	
 	}
+	
+	public function dashboard() {
+		$this->load->model('quest_model');
+		$this->load->model('submission_model');
+	
+		$data['quests_pending'] = $this->submission_model->get_ungraded_submissions();
+		$data['quests_revisions'] = $this->submission_model->get_revised_submissions();
+		$data['quests_completed'] = $this->quest_model->get_completed_quests();
+		//list/# of students by rank
+		//gather list of specific range/threshold
+//		$data->current = $this->grade_model->get_current_grade($this->the_user->user_id);
+		
+		$this->load->view('include/header');
+		$this->load->view('quests/dashboard', $data);
+      	$this->load->view('include/footer');
+
+	}
+	
 			
 		
 }

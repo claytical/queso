@@ -77,7 +77,7 @@ class Submission extends Common_Auth_Controller {
 		}
 		if ($this->form_validation->run() === FALSE) {}
 		else {
-			$this->response_model->respond();
+			$this->response_model->respond($this->the_user->user_id);
 			redirect("discuss/".$id, "refresh");
 		}
 		

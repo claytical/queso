@@ -7,12 +7,14 @@
 	<?php endif;?>
 
 <table class="table">
+	<thead>
 	<tr>
 		<th>Name</th>
 		<th>Level</th>
 		<th>Email</th>
 		<th>Status</th>
 	</tr>
+	</thead>
 	<?php foreach ($users as $user):?>
 		<tr>
 		

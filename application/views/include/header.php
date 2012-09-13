@@ -162,12 +162,24 @@
   </div>
 <div id="top" class="container-fluid">
 <?php if($logged_in):?>
-<?php if($the_user->group_id != 8):?>
 <div class="span2">
 <div class="row">
 </div>
 
 <div class="row well">
+<?php if($the_user->group_id == 1):?>
+			<h6>Administrator</h6>
+
+<p></p>
+<? if(count($quests_pending) > 0):?>
+<p><span class='badge badge-warning'><?= count($quests_pending);?></span> <a href='<?= base_url("admin/submissions/ungraded")?>'>New Attempts</p></a>
+<? endif;?>
+<? if (count($quests_revisions)):?>
+<p><span class='badge badge-warning'><?= count($quests_revisions);?></span> <a href='<?= base_url("admin/submissions/revised")?>'>New Revisions</p></a>
+<? endif;?>
+
+<?php else:?>
+
 			<h6>Rank</h6>
 			<?php if ($current):?>
 			<h4><?=$current[0]['current_level']?></h4><p></p>
@@ -182,7 +194,6 @@
 		</div>
 	</div>
 <?php endforeach;?>
-<? endif;?>
 <h6>Quests</h6>
 <p></p>
 <? if(count($quests_pending) > 0):?>
@@ -194,6 +205,7 @@
 
 <b><?= count($quests_available);?></b> <a href='<?=base_url("/quests/available/online");?>'>Available</a><br>
 <b><?= count($quests_completed);?></b> <a href='<?=base_url("/quests/completed");?>'>Completed</a><br>
+<? endif;?>
 </div>
 
 

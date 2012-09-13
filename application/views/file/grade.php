@@ -1,18 +1,14 @@
 
-<div>
+<div class="span10 well">
 	<h1><?php echo $quest ?><span class="label label-important pull-right">Attempt: <?php echo $attempts;?></span>
 	</h1>
-		<div class="well">
-			<a href="<?= base_url('uploads/'.$filename) ?>"><?= $filename?></a>
-		</div>
-	</div>
-
-<div>
+			<p></p>
+			<p><a href="<?= base_url('uploads/'.$filename) ?>"><?= $filename?></a></p>
+			<hr>
 		<?php
 			echo validation_errors();
 			echo form_open('');
   		?>
-		<div class="well">
   			<fieldset>
   				<div class="control-group">
 					<div class="controls">
@@ -50,7 +46,6 @@
 						<button type="submit" class="btn-primary">Grade</button>
 					</div>
 				</div>		
-		</div>
 	</form>
 	
 </div>

@@ -5,9 +5,9 @@
 			echo form_open(base_url('admin/quest/grade/post'), $attributes);
   		?>
 			<?php if(empty($selected)):?>
-			<h1><?php echo $title?></h1>
+			<h3><?php echo $title?></h3>
 			<?php else:?>
-			<h1>Grade for Response</h1>
+			<h3>Grade for Response</h3>
 			<?php endif;?>
 			<p class="lead"></p>
   			<fieldset>

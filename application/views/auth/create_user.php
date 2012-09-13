@@ -1,4 +1,4 @@
-<div>
+<div class="span10">
 
 	<h1>New User</h1>
 	<p class="lead">Please enter the information below.</p>

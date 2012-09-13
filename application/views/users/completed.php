@@ -1,3 +1,8 @@
+<div class="row-fluid">
+<div class="span2">&nbsp;</div>
+<div class="span10">
+<br/>
+
 <?php if(!empty($quests)):?>
 	<table class="table">
 			<thead>
@@ -66,3 +71,5 @@
 <?php else:?>
 <h2>No quests completed</h2>
 <?php endif;?>
+</div>
+</div>

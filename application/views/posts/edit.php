@@ -10,7 +10,7 @@
 				<?php echo validation_errors();?>
 				</div>
 			<?php endif;?>
-  		<h1>Edit Post</h1>
+  		<h3>Edit Post</h3>
   		<p class="lead"></p>
   			<fieldset>
   				<div class="control-group">

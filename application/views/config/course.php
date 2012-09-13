@@ -1,5 +1,4 @@
 <div class='span10'>
-<h1>Course Information</h1>
 	<?php if(!empty($message)):?>
 	<div class="alert">
 		<button class="close" data-dismiss="alert">x</button>
@@ -10,6 +9,8 @@
 <?php
     $attributes = array('class' => 'well form-horizontal');
 	echo form_open("", $attributes);?>
+	<h1>Course Information</h1>
+		<p></p>
 		<fieldset>
 		<div class="control-group">
 			<label class="control-label" for="identity">Course Name</label>

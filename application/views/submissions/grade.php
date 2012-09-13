@@ -1,18 +1,16 @@
 
-<div>
-	<h1><?php echo $quest ?><span class="label label-important pull-right">Attempt: <?php echo $attempts;?></span>
-	</h1>
-		<div class="well">
-			<?php echo $submission;?>
-		</div>
-	</div>
+<div class="span10">
+	<div class="well">
+		<h1><?php echo $quest ?><span class="label label-important pull-right">Attempt: <?php echo $attempts;?></span>
+		</h1>
 
-<div>
+			<?php echo $submission;?>
+			<hr>
+
 		<?php
 			echo validation_errors();
 			echo form_open('');
   		?>
-		<div class="well">
   			<fieldset>
   				<div class="control-group">
 					<div class="controls">
