@@ -190,6 +190,17 @@ class Quest_model extends CI_Model {
 		return $query->row_array();
 	}
 		
+	public function get_quest_by_popularity($sort = "POPULAR", $limit = 3) {
+		if ($sort == "POPULAR") {
+			$query = $this->db->query("SELECT qid, name, COUNT(qid) as num FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid GROUP BY qid ORDER BY num DESC LIMIT ".$limit);
+		}
+		if ($sort == "UNPOPULAR") {
+			$query = $this->db->query("SELECT qid, name, COUNT(qid) as num FROM questCompletion LEFT JOIN quests ON quests.id = questCompletion.qid GROUP BY qid ORDER BY num ASC LIMIT ".$limit);		
+		}
+		
+		return $query->result();
+	}
+	
 	
 	public function get_completed_quests($uid = NULL) {
 		if ($uid) {

@@ -45,11 +45,51 @@ class Course extends Admin_Controller {
 	public function dashboard() {
 		$this->load->model('quest_model');
 		$this->load->model('submission_model');
+		$this->load->model('skill_model');
+		$this->load->model('grade_model');
 	
 		$data['quests_pending'] = $this->submission_model->get_ungraded_submissions();
 		$data['quests_revisions'] = $this->submission_model->get_revised_submissions();
 		$data['quests_completed'] = $this->quest_model->get_completed_quests();
-		//list/# of students by rank
+		$data['popular_quests'] = $this->quest_model->get_quest_by_popularity("POPULAR");
+		$data['unpopular_quests'] = $this->quest_model->get_quest_by_popularity("UNPOPULAR");
+		$data['skills_gained'] = $this->skill_model->get_skill_aggregation();
+		$skills = $this->skill_model->get_skills(); 
+
+		$users = array();
+		foreach($skills as $skill) {
+			//get top users
+		
+			$users = $this->skill_model->get_users($skill->id, "DESC", "5");
+			$skillGroup = array();
+			$skillGroup['name'] = $skill->name;
+			foreach ($users as $user) {
+				$grade_array = $this->grade_model->get_current_grade($user->uid);
+				$skillGroup['users'][] = array("grades"=>$grade_array[0],
+					"name" => $user->username,
+					"amount" => $user->amount,
+					"uid" => $user->uid);
+			}
+			$data['top_skills'][] = $skillGroup;
+			unset($skillGroup);
+
+			$usersLow = $this->skill_model->get_users($skill->id, "ASC", "5");
+			$skillGroupLow = array();
+			$skillGroupLow['name'] = $skill->name;
+			foreach ($usersLow as $user) {
+				$grade_array = $this->grade_model->get_current_grade($user->uid);
+				$skillGroupLow['users'][] = array("grades"=>$grade_array[0],
+					"name" => $user->username,
+					"amount" => $user->amount,
+					"uid" => $user->uid);
+			}
+			$data['low_skills'][] = $skillGroupLow;
+			unset($skillGroupLow);
+
+
+		}
+		
+			//list/# of students by rank
 		//gather list of specific range/threshold
 //		$data->current = $this->grade_model->get_current_grade($this->the_user->user_id);
 		

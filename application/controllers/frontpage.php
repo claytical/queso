@@ -18,9 +18,17 @@ class Frontpage extends Public_Controller {
 		$data['progress'] = $this->quest_model->get_charted_progress($this->the_user->user_id);
 		$data['current'] = $this->grade_model->get_current_grade($this->the_user->user_id);
 		$data['title'] = $this->the_user->username;
-		$data['quests_completed'] = $this->quest_model->get_completed_quests($this->the_user->user_id);
-		$data['quests_pending'] = $this->submission_model->get_ungraded_submissions($this->the_user->user_id);
-		$data['quests_revisions'] = $this->submission_model->get_revised_submissions($this->the_user->user_id);
+			if ($this->ion_auth->is_admin()) {
+				$data['quests_completed'] = $this->quest_model->get_completed_quests();
+				$data['quests_pending'] = $this->submission_model->get_ungraded_submissions();
+				$data['quests_revisions'] = $this->submission_model->get_revised_submissions();
+    		}
+    		else {
+				$data['quests_completed'] = $this->quest_model->get_completed_quests($this->the_user->user_id);
+				$data['quests_pending'] = $this->submission_model->get_ungraded_submissions($this->the_user->user_id);
+				$data['quests_revisions'] = $this->submission_model->get_revised_submissions($this->the_user->user_id);
+    		
+    		}
 		$data['quests_available'] = $this->quest_model->get_available_quests(2, $this->the_user->user_id);
 		$data['logged_in'] = TRUE;
 		}

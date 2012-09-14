@@ -71,6 +71,10 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+            <?php if($the_user->group_id == 1):?>
+              <li><a href="<?= base_url('admin/course/dashboard') ?>">Dashboard</a></li>
+
+			<?php endif;?>
               <li><a href="<?= base_url('user/profile') ?>">Progress Chart</a></li>
               <li class="divider"></li>
               <li><a href="<?= base_url('user/password') ?>">Change Password</a></li>
@@ -88,6 +92,7 @@
     
     <div class="subnav subnav-fixed">
     <ul class="nav nav-pills">
+		<?php if(!empty($menu)):?>
         <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= $dropdown;?> <b class="caret"></b></a>
 			<ul class="dropdown-menu">
@@ -96,6 +101,7 @@
 				<?php endforeach;?>
 			</ul>
       	</li>
+      	<? endif;?>
 	<?php if ($logged_in):?>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Quests <b class="caret"></b></a>

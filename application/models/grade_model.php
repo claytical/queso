@@ -12,6 +12,15 @@ class Grade_model extends CI_Model {
 			return $query->result();
 	}
 	
+	public function get_all_grades() {
+		$query = $this->db->query("SELECT id FROM users WHERE active = 1");
+		$users = $query->result();
+		$grades = array();
+		foreach ($users as $user) {
+			$grades[] = $this->grade_model->get_current_grade($user->id);
+		}
+		return $grades;
+	}
 	public function get_grade($amount) {
 		$query = $this->db->query("SELECT label WHERE amount >= '".$amount."' ORDER BY amount DESC LIMIT 1");
 		return $query->result();
