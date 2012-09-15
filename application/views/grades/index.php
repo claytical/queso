@@ -52,7 +52,7 @@
 						<i class="icon-pencil"></i></span>
 						</button>
 
-						<button class="btn remove"><i class="icon-trash"></i></button>
+						<button class="btn remove btn-danger"><i class="icon-trash"></i></button>
 						</div>
 						</td>
 					  </tr>

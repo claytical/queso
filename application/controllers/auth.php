@@ -524,7 +524,7 @@ class Auth extends Public_Controller {
 					'type' => 'text',
 					'value' => $this->form_validation->set_value('registration_code'),
 				);
-				$this->load->view('include/header');
+				$this->load->view('include/header', $this->data);
 				$this->load->view('auth/create_user', $this->data);
 				$this->load->view('include/footer');
 

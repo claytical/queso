@@ -16,7 +16,7 @@
   				<div class="control-group">
 			  		<label class="control-label" for="headline">Headline</label>
 					<div class="controls">
-						<input type="text" id="headline" name="headline" class="span9" placeholder="Name of page or headline" value="<?php print $title;?>">
+						<input type="text" id="headline" name="headline" placeholder="Name of page or headline" value="<?php print $title;?>">
 					</div>
 				</div>
   				<div class="control-group">

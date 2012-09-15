@@ -15,7 +15,7 @@
 					<h3><?php echo $skill['name'];?></h3>
 					<div id="skill<?php echo $skill['id'];?>">
 						<div class="control-group">
-							<label class="control-label" for="skill-title">Points</label>
+							<label class="control-label" for="skill-title">Points <a class='badge badge-info pop-help' data-content="These are the potential points given to a student in the particular skill.  You can add more possibilities by clicking on the + sign.  The label will be shown in the dropdown when you grade quests.  The amount is the numerical value." data-original-title="Points"><i class='icon-question-sign'></i></a></label>
 							<div class="controls">
 								<div class="input-append">
 								<input type="text" id="skill<?php echo $skill['id'];?>label0" name="label[]" class="input" placeholder="Label">
@@ -35,7 +35,6 @@
 			<div class="form-actions">
 				<div class="pull-right">
 			  		<button type="submit" class="btn-primary">Create Points for Quest</button>
-			  		<button type="submit" class="btn">Cancel</button>
 				</div>
 			</div>		
 			</form>

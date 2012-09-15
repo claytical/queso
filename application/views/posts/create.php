@@ -14,7 +14,7 @@
   		<p class="lead"></p>
   			<fieldset>
   				<div class="control-group">
-			  		<label class="control-label" for="headline">Headline</label>
+			  		<label class="control-label" for="headline">Headline <a class='badge badge-info pop-help' data-content="This will be the title of your post.  If you choose to put this post on the menu, this title will also be used there." data-original-title="Headline"><i class='icon-question-sign'></i></a></label>
 					<div class="controls">
 						<input type="text" id="headline" name="headline" class="span6" placeholder="Name of page or headline">
 					</div>
@@ -26,7 +26,7 @@
 				</div>
 				
   				<div class="control-group">
-			  		<label class="control-label" for="userfile">Supplemental File</label>
+			  		<label class="control-label" for="userfile">Supplemental File <a class='badge badge-info pop-help' data-content="You can upload a file and it will be attached to the post.  Students will be able to download it when they view the post." data-original-title="Supplemental File"><i class='icon-question-sign'></i></a></label>
 					<div class="controls">
 					<input type="file" name="userfile" class="span8"/>
 					</div>
@@ -35,7 +35,7 @@
   				<div class="control-group">
 					<div class="controls">
 						<label>
-						<input type="checkbox" id="frontpage" name="frontpage" value="1"> Publish to Front Page</input></label>
+						<input type="checkbox" id="frontpage" name="frontpage" value="1"> Publish to Front Page</input> <a class='badge badge-info pop-help' data-content="By checking this box, this post will show up on the front page in the list of posts.  File attachments are not shown in this list." data-original-title="Front Page"><i class='icon-question-sign'></i></a></label>
 					</div>
 				</div>
 

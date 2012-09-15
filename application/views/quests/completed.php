@@ -1,6 +1,6 @@
 <div class="span10">
 <?php if(!empty($quests)):?>
-	<table class="table">
+	<table class="table table-hover">
 			<thead>
 			  <tr>
 				<th style="width:25%">Quest</th>
@@ -24,7 +24,11 @@
 
 						<?php endif;?>
 						</h4></div>
-						<div><em><?php echo date("l, n/d/Y @ h:m a", $quest['quest']->completed);?></em></div>
+						<div><p><em><?php echo date("l, n/d/Y @ h:m a", $quest['quest']->completed);?></em></p>
+						<?php if($quest['quest']->note != $quest['quest']->name):?>
+						<p><?=$quest['quest']->note;?></p>
+						<? endif;?>
+						</div>
 						
 						</td>
 						<td>

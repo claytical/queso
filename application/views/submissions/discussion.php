@@ -1,7 +1,7 @@
 <div class="span10">
 <?php if(!empty($submissions)):?>
 
-	<table class="table">
+	<table class="table table-hover">
 			<thead>
 			  <tr>
 				<th style="width:25%">Quest</th>

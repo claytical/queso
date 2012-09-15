@@ -38,6 +38,7 @@
 	<script src="<?= base_url('assets/js/custom.js') ?>"></script>
 	<script src="<?= base_url('assets/js/visualize.jQuery.js') ?>"></script>
 	<script src="<?= base_url('assets/js/jquery.bulletGraph.js') ?>"></script>
+	<script src="<?= base_url('assets/js/jquery.table-filter.min.js')?>"></script>
 	<script type="text/javascript">
 	tinyMCE.init({
 			mode : "textareas",
