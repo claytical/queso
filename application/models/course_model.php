@@ -9,8 +9,12 @@ class Course_model extends CI_Model {
 	public function get_variable($id) {
 		$query = $this->db->get_where('course', array('id'=>$id));
 		$row = $query->row_array(); // get the row
-		return $row['variable'];
-
+		if ($row) {	
+			return $row['variable'];
+		}
+		else {
+			return FALSE;
+		}
 	}
 	
 	public function update() {
@@ -25,4 +29,7 @@ class Course_model extends CI_Model {
 
 	}
 
+	public function info_set() {
+		$query = $this->db->query("INSERT INTO course (id, variable) VALUES ('information', 'set')");	
+	}
 }

@@ -11,7 +11,13 @@ class Quest_model extends CI_Model {
 		if ($id == 0) {
 		
 			$query = $this->db->query('SELECT * FROM quests');
-			return $query->result();
+			$result = $query->result();
+			if ($result) {
+				return $result;
+			}
+			else {
+				return FALSE;
+			}
 		}
 
 		$query = $this->db->get_where('quests', array('id' => $id));

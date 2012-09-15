@@ -12,7 +12,7 @@
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td colspan="2"><div><h4>
+						<td colspan="2"><div><b>
 						<?php if($quest['quest']->type == 2):?>
 							<a href="<?= base_url('submission/revise/'.$quest['submission']['id']);?>"><?php echo $quest['quest']->name;?></a>
 
@@ -23,7 +23,8 @@
 						<?php echo $quest['quest']->name;?>
 
 						<?php endif;?>
-						</h4></div>
+						</b>
+						</div>
 						<div><p><em><?php echo date("l, n/d/Y @ h:m a", $quest['quest']->completed);?></em></p>
 						<?php if($quest['quest']->note != $quest['quest']->name):?>
 						<p><?=$quest['quest']->note;?></p>

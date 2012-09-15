@@ -13,7 +13,7 @@
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td><h4><?php echo $quest['info']->name;?></h4></td>
+						<td><b><?php echo $quest['info']->name;?></b></td>
 						<td><?php echo $quest['info']->instructions;?></td>
 						<td>
 						<?php if($quest['info']->type == 1 && $quest['info']->file):?>

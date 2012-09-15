@@ -13,7 +13,7 @@
 			<tbody>
 				<?php foreach ($submissions as $submission) :?>
 					  <tr>
-						<td><h4><a href="<?=base_url('discuss/'.$submission->id);?>"><?php echo $submission->name;?></a></h4></td>
+						<td><b><a href="<?=base_url('discuss/'.$submission->id);?>"><?php echo $submission->name;?></a></b></td>
 						<td><?php echo substr(strip_tags($submission->text),0,75);?>...</td>
 						<td><?php echo $submission->username;?></td>
 						<td><span class="pull-right"><?php echo $submission->responses;?></span></td>

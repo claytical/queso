@@ -157,6 +157,7 @@
 		  <li><a href="<?= base_url('admin/course') ?>">Information</a></li>
 		  <li><a href="<?= base_url('admin/skills') ?>">Skills</a></li>
 		  <li><a href="<?= base_url('admin/grades') ?>">Grades</a></li>
+		  <li><a href="<?= base_url('admin/course/setup') ?>">Checklist</a></li>
 
         </ul>
       </li>

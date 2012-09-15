@@ -60,11 +60,22 @@ class Quest extends Common_Auth_Controller {
 				if (empty($sid)) {
 				$sid = 0;
 				}
+				if (empty($questProgress)) {
+					$questProgress[] = array(
+								'skill' => "Undefined",
+								'amount' => 0,
+								'id' => 0,
+								'total' => 0,
+								'percentage' => 0,
+								);
+
+				}
 				$data['quests'][] = array(
 									'quest' => $quest,
 									'submission' => $sid,
 									'progress' => $questProgress);
 				unset($questProgress);
+			
 			}
 		$data['summary'] = $this->skill_model->get_total_by_user($this->the_user->user_id);
 		$this->load->view('include/header', $data);

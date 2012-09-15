@@ -10,8 +10,14 @@ class User_model extends CI_Model {
 		if ($id == 0) {
 			//return all user records
 			$query = $this->db->query('SELECT id, username FROM users');
-			return $query->result();
-
+			$result = $query->result();
+			if ($result) {
+				return $result;
+			}
+			else {
+				return FALSE;
+			}
+	
 		}
 		else {
 			//return specific record

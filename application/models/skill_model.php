@@ -10,7 +10,13 @@ class Skill_model extends CI_Model {
 	public function get_skills($id = 0) {
 		if ($id == 0) {
 			$query = $this->db->query('SELECT name, id FROM skills');
-			return $query->result();
+			$result = $query->result();
+			if ($result) {
+				return $result;
+			}
+			else {
+				return FALSE;
+			}
 		}
 		else {
 			$query = $this->db->get_where('skills', array('id' => $id));

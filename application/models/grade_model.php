@@ -9,7 +9,13 @@ class Grade_model extends CI_Model {
 
 	public function get_grades($order = "DESC") {
 			$query = $this->db->query('SELECT id, amount, label FROM grading ORDER BY amount '.$order);
-			return $query->result();
+			$result = $query->result();
+			if ($result) {
+				return $result;
+			}
+			else {
+				return FALSE;
+			}
 	}
 	
 	public function get_all_grades() {

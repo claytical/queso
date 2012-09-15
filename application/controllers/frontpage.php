@@ -38,6 +38,9 @@ class Frontpage extends Public_Controller {
 		$data['posts'] = $this->post_model->get_posts(TRUE);
 
 		$data['grades'] = $this->grade_model->get_grades("ASC");
+		if (!$data['posts']) {
+			redirect(base_url('admin/course/setup'));
+		}
 		$this->load->view('include/header', $data);
 		$this->load->view('frontpage', $data);
 		$this->load->view('include/footer');

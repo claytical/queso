@@ -18,7 +18,7 @@
 	<?php foreach ($users as $user):?>
 		<tr>
 		
-			<td><a href="<?=base_url('admin/user/'.$user->id)?>"><?php echo $user->username;?></a></td>
+			<td><b><a href="<?=base_url('admin/user/'.$user->id)?>"><?php echo $user->username;?></a></b></td>
 			<td>
 			
 				<span class="badge">

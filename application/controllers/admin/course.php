@@ -15,9 +15,13 @@ class Course extends Admin_Controller {
 		$this->form_validation->set_rules('course', 'Course Name', 'required');
 		$this->form_validation->set_rules('registration_code', 'Registration Code', 'required');
 		if ($this->form_validation->run() === FALSE) {}
-		else {
+		else {		
 			$this->course_model->update();
 			$data['message'] = "The settings have been updated.";
+			if(!$this->course_model->get_variable("information")) {
+				$this->course_model->info_set();
+			}
+
 			redirect(base_url("admin/course"), "refresh");
 		}
 	
@@ -35,7 +39,54 @@ class Course extends Admin_Controller {
 	}
 	
 	public function setup() {
-		$data['checklist'] = "yes";
+		$this->load->model('skill_model');
+		$this->load->model('grade_model');
+		$this->load->model('quest_model');
+		$this->load->model('post_model');
+		$this->load->model('user_model');
+		
+		if($this->course_model->get_variable("information")) {
+			$data['information'] = TRUE;
+		}
+		else {
+			$data['information'] = FALSE;
+		}
+
+		if ($this->skill_model->get_skills()) {
+			$data['skills'] = TRUE;
+		}
+		else {
+			$data['skills'] = FALSE;
+		}
+		
+		if ($this->grade_model->get_grades()) {
+			$data['grades'] = TRUE;
+		}
+		else {
+			$data['grades'] = FALSE;
+		}
+
+		if ($this->quest_model->get_quests()) {
+			$data['quests'] = TRUE;
+		}
+		else {
+			$data['quests'] = FALSE;
+		}
+
+		if ($this->post_model->get_posts(TRUE)) {
+			$data['posts'] = TRUE;
+		}
+		else {
+			$data['posts'] = FALSE;
+		}
+	
+		if (count($this->user_model->get_info()) > 1) {
+			$data['users'] = TRUE;
+		}
+		else {
+			$data['users'] = FALSE;
+		}
+		
 		$this->load->view('include/header');
 		$this->load->view('config/setup', $data);
       	$this->load->view('include/footer');

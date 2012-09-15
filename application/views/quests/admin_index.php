@@ -12,7 +12,7 @@
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td><h4><a href='<?=base_url("admin/quest/edit/".$quest->id)?>' title="Edit this quest"><?= $quest->name;?></a></h4></td>
+						<td><b><a href='<?=base_url("admin/quest/edit/".$quest->id)?>' title="Edit this quest"><?= $quest->name;?></a></b></td>
 						<td><?php echo $quest->instructions;?></td>
 						<td>
 						<div class="btn-group">

@@ -11,7 +11,7 @@
 			<tbody>
 <?php foreach($posts as $post):?>
 					  <tr>
-						<td><h4><a href='post/edit/<?php echo $post->id;?>' title="edit"><?php echo $post->headline;?></a></h4></td>
+						<td><b><a href='post/edit/<?php echo $post->id;?>' title="edit"><?php echo $post->headline;?></a></b></td>
 						<td><?php echo substr(strip_tags($post->body),0, 255);?>...</td>
 						<td>
 							<div class="btn-group">

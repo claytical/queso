@@ -15,8 +15,14 @@ class Post_model extends CI_Model {
 		}
 
 		$query = $this->db->query("SELECT * FROM posts ORDER by created DESC");
-		return $query->result();
-	}
+		$result = $query->result();
+			if ($result) {
+				return $result;
+			}
+			else {
+				return FALSE;
+			}
+		}
 	
 	
 	public function get_post($id) {

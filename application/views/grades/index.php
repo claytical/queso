@@ -23,7 +23,7 @@
 						<input class="grade-editing-amount" type="text" placeholder="Amount" name="new-grade-amount">
 						</td>
 						
-						<td><button class="btn-primary btn-large add"><i class="icon-plus"></i></button></td>
+						<td><button class="btn-primary btn-large add pull-right">Add New Grade</button></td>
 					  </tr>					
 					
 					<?php foreach ($grades as $grade):?>
@@ -43,7 +43,7 @@
 
 						</td>
 						<td>
-						<div class="btn-group">
+						<div class="btn-group pull-right">
 						<button class="btn hidden grade-save">
 						<span class="add-on"><i class="icon-ok"></i></span>
 						</button>
@@ -97,9 +97,9 @@
 	});
 
 	$('button.remove').click( function() {
-		var gradenum = $(this).parent().parent().children('td').children(".grade-number").val();
+		var gradenum = $(this).parent().parent().parent().children().children(".grade-number").val();
 		$.post("grade/remove", { id: gradenum } );
-		$(this).parent().parent().remove();
+		$(this).parent().parent().parent().remove();
 	});
 
 	$('button.add').click( function() {

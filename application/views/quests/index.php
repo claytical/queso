@@ -11,7 +11,7 @@
 <?php foreach ($quests as $quest) :?>
 
 					  <tr>
-						<td><td colspan="2"><h4><?php echo $quest->name;?></h4></td>
+						<td><td colspan="2"><b><?php echo $quest->name;?></b></td>
 						<td><?php echo $quest->instructions;?></td>
 						<td><div class="span3"><a>view</a> / <a>modify</a> / <a>delete</a></div></td>
 					  </tr>					
