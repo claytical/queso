@@ -185,6 +185,9 @@
 <? if (count($quests_revisions)):?>
 <p><span class='badge badge-warning'><?= count($quests_revisions);?></span> <a href='<?= base_url("admin/submissions/revised")?>'>New Revisions</p></a>
 <? endif;?>
+<? if(count($quests_pending) <= 0 && count($quests_revisions) <= 0):?>
+<p>There are no submissions to grade</p>
+<? endif;?>
 
 <?php else:?>
 
