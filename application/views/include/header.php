@@ -16,7 +16,6 @@
    <link href="<?= base_url('assets/css/custom.css') ?>" rel="stylesheet">
    <link href="<?= base_url('assets/css/chosen.css') ?>" rel="stylesheet">
    <link href="<?= base_url('assets/css/visualize.css') ?>" rel="stylesheet">
-   <link href="<?= base_url('assets/css/bulletgraph.css') ?>" rel="stylesheet">
 
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
@@ -37,8 +36,8 @@
 	<script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
 	<script src="<?= base_url('assets/js/custom.js') ?>"></script>
 	<script src="<?= base_url('assets/js/visualize.jQuery.js') ?>"></script>
-	<script src="<?= base_url('assets/js/jquery.bulletGraph.js') ?>"></script>
 	<script src="<?= base_url('assets/js/jquery.table-filter.min.js')?>"></script>
+	<script src="<?= base_url('assets/js/jquery.tablednd.0.6.min.js')?>"></script>
 	<script type="text/javascript">
 	tinyMCE.init({
 			mode : "textareas",

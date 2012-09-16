@@ -25,16 +25,38 @@ class Quest extends Admin_Controller {
 		$this->load->view('include/footer');
 		
 	}
+	
+	public function reorder() {
+		$this->quest_model->reorder();
+	}
+	
+	public function rmfile($id) {
+		$this->quest_model->remove_file($id);
+	}
 	public function edit($qid) {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('quest-title', 'Quest Name', 'required');
 		$this->form_validation->set_rules('quest-instructions', 'Instructions', 'required');
+
 		if ($this->form_validation->run() === FALSE) {
 		}
 
 		else {
-			$this->quest_model->update($qid);
+		
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|pdf|zip|doc|docx|odf';
+			$this->load->library('upload', $config);
+			$uploaded = $this->upload->do_upload();
+			
+			$hasFile = FALSE;
+			if ($uploaded) {
+				$data = array('upload_data' => $this->upload->data());
+				$hasFile = TRUE;
+			}
+
+				
+			$this->quest_model->update($qid, $hasFile);
 			redirect(base_url("admin/quests"));
 		}
 
@@ -42,6 +64,7 @@ class Quest extends Admin_Controller {
 		$this->load->model('grade_model');
 		$data['grades'] = $this->grade_model->get_grades("ASC");
 		$data['title'] = $info['name'];
+		$data['id'] = $qid;
 		$data['file'] = $info['file'];
 		$data['instructions'] = $info['instructions'];
 		$data['skills'] = $this->skill_model->get_skills();

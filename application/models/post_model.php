@@ -10,11 +10,11 @@ class Post_model extends CI_Model {
 	public function get_posts($frontpage = FALSE) {
 		if ($frontpage) {
 		
-			$query = $this->db->query('SELECT * FROM posts WHERE frontpage = 1 ORDER BY created DESC');
+			$query = $this->db->query('SELECT * FROM posts WHERE frontpage = 1 ORDER BY position ASC');
 			return $query->result();
 		}
 
-		$query = $this->db->query("SELECT * FROM posts ORDER by created DESC");
+		$query = $this->db->query("SELECT * FROM posts ORDER by position ASC");
 		$result = $query->result();
 			if ($result) {
 				return $result;
@@ -24,7 +24,24 @@ class Post_model extends CI_Model {
 			}
 		}
 	
+	public function reorder() {
+		$list = $this->input->post('post-list');
+		foreach ($list as $position => $item) {
+			if ($item != NULL) {
+				$query = $this->db->query("UPDATE posts set position = '".$position."' WHERE id = ".$item);
+			}
+		}
+	}
 	
+	public function remove_file($id) {
+		$fileQuery = $this->db->query("SELECT file FROM posts WHERE id = ".$id);
+		$result = $fileQuery->row_array();
+		$file = $result['file'];
+		$this->db->query("UPDATE posts SET file = NULL WHERE id = ".$id);
+		if (file_exists('./uploads/'.$file)) {
+    		unlink('./uploads/'.$file) or die('failed deleting file');
+  		}
+	}
 	public function get_post($id) {
 		$query = $this->db->query("SELECT * FROM posts WHERE id = '".$id."'");
 		return $query->row_array();
@@ -92,13 +109,21 @@ class Post_model extends CI_Model {
 	
 	}
 	
-	public function update() {
+	public function update($hasFile) {
 		$headline = $this->input->post('headline');
 		$body = $this->input->post('body');
 		$id = $this->input->post('postid');
 		$frontpage = $this->input->post('frontpage');
-		$this->db->query("UPDATE posts SET headline = '".$headline."', body = '".$body."', frontpage = '".$frontpage."' WHERE id = '".$id."'");
 
+		if ($hasFile) {
+			$upload_data = $this->upload->data();
+			$this->db->query("UPDATE posts SET headline = '".$headline."', body = '".$body."', frontpage = '".$frontpage."', file = '".$upload_data['file_name']."' WHERE id = '".$id."'");
+
+		}
+		else {
+			$this->db->query("UPDATE posts SET headline = '".$headline."', body = '".$body."', frontpage = '".$frontpage."' WHERE id = '".$id."'");
+		
+		}
 	}
 	
 }

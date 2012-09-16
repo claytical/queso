@@ -54,6 +54,9 @@ class User extends User_Controller {
 				if (empty($sid)) {
 				$sid = 0;
 				}
+				if (empty($questProgress)) {
+				$questProgress = "invalid";
+				}
 				$data['quests'][] = array(
 									'quest' => $quest,
 									'submission' => $sid,

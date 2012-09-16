@@ -1,6 +1,6 @@
 <div class="span10">
 <?php if ($posts):?>
-	<table class="table table-hover">
+	<table id="post-list" class="table table-hover">
 			<thead>
 			  <tr>
 				<th style="width:25%">Post</th>
@@ -10,8 +10,8 @@
 			</thead>
 			<tbody>
 <?php foreach($posts as $post):?>
-					  <tr>
-						<td><b><a href='post/edit/<?php echo $post->id;?>' title="edit"><?php echo $post->headline;?></a></b></td>
+					  <tr id="<?= $post->id?>">
+						<td><b><a href='post/edit/<?php echo $post->id;?>' title="edit" data-placement="right"><?php echo $post->headline;?></a></b></td>
 						<td><?php echo substr(strip_tags($post->body),0, 255);?>...</td>
 						<td>
 							<div class="btn-group">
@@ -46,5 +46,13 @@ $('p.formTableFilter input').attr("placeholder", "Type here to filter posts");
 $('p.formTableFilter input').attr("class", "span4");
 var pop = "<a class='badge badge-info pop-help' data-content='If there are too many results you can type a keyword to filter by.  All columns will be filtered.' data-original-title='Filtering'><i class='icon-question-sign'></i></a>";
 $('p.formTableFilter input').after(" " + pop);
+
+ $('#post-list').tableDnD({
+ 		onDragClass: "info",
+        onDrop: function(table, row) {
+			$.post("post/reorder", $.tableDnD.serialize());
+        }
+    });
+
 
 </script>

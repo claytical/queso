@@ -8,7 +8,10 @@
 	<?php endif;?>
 
   		<h1>Update Quest</h1>
-  		<form method="post" class="well form-horizontal">
+			<?php
+				$attributes = array('class' => 'well form-horizontal');
+				echo form_open_multipart('', $attributes);
+  			?>
   			<fieldset>
 				<h4>Information</h4>
   				<div class="control-group">
@@ -24,6 +27,20 @@
 						<textarea type="text" id="quest-instructions" name="quest-instructions" class="span6 tinymce" placeholder="What's this quest about?"><?= $instructions?></textarea>
 					</div>
 				</div>
+				<div class="control-group">
+					<label class="control-label" for="userfile">Supplemental File</label>
+					<? if($file):?>
+
+						<div class="controls" id="file">
+						<a href='<?=base_url('uploads/'.$file)?>'><?=$file?></a> <a class='btn btn-danger btn-mini remove-file' href='#'><i class='icon-remove-sign'></i></a>
+						<? else:?>
+						<div class="controls" id="file">
+						<input type="file" name="userfile" class="span8"/>
+					<? endif;?>
+					</div>
+				</div>
+
+				
 				<h4>Skills</h4>
 				<? foreach($quest_skills as $skill):?>
 					<div class="control-group">
@@ -107,4 +124,13 @@
 		
 		});
 		 		 
+		 		 
+	$('.remove-file').click( function() {
+		event.preventDefault();
+	
+		$.post("<?=base_url('admin/quest/rmfile/'.$id);?>");
+		$('#file').html('<input type="file" name="userfile" class="span8"/>');
+	});
+
+
 	</script>

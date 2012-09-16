@@ -1,6 +1,6 @@
 <div class="span10">
 <?php if($quests):?>
-	<table class="table table-hover">
+	<table id="quest-list" class="table table-hover">
 			<thead>
 			  <tr>
 				<th style="width:25%">Quest</th>
@@ -11,7 +11,7 @@
 			<tbody>
 <?php foreach ($quests as $quest) :?>
 
-					  <tr>
+					  <tr id="<?= $quest->id;?>">
 						<td><b><a href='<?=base_url("admin/quest/edit/".$quest->id)?>' title="Edit this quest"><?= $quest->name;?></a></b></td>
 						<td><?php echo $quest->instructions;?></td>
 						<td>
@@ -43,5 +43,11 @@ $('p.formTableFilter input').attr("placeholder", "Type here to filter quests");
 $('p.formTableFilter input').attr("class", "span4");
 var pop = "<a class='badge badge-info pop-help' data-content='If there are too many results you can type a keyword to filter by.  All columns will be filtered.' data-original-title='Filtering'><i class='icon-question-sign'></i></a>";
 $('p.formTableFilter input').after(" " + pop);
+ $('#quest-list').tableDnD({
+ 		onDragClass: "info",
+        onDrop: function(table, row) {
+			$.post("quest/reorder", $.tableDnD.serialize());
+        }
+    });
 
 </script>

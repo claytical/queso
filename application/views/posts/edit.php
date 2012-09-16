@@ -2,7 +2,7 @@
 		
 			<?php
 				$attributes = array('class' => 'well form-horizontal');
-				echo form_open('', $attributes);
+				echo form_open_multipart('', $attributes);
   			?>
   			<?php if(validation_errors()):?>
 				<div class="alert">
@@ -25,6 +25,19 @@
 					</div>
 				</div>
   				<div class="control-group">
+					<label class="control-label" for="userfile">Supplemental File</label>
+					<? if($file):?>
+
+						<div class="controls" id="file">
+						<a href='<?=base_url('uploads/'.$file)?>'><?=$file?></a> <a class='btn btn-danger btn-mini remove-file' href='#'><i class='icon-remove-sign'></i></a>
+						<? else:?>
+						<div class="controls" id="file">
+						<input type="file" name="userfile" class="span8"/>
+					<? endif;?>
+					</div>
+				</div>
+
+  				<div class="control-group">
 					<div class="controls">
 						<label>
 						<input type="checkbox" id="frontpage" name="frontpage" value="1" <?php if($frontpage) print "checked";?>> Publish to Front Page</input></label>
@@ -39,3 +52,13 @@
 				</div>
 			</div>
 		</form>
+<script>
+$('.remove-file').click( function() {
+	event.preventDefault();
+
+	$.post("<?=base_url('admin/post/rmfile/'.$pid);?>");
+	$('#file').html('<input type="file" name="userfile" class="span8"/>');
+});
+
+
+</script>

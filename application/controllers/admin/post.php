@@ -52,10 +52,22 @@ class Post extends Admin_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('headline', 'Headline', 'required');
 		$this->form_validation->set_rules('body', 'Body', 'required');
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|pdf|zip|doc|docx|odf';
+		$this->load->library('upload', $config);
+		$uploaded = $this->upload->do_upload();
+		
+		$hasFile = FALSE;
+		if ($uploaded) {
+			$data = array('upload_data' => $this->upload->data());
+			$hasFile = TRUE;
+		}
+
+
 		if ($this->form_validation->run() === FALSE) {}
 
 		else {
-			$this->post_model->update();
+			$this->post_model->update($hasFile);
 			redirect("post/".$id);
 		}
 
@@ -64,10 +76,19 @@ class Post extends Admin_Controller {
 		$data['body'] = $info['body'];
 		$data['frontpage'] = $info['frontpage'];
 		$data['pid'] = $info['id'];
+		$data['file'] = $info['file'];
 		$this->load->view('include/header');
 		$this->load->view('posts/edit', $data);
       	$this->load->view('include/footer');
 	
+	}
+	
+	public function rmfile($id) {
+		$this->post_model->remove_file($id);
+	}
+	
+	public function reorder() {
+		$this->post_model->reorder();
 	}
 	
 	public function delete($id) {

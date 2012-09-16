@@ -10,7 +10,7 @@ class Quest_model extends CI_Model {
 	public function get_quests($id = 0) {
 		if ($id == 0) {
 		
-			$query = $this->db->query('SELECT * FROM quests');
+			$query = $this->db->query('SELECT * FROM quests ORDER BY position');
 			$result = $query->result();
 			if ($result) {
 				return $result;
@@ -24,6 +24,16 @@ class Quest_model extends CI_Model {
 		return $query->row_array();
 	}
 	
+	public function reorder() {
+		$list = $this->input->post('quest-list');
+		foreach ($list as $position => $item) {
+			if ($item != NULL) {
+				$query = $this->db->query("UPDATE quests set position = '".$position."' WHERE id = ".$item);
+			}
+		}
+	}
+	
+	
 	public function get_available_quests($qtype = 2, $uid = 0) {
 		if ($uid == 0) {
 			$query = $this->db->get_where('quests', array('type' => $qtype));
@@ -32,15 +42,15 @@ class Quest_model extends CI_Model {
 		else {
 			if ($qtype == 0) {
 
-				$query = $this->db->query("SELECT DISTINCT quests.id, name, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND hidden = 0");			
+				$query = $this->db->query("SELECT DISTINCT quests.id, name, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND hidden = 0 ORDER BY position");			
 			}
 			
 			else {		
 				if ($qtype != 999) {
-					$query = $this->db->query("SELECT DISTINCT quests.id, name, instructions, type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."' AND hidden = 0");
+					$query = $this->db->query("SELECT DISTINCT quests.id, name, instructions, type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type = '".$qtype."' AND hidden = 0 ORDER BY position");
 					}
 					else {
-					$query = $this->db->query("SELECT DISTINCT quests.id, name, instructions,type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type > 1 AND hidden = 0");
+					$query = $this->db->query("SELECT DISTINCT quests.id, name, instructions,type, file from quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid LEFT JOIN users ON questCompletion.uid = users.id WHERE quests.id NOT IN (SELECT qid FROM questCompletion WHERE uid = '".$uid."') AND type > 1 AND hidden = 0 ORDER BY position");
 					
 					}
 			}
@@ -75,10 +85,17 @@ class Quest_model extends CI_Model {
 	
 	}
 
-	public function update($qid) {
+	public function update($qid, $hasFile) {
 		$name = $this->input->post('quest-title');
 		$instructions = $this->input->post('quest-instructions');
-		$query = $this->db->query("UPDATE quests SET name = '".mysql_real_escape_string($name)."', instructions = '".mysql_real_escape_string($instructions)."' WHERE id = ".$qid);
+		if ($hasFile) {
+			$upload_data = $this->upload->data();
+			$query = $this->db->query("UPDATE quests SET name = '".mysql_real_escape_string($name)."', instructions = '".mysql_real_escape_string($instructions)."', file = '".			$upload_data['file_name']."' WHERE id = ".$qid);
+		
+		}
+		else {
+			$query = $this->db->query("UPDATE quests SET name = '".mysql_real_escape_string($name)."', instructions = '".mysql_real_escape_string($instructions)."' WHERE id = ".$qid);
+		}
 		$existingSkillLabels = $this->input->post('existingSkillLabel');
 		$existingSkillAmounts = $this->input->post('existingSkillAmount');
 		$existingSkillIDs = $this->input->post('existingSkillID');
@@ -185,6 +202,17 @@ class Quest_model extends CI_Model {
 				}
 			}
 	}
+	
+	public function remove_file($id) {
+		$fileQuery = $this->db->query("SELECT file FROM quests WHERE id = ".$id);
+		$result = $fileQuery->row_array();
+		$file = $result['file'];
+		$this->db->query("UPDATE quests SET file = NULL WHERE id = ".$id);
+		if (file_exists('./uploads/'.$file)) {
+    		unlink('./uploads/'.$file) or die('failed deleting file');
+  		}
+	}
+	
 	
 	public function get_latest_submission_id($qid, $uid) {
 		$query = $this->db->query("SELECT id FROM submissions WHERE qid = '".$qid."' AND uid = '".$uid."' ORDER BY id DESC LIMIT 1");
