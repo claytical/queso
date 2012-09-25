@@ -25,7 +25,7 @@
 						<?php endif;?>
 						
 						</div></td>
-						<td><?php echo $submission->first_name . " " . $submission->last_name;?></td>
+						<td><?php echo $submission->username;?></td>
 						<td><?php echo date("D, d M Y H:m", $submission->submitted);?></td>
 						<td><div>
 						</div></td>

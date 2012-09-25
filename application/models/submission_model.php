@@ -43,10 +43,20 @@ class Submission_model extends CI_Model {
 		
 		}
 		else {
-		$query = $this->db->query("SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL 
+		$query = $this->db->query("SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submissions.qid NOT IN
+(SELECT qid  FROM questCompletion WHERE uid = users.id)
 		UNION ALL 
-		SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE completed IS NULL ORDER BY uid, qid, submitted DESC
-		");
+		SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE files.qid NOT IN
+(SELECT qid  FROM questCompletion WHERE uid = users.id)
+GROUP BY qid ORDER BY uid, qid, submitted DESC");
+		//bad sql 
+		
+/*		
+SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL 
+		
+SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE completed IS NULL ORDER BY uid, qid, submitted DESC
+*/
+		
 		}
 		$ungraded = $query->result();
 		
@@ -76,9 +86,9 @@ class Submission_model extends CI_Model {
 		SELECT DISTINCT files.qid, name as quest, files.uid, first_name, last_name, filename as submission, uploaded as submitted, '0' as visible, files.id, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE uploaded > completed AND files.uid = $uid ORDER BY uid, qid, submitted DESC");		
 		}
 		else {
-		$query = $this->db->query("SELECT DISTINCT submissions.qid, name as quest, submissions.uid, first_name, last_name, submission, submitted, visible, submissions.id, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submitted > completed 
+		$query = $this->db->query("SELECT DISTINCT submissions.qid, name as quest, submissions.uid, username, submission, submitted, visible, submissions.id, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid AND questCompletion.uid = submissions.uid LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submitted > completed 
 		UNION ALL
-		SELECT DISTINCT files.qid, name as quest, files.uid, first_name, last_name, filename as submission, uploaded as submitted, '0' as visible, files.id, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN meta ON meta.user_id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE uploaded > completed ORDER BY uid, qid, submitted DESC");
+		SELECT DISTINCT files.qid, name as quest, files.uid, username, filename as submission, uploaded as submitted, '0' as visible, files.id, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid AND files.uid = questCompletion.qid LEFT JOIN users ON users.id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE uploaded > completed ORDER BY uid, qid, submitted DESC");
 		}
 		$revisions = $query->result();
 		$submissions = array();

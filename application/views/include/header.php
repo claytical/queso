@@ -8,7 +8,7 @@
    <meta name="author" content="">
 
    <title><?= $site_name?></title>
-
+	<link href='http://fonts.googleapis.com/css?family=Fredoka+One|Maven+Pro:400,900' rel='stylesheet' type='text/css'>
    <link href="<?= base_url('assets/css/bootstrap.'.$theme.'.min.css') ?>" rel="stylesheet">
    <link href="<?= base_url('assets/css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">

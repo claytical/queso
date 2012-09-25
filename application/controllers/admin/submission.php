@@ -35,7 +35,7 @@ class Submission extends Admin_Controller {
 		$this->load->model('quest_model');
 		if ($this->form_validation->run() === FALSE) {}
 		else {
-			$this->response_model->respond();
+			$this->response_model->respond($this->the_user->user_id);
 			$this->quest_model->complete_quest();
 			redirect('/admin/submissions/ungraded', 'location');
 
