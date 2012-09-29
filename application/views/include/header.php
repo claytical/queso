@@ -83,7 +83,7 @@
             </ul>
           </div>
           <?php else:?>
-          <a class="btn btn-primary btn-large pull-right" href="auth/login">Login</a>
+          <a class="btn btn-primary pull-right" href="auth/login">Login</a>
 
           <?php endif;?>
         </div>

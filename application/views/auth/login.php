@@ -8,6 +8,7 @@
 	<?php endif;?>
 
 <?php
+	if (empty($the_user)) {
     $attributes = array('class' => 'well form-horizontal');
 	echo form_open("auth/login", $attributes);?>
 		<fieldset>
@@ -30,5 +31,11 @@
 				<?php echo form_submit('submit', 'Login', 'class="btn-primary"');?>
 			</div>
 			<a href="forgot_password">Forgot your password?</a>
-<?php echo form_close();?>
+<?php echo form_close();
+
+	}
+	else {
+		echo "You're already logged in as ".$the_user->username.".  <a href='".base_url('logout')."'>Click here to log out.</a>";
+	}
+?>
 </div>

@@ -110,7 +110,7 @@ class Auth extends Public_Controller {
 
 		//log the user out
 		$logout = $this->ion_auth->logout();
-
+		unset($the_user);
 		//redirect them back to the page they came from
 		redirect('auth', 'refresh');
 	}
