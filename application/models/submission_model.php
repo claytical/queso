@@ -20,7 +20,7 @@ class Submission_model extends CI_Model {
 	
 	
 	public function get_submissions_for_discussion() {
-		$query = $this->db->query('SELECT COUNT(responses.id) responses, submissions.id as id, submission as text, name, username FROM submissions  LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid LEFT JOIN responses ON responses.sid = submissions.id WHERE visible = 1 GROUP BY submissions.id');
+		$query = $this->db->query('SELECT COUNT(responses.id) responses, submissions.id as id, submission as text, name, username FROM submissions  LEFT JOIN users ON users.id = submissions.uid AND users.active = 1 LEFT JOIN quests ON quests.id = submissions.qid LEFT JOIN responses ON responses.sid = submissions.id WHERE visible = 1 GROUP BY submissions.id');
 		return $query->result();
 	}
 	public function get_submissions_by_quest($qid = 0, $uid = 0) {
@@ -36,17 +36,17 @@ class Submission_model extends CI_Model {
 
 	public function get_ungraded_submissions($uid = NULL) {
 		if ($uid) {
-		$query = $this->db->query("SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL AND users.id = $uid 
+		$query = $this->db->query("SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid AND users.active = 1 LEFT JOIN quests ON quests.id = submissions.qid WHERE completed IS NULL AND users.id = $uid 
 		UNION ALL 
-		SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE completed IS NULL AND users.id = $uid ORDER BY uid, qid, submitted DESC
+		SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid AND users.active = 1 LEFT JOIN quests ON quests.id = files.qid WHERE completed IS NULL AND users.id = $uid ORDER BY uid, qid, submitted DESC
 		");
 		
 		}
 		else {
-		$query = $this->db->query("SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid LEFT JOIN quests ON quests.id = submissions.qid WHERE submissions.qid NOT IN
+		$query = $this->db->query("SELECT name as quest, username, submission, submitted, visible, submissions.qid, submissions.id, submissions.uid, '0' as file FROM submissions LEFT JOIN questCompletion ON submissions.qid = questCompletion.qid LEFT JOIN users ON users.id = submissions.uid AND users.active = 1 LEFT JOIN quests ON quests.id = submissions.qid WHERE submissions.qid NOT IN
 (SELECT qid  FROM questCompletion WHERE uid = users.id)
 		UNION ALL 
-		SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid LEFT JOIN quests ON quests.id = files.qid WHERE files.qid NOT IN
+		SELECT name as quest,  username, filename as submission, uploaded as submitted, '0' as visible, files.qid, files.id, files.uid, '1' as file FROM files LEFT JOIN questCompletion ON files.qid = questCompletion.qid LEFT JOIN users ON users.id = files.uid AND users.active = 1 LEFT JOIN quests ON quests.id = files.qid WHERE files.qid NOT IN
 (SELECT qid  FROM questCompletion WHERE uid = users.id)
 GROUP BY qid ORDER BY uid, qid, submitted DESC");
 		//bad sql 

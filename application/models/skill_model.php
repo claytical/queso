@@ -24,7 +24,7 @@ class Skill_model extends CI_Model {
 		}
 	}
 	public function get_users($skid, $order = "ASC", $limit = 3) {
-		$query = $this->db->query("SELECT uid, SUM(amount) AS amount, skid, username FROM questCompletionSkills LEFT JOIN users ON users.id = questCompletionSkills.uid WHERE skid = ".$skid." GROUP BY uid, skid UNION SELECT id as uid, '0' as amount, '".$skid."' as skid, username FROM users WHERE id NOT IN (SELECT uid FROM questCompletionSkills WHERE skid = ".$skid.") ORDER BY amount ".$order." LIMIT ".$limit);
+		$query = $this->db->query("SELECT uid, SUM(amount) AS amount, skid, username FROM questCompletionSkills LEFT JOIN users ON users.id = questCompletionSkills.uid AND users.active = 1 WHERE skid = ".$skid." GROUP BY uid, skid UNION SELECT id as uid, '0' as amount, '".$skid."' as skid, username FROM users WHERE id NOT IN (SELECT uid FROM questCompletionSkills WHERE skid = ".$skid.") ORDER BY amount ".$order." LIMIT ".$limit);
 		return $query->result();
 	}
 	
