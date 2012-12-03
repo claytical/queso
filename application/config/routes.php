@@ -47,6 +47,7 @@ $route['quests'] = 'common_auth/quest';
 $route['quests/(:num)'] = 'common_auth/quest/view/$1';
 $route['quests/completed'] = 'common_auth/quest/completed';
 $route['quests/available/(:any)'] = 'common_auth/quest/available/$1';
+$route['admin/quests/available/(:any)'] = 'admin/quest/available/$1';
 $route['submission/(:num)'] = 'common_auth/submission/view/$1';
 $route['submission/revise/(:num)'] = 'common_auth/submission/revise/$1';
 $route['discuss/(:num)'] = 'common_auth/submission/discuss/$1';

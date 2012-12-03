@@ -209,9 +209,6 @@
 <? if(count($quests_pending) > 0):?>
 <span class="label label-warning"><b><?= count($quests_pending);?></b> Attempt<?php if (count($quests_pending) != 1):?>s<? endif;?> Pending</span><br>
 <? endif;?>
-<? if (count($quests_revisions)):?>
-<span class="label label-warning"><b><?= count($quests_revisions);?></b> Revision<?php if (count($quests_revisions) != 1):?>s<? endif;?> Pending</span><br>
-<? endif;?>
 
 <b><?= count($quests_available);?></b> <a href='<?=base_url("/quests/available/online");?>'>Available</a><br>
 <b><?= count($quests_completed);?></b> <a href='<?=base_url("/quests/completed");?>'>Completed</a><br>

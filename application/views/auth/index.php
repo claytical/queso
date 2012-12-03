@@ -12,10 +12,11 @@
 		<th>Name</th>
 		<th>Level</th>
 		<th>Email</th>
-		<th>Status</th>
+		<th>Actions</th>
 	</tr>
 	</thead>
 	<?php foreach ($users as $user):?>
+		<?php if($user->active == 1):?>
 		<tr>
 		
 			<td><b><a href="<?=base_url('admin/user/'.$user->id)?>"><?php echo $user->username;?></a></b>
@@ -48,8 +49,17 @@
 				<?php endif;?>				
 			</td>
 			<td><?php echo $user->email;?></td>
-			<td><?php echo ($user->active) ? anchor("auth/deactivate/".$user->id, 'Deactivate', 'class="btn btn-danger btn-block"') : anchor("auth/activate/". $user->id, 'Activate','class="btn btn-success btn-block"');?></td>
+			<td>
+			<div class="btn-group">
+			<a class="btn" href="<?= base_url('admin/quests/available/in-class/'.$user->id);?>" data-original-title="In class quests available"><i class="icon-tasks"></i></a> 
+			<a class="btn" href="<?= base_url('admin/quests/available/online/'.$user->id);?>" data-original-title="Online quests available"><i class="icon-th-list"></i></a> 
+
+			<a class="btn btn-danger" href="<?= base_url('auth/deactivate/'.$user->id);?>" data-original-title="Deactivate this student"><i class="icon-trash"></i></a>
+
+			</div>
+			</td>
 		</tr>
+		<? endif;?>
 	<?php endforeach;?>
 </table>
 <p>
