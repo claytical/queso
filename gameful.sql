@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.5.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2012 at 09:32 PM
--- Server version: 5.5.25
--- PHP Version: 5.4.4
+-- Generation Time: Dec 03, 2012 at 11:03 AM
+-- Server version: 5.0.95
+-- PHP Version: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -16,11 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `gameful`
---
-CREATE DATABASE `gameful` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `gameful`;
 
 -- --------------------------------------------------------
 
@@ -28,18 +23,19 @@ USE `gameful`;
 -- Table structure for table `course`
 --
 
-DROP TABLE IF EXISTS `course`;
-CREATE TABLE `course` (
-  `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `variable` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+CREATE TABLE IF NOT EXISTS `course` (
+  `id` varchar(255) collate utf8_unicode_ci NOT NULL,
+  `variable` varchar(255) collate utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`id`, `variable`) VALUES('site', 'My First Gameful Class');
-INSERT INTO `course` (`id`, `variable`) VALUES('registration', 'zebras');
+INSERT INTO `course` (`id`, `variable`) VALUES
+('site', 'My First Gameful Class'),
+('registration', 'zebras'),
+('theme', 'default');
 
 -- --------------------------------------------------------
 
@@ -47,15 +43,14 @@ INSERT INTO `course` (`id`, `variable`) VALUES('registration', 'zebras');
 -- Table structure for table `files`
 --
 
-DROP TABLE IF EXISTS `files`;
-CREATE TABLE `files` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `filename` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+CREATE TABLE IF NOT EXISTS `files` (
+  `id` int(11) NOT NULL auto_increment,
+  `filename` varchar(255) collate utf8_unicode_ci NOT NULL,
   `qid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
-  `notes` text COLLATE utf8_unicode_ci NOT NULL,
+  `notes` text collate utf8_unicode_ci NOT NULL,
   `uploaded` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
@@ -64,33 +59,33 @@ CREATE TABLE `files` (
 -- Table structure for table `grading`
 --
 
-DROP TABLE IF EXISTS `grading`;
-CREATE TABLE `grading` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `grading` (
+  `id` int(11) NOT NULL auto_increment,
   `amount` int(11) NOT NULL,
-  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  `label` varchar(255) collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `groups`
 --
 
-DROP TABLE IF EXISTS `groups`;
-CREATE TABLE `groups` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `name` varchar(20) collate utf8_unicode_ci NOT NULL,
+  `description` varchar(100) collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `groups`
 --
 
-INSERT INTO `groups` (`id`, `name`, `description`) VALUES(1, 'admin', 'Administrator');
-INSERT INTO `groups` (`id`, `name`, `description`) VALUES(2, 'members', 'General User');
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES
+(1, 'admin', 'Administrator'),
+(2, 'members', 'General User');
 
 -- --------------------------------------------------------
 
@@ -98,13 +93,12 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES(2, 'members', 'General
 -- Table structure for table `login_attempts`
 --
 
-DROP TABLE IF EXISTS `login_attempts`;
-CREATE TABLE `login_attempts` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `login_attempts` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
   `ip_address` varbinary(16) NOT NULL,
-  `login` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `time` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `login` varchar(100) collate utf8_unicode_ci NOT NULL,
+  `time` int(11) unsigned default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -113,20 +107,20 @@ CREATE TABLE `login_attempts` (
 -- Table structure for table `meta`
 --
 
-DROP TABLE IF EXISTS `meta`;
-CREATE TABLE `meta` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` mediumint(8) unsigned DEFAULT NULL,
-  `first_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS `meta` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `user_id` mediumint(8) unsigned default NULL,
+  `first_name` varchar(50) collate utf8_unicode_ci default NULL,
+  `last_name` varchar(50) collate utf8_unicode_ci default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `meta`
 --
 
-INSERT INTO `meta` (`id`, `user_id`, `first_name`, `last_name`) VALUES(1, 1, 'Admin', 'istrator');
+INSERT INTO `meta` (`id`, `user_id`, `first_name`, `last_name`) VALUES
+(1, 1, 'Admin', 'istrator');
 
 -- --------------------------------------------------------
 
@@ -134,28 +128,28 @@ INSERT INTO `meta` (`id`, `user_id`, `first_name`, `last_name`) VALUES(1, 1, 'Ad
 -- Table structure for table `posts`
 --
 
-DROP TABLE IF EXISTS `posts`;
-CREATE TABLE `posts` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
-  `headline` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `body` text COLLATE utf8_unicode_ci NOT NULL,
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(100) NOT NULL auto_increment,
+  `headline` varchar(255) collate utf8_unicode_ci NOT NULL,
+  `body` text collate utf8_unicode_ci NOT NULL,
   `created` int(10) NOT NULL,
   `frontpage` tinyint(4) NOT NULL,
   `menu` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+  `position` int(5) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `questCompletion`
 --
 
-DROP TABLE IF EXISTS `questCompletion`;
-CREATE TABLE `questCompletion` (
+CREATE TABLE IF NOT EXISTS `questCompletion` (
   `qid` int(10) NOT NULL,
   `uid` int(100) NOT NULL,
   `completed` int(10) NOT NULL,
-  `note` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `note` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -164,8 +158,7 @@ CREATE TABLE `questCompletion` (
 -- Table structure for table `questCompletionSkills`
 --
 
-DROP TABLE IF EXISTS `questCompletionSkills`;
-CREATE TABLE `questCompletionSkills` (
+CREATE TABLE IF NOT EXISTS `questCompletionSkills` (
   `qid` int(10) NOT NULL,
   `uid` int(100) NOT NULL,
   `skid` int(5) NOT NULL,
@@ -178,8 +171,7 @@ CREATE TABLE `questCompletionSkills` (
 -- Table structure for table `questLock`
 --
 
-DROP TABLE IF EXISTS `questLock`;
-CREATE TABLE `questLock` (
+CREATE TABLE IF NOT EXISTS `questLock` (
   `qid` int(10) NOT NULL,
   `skid` int(5) NOT NULL,
   `requirement` int(100) NOT NULL
@@ -188,22 +180,33 @@ CREATE TABLE `questLock` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quests`
+--
+
+CREATE TABLE IF NOT EXISTS `quests` (
+  `id` int(10) NOT NULL auto_increment,
+  `name` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL,
+  `instructions` text character set utf8 collate utf8_unicode_ci NOT NULL,
+  `type` int(5) NOT NULL,
+  `requirements` tinyint(4) NOT NULL,
+  `hidden` tinyint(4) NOT NULL,
+  `file` varchar(255) default NULL,
+  `position` int(5) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `questSkills`
 --
 
-DROP TABLE IF EXISTS `questSkills`;
-CREATE TABLE `questSkills` (
+CREATE TABLE IF NOT EXISTS `questSkills` (
   `qid` int(10) NOT NULL,
   `skid` int(5) NOT NULL,
-  `label` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `label` varchar(255) collate utf8_unicode_ci NOT NULL,
   `amount` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `questSkills`
---
-
-
 
 -- --------------------------------------------------------
 
@@ -211,54 +214,37 @@ CREATE TABLE `questSkills` (
 -- Table structure for table `questTypes`
 --
 
-DROP TABLE IF EXISTS `questTypes`;
-CREATE TABLE `questTypes` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS `questTypes` (
+  `id` int(5) NOT NULL auto_increment,
+  `name` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `questTypes`
 --
 
-INSERT INTO `questTypes` (`id`, `name`) VALUES(1, 'In Class');
-INSERT INTO `questTypes` (`id`, `name`) VALUES(2, 'Written Submission');
-INSERT INTO `questTypes` (`id`, `name`) VALUES(3, 'File Submission');
-INSERT INTO `questTypes` (`id`, `name`) VALUES(4, 'Response');
+INSERT INTO `questTypes` (`id`, `name`) VALUES
+(1, 'In Class'),
+(2, 'Written Submission'),
+(3, 'File Submission'),
+(4, 'Response');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `quests`
---
-
-DROP TABLE IF EXISTS `quests`;
-CREATE TABLE `quests` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `instructions` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `type` int(5) NOT NULL,
-  `requirements` tinyint(4) NOT NULL,
-  `hidden` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
-
 
 --
 -- Table structure for table `responses`
 --
 
-DROP TABLE IF EXISTS `responses`;
-CREATE TABLE `responses` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `responses` (
+  `id` int(100) NOT NULL auto_increment,
   `sid` int(100) NOT NULL,
   `uid` int(100) NOT NULL,
-  `response` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `response` text character set utf8 collate utf8_unicode_ci NOT NULL,
   `created` int(10) NOT NULL,
   `flag` int(1) NOT NULL,
-  `qid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `qid` int(11) default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 -- --------------------------------------------------------
@@ -267,13 +253,11 @@ CREATE TABLE `responses` (
 -- Table structure for table `skills`
 --
 
-DROP TABLE IF EXISTS `skills`;
-CREATE TABLE `skills` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS `skills` (
+  `id` int(5) NOT NULL auto_increment,
+  `name` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
-
 
 -- --------------------------------------------------------
 
@@ -281,15 +265,14 @@ CREATE TABLE `skills` (
 -- Table structure for table `submissions`
 --
 
-DROP TABLE IF EXISTS `submissions`;
-CREATE TABLE `submissions` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `submissions` (
+  `id` int(100) NOT NULL auto_increment,
   `uid` int(100) NOT NULL,
   `qid` int(100) NOT NULL,
-  `submission` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `submission` text character set utf8 collate utf8_unicode_ci NOT NULL,
   `submitted` int(10) NOT NULL,
   `visible` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 -- --------------------------------------------------------
@@ -298,29 +281,29 @@ CREATE TABLE `submissions` (
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
   `group_id` mediumint(8) unsigned NOT NULL,
-  `ip_address` char(16) COLLATE utf8_unicode_ci NOT NULL,
-  `username` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  `salt` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(254) COLLATE utf8_unicode_ci NOT NULL,
-  `activation_code` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `forgotten_password_code` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `remember_code` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ip_address` char(16) collate utf8_unicode_ci NOT NULL,
+  `username` varchar(15) collate utf8_unicode_ci NOT NULL,
+  `password` varchar(40) collate utf8_unicode_ci NOT NULL,
+  `salt` varchar(40) collate utf8_unicode_ci default NULL,
+  `email` varchar(254) collate utf8_unicode_ci NOT NULL,
+  `activation_code` varchar(40) collate utf8_unicode_ci default NULL,
+  `forgotten_password_code` varchar(40) collate utf8_unicode_ci default NULL,
+  `remember_code` varchar(40) collate utf8_unicode_ci default NULL,
   `created_on` int(11) unsigned NOT NULL,
-  `last_login` int(11) unsigned DEFAULT NULL,
-  `active` tinyint(1) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `last_login` int(11) unsigned default NULL,
+  `active` tinyint(1) unsigned default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `group_id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `remember_code`, `created_on`, `last_login`, `active`) VALUES(1, 1, '127.0.0.1', 'administrator', '321113b0ad8c81f90e2b7d832a029364ba3bf5e1', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, 1268889823, 1345052111, 1);
+INSERT INTO `users` (`id`, `group_id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `remember_code`, `created_on`, `last_login`, `active`) VALUES
+(1, 1, '127.0.0.1', 'administrator', '321113b0ad8c81f90e2b7d832a029364ba3bf5e1', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, 1268889823, 1345052111, 1);
 
 -- --------------------------------------------------------
 
@@ -328,17 +311,21 @@ INSERT INTO `users` (`id`, `group_id`, `ip_address`, `username`, `password`, `sa
 -- Table structure for table `users_groups`
 --
 
-DROP TABLE IF EXISTS `users_groups`;
-CREATE TABLE `users_groups` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `users_groups` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
   `user_id` mediumint(8) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `users_groups`
 --
 
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES(1, 1, 1);
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES(2, 1, 2);
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
+(1, 1, 1),
+(2, 1, 2);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
