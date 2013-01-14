@@ -1066,6 +1066,7 @@ class Ion_auth_model extends CI_Model
 		    $this->tables['users'].'.id as id', 
 		    $this->tables['users'].'.id as user_id'
 		));
+		$this->db->where('active', 1);
 
 		if (isset($this->_ion_select))
 		{

@@ -43,6 +43,7 @@ class Grade_model extends CI_Model {
 			$gradeLabel = $grade->row_array();
 			$nextGrade = $this->db->query("SELECT * FROM grading WHERE amount > '".$amount."' ORDER BY amount ASC");
 			$nextGradeLabel = $nextGrade->row_array();
+			if ($nextGradeLabel) {
 			$data = array(
 						'current_level'=> $gradeLabel['label'],
 						'amount' => $amount,
@@ -50,6 +51,18 @@ class Grade_model extends CI_Model {
 						'next_level' => $nextGradeLabel['label'],
 						'skill' => $skillLabel
 						);
+			
+			}
+			else {
+			$data = array(
+						'current_level'=> $gradeLabel['label'],
+						'amount' => $amount,
+						'next_amount' => "9999999999999999999999",
+						'next_level' => "Off the Charts",
+						'skill' => $skillLabel
+						);
+			
+			}
 			$skills[] = $data;
 		}
 		return $skills;		

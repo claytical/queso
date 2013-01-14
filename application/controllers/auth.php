@@ -41,6 +41,7 @@ class Auth extends Public_Controller {
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 				$this->data['users'][$k]->grade = $this->grade_model->get_current_grade($user->id);
+
 			}
 
 			$this->load->view('include/header');

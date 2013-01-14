@@ -30,7 +30,7 @@
 			<div class="pull-right">
 				<?php echo form_submit('submit', 'Login', 'class="btn-primary"');?>
 			</div>
-			<a href="forgot_password">Forgot your password?</a>
+			<a href="register">Need to register?</a>
 <?php echo form_close();
 
 	}

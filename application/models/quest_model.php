@@ -401,7 +401,7 @@ class Quest_model extends CI_Model {
 	
 	public function get_quest_details($qid) {
 		$details = $this->db->query("SELECT COUNT( DISTINCT uid ) AS attempts, id, name, type, instructions FROM quests LEFT JOIN questCompletion ON quests.id = questCompletion.qid WHERE id = '".$qid."' GROUP BY quests.id");
-		$students = $this->db->query("SELECT qid, uid, username, note, completed FROM questCompletion, users WHERE qid = '".$qid."' AND questCompletion.uid = users.id ORDER BY username ASC, completed DESC");
+		$students = $this->db->query("SELECT qid, uid, username, note, completed FROM questCompletion, users WHERE qid = '".$qid."' AND questCompletion.uid = users.id AND users.active = 1 ORDER BY username ASC, completed DESC");
 		
 		
 		

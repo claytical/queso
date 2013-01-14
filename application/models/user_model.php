@@ -9,7 +9,7 @@ class User_model extends CI_Model {
 	public function get_info($id = 0) {
 		if ($id == 0) {
 			//return all user records
-			$query = $this->db->query('SELECT id, username FROM users WHERE active = 1');
+			$query = $this->db->query('SELECT id, username FROM users');
 			$result = $query->result();
 			if ($result) {
 				return $result;

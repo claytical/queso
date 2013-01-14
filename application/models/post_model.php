@@ -110,10 +110,36 @@ class Post_model extends CI_Model {
 	}
 	
 	public function update($hasFile) {
+		if ($hasFile) {
+			$upload_data = $this->upload->data();
+			$data = array(
+				'headline' => $this->input->post('headline'),
+				'body' => $this->input->post('body'),
+				'frontpage' => $this->input->post('frontpage'),
+				'file' => $upload_data['file_name']
+				);
+		}
+		else {
+			$data = array(
+				'headline' => $this->input->post('headline'),
+				'body' => $this->input->post('body'),
+				'frontpage' => $this->input->post('frontpage')
+				);
+		
+		}
+		
+		$this->db->where('id',$this->input->post('postid'));
+		
+		$this->db->update('posts', $data);
+
+	}
+}
+/*			
 		$headline = $this->input->post('headline');
 		$body = $this->input->post('body');
-		$id = $this->input->post('postid');
 		$frontpage = $this->input->post('frontpage');
+
+		$id = $this->input->post('postid');
 
 		if ($hasFile) {
 			$upload_data = $this->upload->data();
@@ -125,5 +151,4 @@ class Post_model extends CI_Model {
 		
 		}
 	}
-	
-}
+	*/
